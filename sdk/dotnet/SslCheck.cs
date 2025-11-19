@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Statuscake
 {
     [StatuscakeResourceType("statuscake:index/sslCheck:SslCheck")]
-    public partial class SslCheck : Pulumi.CustomResource
+    public partial class SslCheck : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Alert configuration block
@@ -38,7 +38,7 @@ namespace Pulumiverse.Statuscake
         public Output<bool?> FollowRedirects { get; private set; } = null!;
 
         /// <summary>
-        /// Monitored resource configuration block. The describes server under test
+        /// Monitored resource configuration block. This describes the server under test
         /// </summary>
         [Output("monitoredResource")]
         public Output<Outputs.SslCheckMonitoredResource> MonitoredResource { get; private set; } = null!;
@@ -78,7 +78,7 @@ namespace Pulumiverse.Statuscake
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/pulumiverse",
+                PluginDownloadURL = "github://api.github.com/gynzy",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -100,7 +100,7 @@ namespace Pulumiverse.Statuscake
         }
     }
 
-    public sealed class SslCheckArgs : Pulumi.ResourceArgs
+    public sealed class SslCheckArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Alert configuration block
@@ -133,7 +133,7 @@ namespace Pulumiverse.Statuscake
         public Input<bool>? FollowRedirects { get; set; }
 
         /// <summary>
-        /// Monitored resource configuration block. The describes server under test
+        /// Monitored resource configuration block. This describes the server under test
         /// </summary>
         [Input("monitoredResource", required: true)]
         public Input<Inputs.SslCheckMonitoredResourceArgs> MonitoredResource { get; set; } = null!;
@@ -153,9 +153,10 @@ namespace Pulumiverse.Statuscake
         public SslCheckArgs()
         {
         }
+        public static new SslCheckArgs Empty => new SslCheckArgs();
     }
 
-    public sealed class SslCheckState : Pulumi.ResourceArgs
+    public sealed class SslCheckState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Alert configuration block
@@ -188,7 +189,7 @@ namespace Pulumiverse.Statuscake
         public Input<bool>? FollowRedirects { get; set; }
 
         /// <summary>
-        /// Monitored resource configuration block. The describes server under test
+        /// Monitored resource configuration block. This describes the server under test
         /// </summary>
         [Input("monitoredResource")]
         public Input<Inputs.SslCheckMonitoredResourceGetArgs>? MonitoredResource { get; set; }
@@ -208,5 +209,6 @@ namespace Pulumiverse.Statuscake
         public SslCheckState()
         {
         }
+        public static new SslCheckState Empty => new SslCheckState();
     }
 }

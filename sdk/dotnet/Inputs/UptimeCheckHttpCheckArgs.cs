@@ -11,64 +11,107 @@ using Pulumi;
 namespace Pulumiverse.Statuscake.Inputs
 {
 
-    public sealed class UptimeCheckHttpCheckArgs : Pulumi.ResourceArgs
+    public sealed class UptimeCheckHttpCheckArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Basic Authentication (RFC7235) configuration block
+        /// </summary>
         [Input("basicAuthentication")]
         public Input<Inputs.UptimeCheckHttpCheckBasicAuthenticationArgs>? BasicAuthentication { get; set; }
 
+        /// <summary>
+        /// Content matcher configuration block. This is used to assert values within the response of the request
+        /// </summary>
         [Input("contentMatchers")]
         public Input<Inputs.UptimeCheckHttpCheckContentMatchersArgs>? ContentMatchers { get; set; }
 
+        /// <summary>
+        /// Whether to enable cookie storage
+        /// </summary>
         [Input("enableCookies")]
         public Input<bool>? EnableCookies { get; set; }
 
+        /// <summary>
+        /// Specify where the redirect chain should end
+        /// </summary>
         [Input("finalEndpoint")]
         public Input<string>? FinalEndpoint { get; set; }
 
+        /// <summary>
+        /// Whether to follow redirects when testing. Disabled by default
+        /// </summary>
         [Input("followRedirects")]
         public Input<bool>? FollowRedirects { get; set; }
 
         [Input("requestHeaders")]
         private InputMap<string>? _requestHeaders;
+
+        /// <summary>
+        /// Represents headers to be sent when making requests
+        /// </summary>
         public InputMap<string> RequestHeaders
         {
             get => _requestHeaders ?? (_requestHeaders = new InputMap<string>());
             set => _requestHeaders = value;
         }
 
+        /// <summary>
+        /// Type of HTTP check. Either HTTP, or HEAD
+        /// </summary>
         [Input("requestMethod")]
         public Input<string>? RequestMethod { get; set; }
 
         [Input("requestPayload")]
         private InputMap<string>? _requestPayload;
+
+        /// <summary>
+        /// Payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `request_payload` or `request_payload_raw` may be specified
+        /// </summary>
         public InputMap<string> RequestPayload
         {
             get => _requestPayload ?? (_requestPayload = new InputMap<string>());
             set => _requestPayload = value;
         }
 
+        /// <summary>
+        /// Raw payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `request_payload` or `request_payload_raw` may be specified
+        /// </summary>
         [Input("requestPayloadRaw")]
         public Input<string>? RequestPayloadRaw { get; set; }
 
-        [Input("statusCodes", required: true)]
+        [Input("statusCodes")]
         private InputList<string>? _statusCodes;
+
+        /// <summary>
+        /// List of status codes that trigger an alert. If not specified then the default status codes are used. Once set, the default status codes cannot be restored and ommitting this field does not clear the attribute
+        /// </summary>
         public InputList<string> StatusCodes
         {
             get => _statusCodes ?? (_statusCodes = new InputList<string>());
             set => _statusCodes = value;
         }
 
+        /// <summary>
+        /// The number of seconds to wait to receive the first byte
+        /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
 
+        /// <summary>
+        /// Custom user agent string set when testing
+        /// </summary>
         [Input("userAgent")]
         public Input<string>? UserAgent { get; set; }
 
+        /// <summary>
+        /// Whether to send an alert if the SSL certificate is soon to expire
+        /// </summary>
         [Input("validateSsl")]
         public Input<bool>? ValidateSsl { get; set; }
 
         public UptimeCheckHttpCheckArgs()
         {
         }
+        public static new UptimeCheckHttpCheckArgs Empty => new UptimeCheckHttpCheckArgs();
     }
 }

@@ -14,8 +14,17 @@ namespace Pulumiverse.Statuscake.Outputs
     [OutputType]
     public sealed class PagespeedCheckAlertConfig
     {
+        /// <summary>
+        /// An alert will be sent if the size of the page is larger than this value (kb).
+        /// </summary>
         public readonly int? AlertBigger;
+        /// <summary>
+        /// An alert will be sent if the load time of the page exceeds this value (ms).
+        /// </summary>
         public readonly int? AlertSlower;
+        /// <summary>
+        /// An alert will be sent if the size of the page is smaller than this value (kb).
+        /// </summary>
         public readonly int? AlertSmaller;
 
         [OutputConstructor]

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class SslCheck extends pulumi.CustomResource {
@@ -50,7 +51,7 @@ export class SslCheck extends pulumi.CustomResource {
      */
     public readonly followRedirects!: pulumi.Output<boolean | undefined>;
     /**
-     * Monitored resource configuration block. The describes server under test
+     * Monitored resource configuration block. This describes the server under test
      */
     public readonly monitoredResource!: pulumi.Output<outputs.SslCheckMonitoredResource>;
     /**
@@ -127,7 +128,7 @@ export interface SslCheckState {
      */
     followRedirects?: pulumi.Input<boolean>;
     /**
-     * Monitored resource configuration block. The describes server under test
+     * Monitored resource configuration block. This describes the server under test
      */
     monitoredResource?: pulumi.Input<inputs.SslCheckMonitoredResource>;
     /**
@@ -161,7 +162,7 @@ export interface SslCheckArgs {
      */
     followRedirects?: pulumi.Input<boolean>;
     /**
-     * Monitored resource configuration block. The describes server under test
+     * Monitored resource configuration block. This describes the server under test
      */
     monitoredResource: pulumi.Input<inputs.SslCheckMonitoredResource>;
     /**

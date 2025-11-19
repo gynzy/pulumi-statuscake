@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -70,24 +75,23 @@ def get_pagespeed_monitoring_locations(region_code: Optional[str] = None,
     """
     __args__ = dict()
     __args__['regionCode'] = region_code
-    if opts is None:
-        opts = pulumi.InvokeOptions()
-    if opts.version is None:
-        opts.version = _utilities.get_version()
-        if opts.plugin_download_url is None:
-            opts.plugin_download_url = _utilities.get_plugin_download_url()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('statuscake:index/getPagespeedMonitoringLocations:getPagespeedMonitoringLocations', __args__, opts=opts, typ=GetPagespeedMonitoringLocationsResult).value
 
     return AwaitableGetPagespeedMonitoringLocationsResult(
-        id=__ret__.id,
-        locations=__ret__.locations,
-        region_code=__ret__.region_code)
-
-
-@_utilities.lift_output_func(get_pagespeed_monitoring_locations)
+        id=pulumi.get(__ret__, 'id'),
+        locations=pulumi.get(__ret__, 'locations'),
+        region_code=pulumi.get(__ret__, 'region_code'))
 def get_pagespeed_monitoring_locations_output(region_code: Optional[pulumi.Input[Optional[str]]] = None,
-                                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPagespeedMonitoringLocationsResult]:
+                                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPagespeedMonitoringLocationsResult]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    __args__['regionCode'] = region_code
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('statuscake:index/getPagespeedMonitoringLocations:getPagespeedMonitoringLocations', __args__, opts=opts, typ=GetPagespeedMonitoringLocationsResult)
+    return __ret__.apply(lambda __response__: GetPagespeedMonitoringLocationsResult(
+        id=pulumi.get(__response__, 'id'),
+        locations=pulumi.get(__response__, 'locations'),
+        region_code=pulumi.get(__response__, 'region_code')))

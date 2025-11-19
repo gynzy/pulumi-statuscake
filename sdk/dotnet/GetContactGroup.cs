@@ -13,14 +13,17 @@ namespace Pulumiverse.Statuscake
     public static class GetContactGroup
     {
         public static Task<GetContactGroupResult> InvokeAsync(GetContactGroupArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetContactGroupResult>("statuscake:index/getContactGroup:getContactGroup", args ?? new GetContactGroupArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetContactGroupResult>("statuscake:index/getContactGroup:getContactGroup", args ?? new GetContactGroupArgs(), options.WithDefaults());
 
         public static Output<GetContactGroupResult> Invoke(GetContactGroupInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetContactGroupResult>("statuscake:index/getContactGroup:getContactGroup", args ?? new GetContactGroupInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetContactGroupResult>("statuscake:index/getContactGroup:getContactGroup", args ?? new GetContactGroupInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetContactGroupResult> Invoke(GetContactGroupInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetContactGroupResult>("statuscake:index/getContactGroup:getContactGroup", args ?? new GetContactGroupInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetContactGroupArgs : Pulumi.InvokeArgs
+    public sealed class GetContactGroupArgs : global::Pulumi.InvokeArgs
     {
         [Input("id", required: true)]
         public string Id { get; set; } = null!;
@@ -28,9 +31,10 @@ namespace Pulumiverse.Statuscake
         public GetContactGroupArgs()
         {
         }
+        public static new GetContactGroupArgs Empty => new GetContactGroupArgs();
     }
 
-    public sealed class GetContactGroupInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetContactGroupInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;
@@ -38,6 +42,7 @@ namespace Pulumiverse.Statuscake
         public GetContactGroupInvokeArgs()
         {
         }
+        public static new GetContactGroupInvokeArgs Empty => new GetContactGroupInvokeArgs();
     }
 
 

@@ -6,7 +6,10 @@ package config
 import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+	"github.com/pulumiverse/pulumi-statuscake/sdk/go/statuscake/internal"
 )
+
+var _ = internal.GetEnvOrDefault
 
 // The API token for operations. This can also be provided as an environment variable `STATUSCAKE_API_TOKEN`
 func GetApiToken(ctx *pulumi.Context) string {
@@ -14,7 +17,11 @@ func GetApiToken(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "STATUSCAKE_API_TOKEN").(string)
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "STATUSCAKE_API_TOKEN"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // Maximum backoff period in seconds after failed API calls. This can also be provided as an environment variable

@@ -14,18 +14,57 @@ namespace Pulumiverse.Statuscake.Outputs
     [OutputType]
     public sealed class UptimeCheckHttpCheck
     {
+        /// <summary>
+        /// Basic Authentication (RFC7235) configuration block
+        /// </summary>
         public readonly Outputs.UptimeCheckHttpCheckBasicAuthentication? BasicAuthentication;
+        /// <summary>
+        /// Content matcher configuration block. This is used to assert values within the response of the request
+        /// </summary>
         public readonly Outputs.UptimeCheckHttpCheckContentMatchers? ContentMatchers;
+        /// <summary>
+        /// Whether to enable cookie storage
+        /// </summary>
         public readonly bool? EnableCookies;
+        /// <summary>
+        /// Specify where the redirect chain should end
+        /// </summary>
         public readonly string? FinalEndpoint;
+        /// <summary>
+        /// Whether to follow redirects when testing. Disabled by default
+        /// </summary>
         public readonly bool? FollowRedirects;
+        /// <summary>
+        /// Represents headers to be sent when making requests
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? RequestHeaders;
+        /// <summary>
+        /// Type of HTTP check. Either HTTP, or HEAD
+        /// </summary>
         public readonly string? RequestMethod;
+        /// <summary>
+        /// Payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `request_payload` or `request_payload_raw` may be specified
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? RequestPayload;
+        /// <summary>
+        /// Raw payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `request_payload` or `request_payload_raw` may be specified
+        /// </summary>
         public readonly string? RequestPayloadRaw;
+        /// <summary>
+        /// List of status codes that trigger an alert. If not specified then the default status codes are used. Once set, the default status codes cannot be restored and ommitting this field does not clear the attribute
+        /// </summary>
         public readonly ImmutableArray<string> StatusCodes;
+        /// <summary>
+        /// The number of seconds to wait to receive the first byte
+        /// </summary>
         public readonly int? Timeout;
+        /// <summary>
+        /// Custom user agent string set when testing
+        /// </summary>
         public readonly string? UserAgent;
+        /// <summary>
+        /// Whether to send an alert if the SSL certificate is soon to expire
+        /// </summary>
         public readonly bool? ValidateSsl;
 
         [OutputConstructor]

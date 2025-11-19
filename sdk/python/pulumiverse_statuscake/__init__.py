@@ -9,6 +9,7 @@ from .contact_group import *
 from .get_contact_group import *
 from .get_pagespeed_monitoring_locations import *
 from .get_uptime_monitoring_locations import *
+from .heartbeat_check import *
 from .maintenance_window import *
 from .pagespeed_check import *
 from .provider import *
@@ -33,6 +34,14 @@ _utilities.register(
   "fqn": "pulumiverse_statuscake",
   "classes": {
    "statuscake:index/contactGroup:ContactGroup": "ContactGroup"
+  }
+ },
+ {
+  "pkg": "statuscake",
+  "mod": "index/heartbeatCheck",
+  "fqn": "pulumiverse_statuscake",
+  "classes": {
+   "statuscake:index/heartbeatCheck:HeartbeatCheck": "HeartbeatCheck"
   }
  },
  {

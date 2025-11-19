@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class UptimeCheck extends pulumi.CustomResource {
@@ -46,15 +47,15 @@ export class UptimeCheck extends pulumi.CustomResource {
      */
     public readonly contactGroups!: pulumi.Output<string[] | undefined>;
     /**
-     * DNS check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+     * DNS check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
      */
     public readonly dnsCheck!: pulumi.Output<outputs.UptimeCheckDnsCheck | undefined>;
     /**
-     * HTTP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+     * HTTP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
      */
     public readonly httpCheck!: pulumi.Output<outputs.UptimeCheckHttpCheck | undefined>;
     /**
-     * ICMP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+     * ICMP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
      */
     public readonly icmpCheck!: pulumi.Output<outputs.UptimeCheckIcmpCheck | undefined>;
     /**
@@ -62,7 +63,7 @@ export class UptimeCheck extends pulumi.CustomResource {
      */
     public /*out*/ readonly locations!: pulumi.Output<outputs.UptimeCheckLocation[]>;
     /**
-     * Monitored resource configuration block. The describes server under test
+     * Monitored resource configuration block. This describes the server under test
      */
     public readonly monitoredResource!: pulumi.Output<outputs.UptimeCheckMonitoredResource>;
     /**
@@ -83,7 +84,7 @@ export class UptimeCheck extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * TCP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+     * TCP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
      */
     public readonly tcpCheck!: pulumi.Output<outputs.UptimeCheckTcpCheck | undefined>;
     /**
@@ -163,15 +164,15 @@ export interface UptimeCheckState {
      */
     contactGroups?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * DNS check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+     * DNS check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
      */
     dnsCheck?: pulumi.Input<inputs.UptimeCheckDnsCheck>;
     /**
-     * HTTP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+     * HTTP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
      */
     httpCheck?: pulumi.Input<inputs.UptimeCheckHttpCheck>;
     /**
-     * ICMP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+     * ICMP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
      */
     icmpCheck?: pulumi.Input<inputs.UptimeCheckIcmpCheck>;
     /**
@@ -179,7 +180,7 @@ export interface UptimeCheckState {
      */
     locations?: pulumi.Input<pulumi.Input<inputs.UptimeCheckLocation>[]>;
     /**
-     * Monitored resource configuration block. The describes server under test
+     * Monitored resource configuration block. This describes the server under test
      */
     monitoredResource?: pulumi.Input<inputs.UptimeCheckMonitoredResource>;
     /**
@@ -200,7 +201,7 @@ export interface UptimeCheckState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * TCP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+     * TCP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
      */
     tcpCheck?: pulumi.Input<inputs.UptimeCheckTcpCheck>;
     /**
@@ -226,19 +227,19 @@ export interface UptimeCheckArgs {
      */
     contactGroups?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * DNS check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+     * DNS check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
      */
     dnsCheck?: pulumi.Input<inputs.UptimeCheckDnsCheck>;
     /**
-     * HTTP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+     * HTTP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
      */
     httpCheck?: pulumi.Input<inputs.UptimeCheckHttpCheck>;
     /**
-     * ICMP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+     * ICMP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
      */
     icmpCheck?: pulumi.Input<inputs.UptimeCheckIcmpCheck>;
     /**
-     * Monitored resource configuration block. The describes server under test
+     * Monitored resource configuration block. This describes the server under test
      */
     monitoredResource: pulumi.Input<inputs.UptimeCheckMonitoredResource>;
     /**
@@ -259,7 +260,7 @@ export interface UptimeCheckArgs {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * TCP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+     * TCP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
      */
     tcpCheck?: pulumi.Input<inputs.UptimeCheckTcpCheck>;
     /**

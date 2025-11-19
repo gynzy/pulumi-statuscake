@@ -19,6 +19,7 @@
         "getContactGroup.ts",
         "getPagespeedMonitoringLocations.ts",
         "getUptimeMonitoringLocations.ts",
+        "heartbeatCheck.ts",
         "index.ts",
         "maintenanceWindow.ts",
         "pagespeedCheck.ts",

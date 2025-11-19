@@ -7,8 +7,9 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-statuscake/sdk/go/statuscake/internal"
 )
 
 type SslCheck struct {
@@ -22,7 +23,7 @@ type SslCheck struct {
 	ContactGroups pulumi.StringArrayOutput `pulumi:"contactGroups"`
 	// Whether to follow redirects when testing. Disabled by default
 	FollowRedirects pulumi.BoolPtrOutput `pulumi:"followRedirects"`
-	// Monitored resource configuration block. The describes server under test
+	// Monitored resource configuration block. This describes the server under test
 	MonitoredResource SslCheckMonitoredResourceOutput `pulumi:"monitoredResource"`
 	// Whether the check should be run
 	Paused pulumi.BoolPtrOutput `pulumi:"paused"`
@@ -46,7 +47,7 @@ func NewSslCheck(ctx *pulumi.Context,
 	if args.MonitoredResource == nil {
 		return nil, errors.New("invalid value for required argument 'MonitoredResource'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SslCheck
 	err := ctx.RegisterResource("statuscake:index/sslCheck:SslCheck", name, args, &resource, opts...)
 	if err != nil {
@@ -77,7 +78,7 @@ type sslCheckState struct {
 	ContactGroups []string `pulumi:"contactGroups"`
 	// Whether to follow redirects when testing. Disabled by default
 	FollowRedirects *bool `pulumi:"followRedirects"`
-	// Monitored resource configuration block. The describes server under test
+	// Monitored resource configuration block. This describes the server under test
 	MonitoredResource *SslCheckMonitoredResource `pulumi:"monitoredResource"`
 	// Whether the check should be run
 	Paused *bool `pulumi:"paused"`
@@ -94,7 +95,7 @@ type SslCheckState struct {
 	ContactGroups pulumi.StringArrayInput
 	// Whether to follow redirects when testing. Disabled by default
 	FollowRedirects pulumi.BoolPtrInput
-	// Monitored resource configuration block. The describes server under test
+	// Monitored resource configuration block. This describes the server under test
 	MonitoredResource SslCheckMonitoredResourcePtrInput
 	// Whether the check should be run
 	Paused pulumi.BoolPtrInput
@@ -115,7 +116,7 @@ type sslCheckArgs struct {
 	ContactGroups []string `pulumi:"contactGroups"`
 	// Whether to follow redirects when testing. Disabled by default
 	FollowRedirects *bool `pulumi:"followRedirects"`
-	// Monitored resource configuration block. The describes server under test
+	// Monitored resource configuration block. This describes the server under test
 	MonitoredResource SslCheckMonitoredResource `pulumi:"monitoredResource"`
 	// Whether the check should be run
 	Paused *bool `pulumi:"paused"`
@@ -133,7 +134,7 @@ type SslCheckArgs struct {
 	ContactGroups pulumi.StringArrayInput
 	// Whether to follow redirects when testing. Disabled by default
 	FollowRedirects pulumi.BoolPtrInput
-	// Monitored resource configuration block. The describes server under test
+	// Monitored resource configuration block. This describes the server under test
 	MonitoredResource SslCheckMonitoredResourceInput
 	// Whether the check should be run
 	Paused pulumi.BoolPtrInput
@@ -167,7 +168,7 @@ func (i *SslCheck) ToSslCheckOutputWithContext(ctx context.Context) SslCheckOutp
 // SslCheckArrayInput is an input type that accepts SslCheckArray and SslCheckArrayOutput values.
 // You can construct a concrete instance of `SslCheckArrayInput` via:
 //
-//          SslCheckArray{ SslCheckArgs{...} }
+//	SslCheckArray{ SslCheckArgs{...} }
 type SslCheckArrayInput interface {
 	pulumi.Input
 
@@ -192,7 +193,7 @@ func (i SslCheckArray) ToSslCheckArrayOutputWithContext(ctx context.Context) Ssl
 // SslCheckMapInput is an input type that accepts SslCheckMap and SslCheckMapOutput values.
 // You can construct a concrete instance of `SslCheckMapInput` via:
 //
-//          SslCheckMap{ "key": SslCheckArgs{...} }
+//	SslCheckMap{ "key": SslCheckArgs{...} }
 type SslCheckMapInput interface {
 	pulumi.Input
 
@@ -248,7 +249,7 @@ func (o SslCheckOutput) FollowRedirects() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SslCheck) pulumi.BoolPtrOutput { return v.FollowRedirects }).(pulumi.BoolPtrOutput)
 }
 
-// Monitored resource configuration block. The describes server under test
+// Monitored resource configuration block. This describes the server under test
 func (o SslCheckOutput) MonitoredResource() SslCheckMonitoredResourceOutput {
 	return o.ApplyT(func(v *SslCheck) SslCheckMonitoredResourceOutput { return v.MonitoredResource }).(SslCheckMonitoredResourceOutput)
 }

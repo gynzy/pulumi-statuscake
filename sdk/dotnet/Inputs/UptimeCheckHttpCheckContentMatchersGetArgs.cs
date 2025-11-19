@@ -11,19 +11,29 @@ using Pulumi;
 namespace Pulumiverse.Statuscake.Inputs
 {
 
-    public sealed class UptimeCheckHttpCheckContentMatchersGetArgs : Pulumi.ResourceArgs
+    public sealed class UptimeCheckHttpCheckContentMatchersGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// String to look for within the response. Considered down if not found
+        /// </summary>
         [Input("content", required: true)]
         public Input<string> Content { get; set; } = null!;
 
+        /// <summary>
+        /// Include header content in string match search
+        /// </summary>
         [Input("includeHeaders")]
         public Input<bool>? IncludeHeaders { get; set; }
 
+        /// <summary>
+        /// Whether to consider the check as down if the content is present within the response
+        /// </summary>
         [Input("matcher")]
         public Input<string>? Matcher { get; set; }
 
         public UptimeCheckHttpCheckContentMatchersGetArgs()
         {
         }
+        public static new UptimeCheckHttpCheckContentMatchersGetArgs Empty => new UptimeCheckHttpCheckContentMatchersGetArgs();
     }
 }

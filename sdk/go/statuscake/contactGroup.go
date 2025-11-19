@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-statuscake/sdk/go/statuscake/internal"
 )
 
 type ContactGroup struct {
@@ -32,7 +33,7 @@ func NewContactGroup(ctx *pulumi.Context,
 		args = &ContactGroupArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ContactGroup
 	err := ctx.RegisterResource("statuscake:index/contactGroup:ContactGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ func (i *ContactGroup) ToContactGroupOutputWithContext(ctx context.Context) Cont
 // ContactGroupArrayInput is an input type that accepts ContactGroupArray and ContactGroupArrayOutput values.
 // You can construct a concrete instance of `ContactGroupArrayInput` via:
 //
-//          ContactGroupArray{ ContactGroupArgs{...} }
+//	ContactGroupArray{ ContactGroupArgs{...} }
 type ContactGroupArrayInput interface {
 	pulumi.Input
 
@@ -162,7 +163,7 @@ func (i ContactGroupArray) ToContactGroupArrayOutputWithContext(ctx context.Cont
 // ContactGroupMapInput is an input type that accepts ContactGroupMap and ContactGroupMapOutput values.
 // You can construct a concrete instance of `ContactGroupMapInput` via:
 //
-//          ContactGroupMap{ "key": ContactGroupArgs{...} }
+//	ContactGroupMap{ "key": ContactGroupArgs{...} }
 type ContactGroupMapInput interface {
 	pulumi.Input
 

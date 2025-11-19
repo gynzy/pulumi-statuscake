@@ -8,18 +8,161 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-statuscake/sdk/go/statuscake/internal"
 )
 
+var _ = internal.GetEnvOrDefault
+
+type HeartbeatCheckMonitoredResource struct {
+	// Name of the hosting provider
+	Host *string `pulumi:"host"`
+}
+
+// HeartbeatCheckMonitoredResourceInput is an input type that accepts HeartbeatCheckMonitoredResourceArgs and HeartbeatCheckMonitoredResourceOutput values.
+// You can construct a concrete instance of `HeartbeatCheckMonitoredResourceInput` via:
+//
+//	HeartbeatCheckMonitoredResourceArgs{...}
+type HeartbeatCheckMonitoredResourceInput interface {
+	pulumi.Input
+
+	ToHeartbeatCheckMonitoredResourceOutput() HeartbeatCheckMonitoredResourceOutput
+	ToHeartbeatCheckMonitoredResourceOutputWithContext(context.Context) HeartbeatCheckMonitoredResourceOutput
+}
+
+type HeartbeatCheckMonitoredResourceArgs struct {
+	// Name of the hosting provider
+	Host pulumi.StringPtrInput `pulumi:"host"`
+}
+
+func (HeartbeatCheckMonitoredResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*HeartbeatCheckMonitoredResource)(nil)).Elem()
+}
+
+func (i HeartbeatCheckMonitoredResourceArgs) ToHeartbeatCheckMonitoredResourceOutput() HeartbeatCheckMonitoredResourceOutput {
+	return i.ToHeartbeatCheckMonitoredResourceOutputWithContext(context.Background())
+}
+
+func (i HeartbeatCheckMonitoredResourceArgs) ToHeartbeatCheckMonitoredResourceOutputWithContext(ctx context.Context) HeartbeatCheckMonitoredResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HeartbeatCheckMonitoredResourceOutput)
+}
+
+func (i HeartbeatCheckMonitoredResourceArgs) ToHeartbeatCheckMonitoredResourcePtrOutput() HeartbeatCheckMonitoredResourcePtrOutput {
+	return i.ToHeartbeatCheckMonitoredResourcePtrOutputWithContext(context.Background())
+}
+
+func (i HeartbeatCheckMonitoredResourceArgs) ToHeartbeatCheckMonitoredResourcePtrOutputWithContext(ctx context.Context) HeartbeatCheckMonitoredResourcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HeartbeatCheckMonitoredResourceOutput).ToHeartbeatCheckMonitoredResourcePtrOutputWithContext(ctx)
+}
+
+// HeartbeatCheckMonitoredResourcePtrInput is an input type that accepts HeartbeatCheckMonitoredResourceArgs, HeartbeatCheckMonitoredResourcePtr and HeartbeatCheckMonitoredResourcePtrOutput values.
+// You can construct a concrete instance of `HeartbeatCheckMonitoredResourcePtrInput` via:
+//
+//	        HeartbeatCheckMonitoredResourceArgs{...}
+//
+//	or:
+//
+//	        nil
+type HeartbeatCheckMonitoredResourcePtrInput interface {
+	pulumi.Input
+
+	ToHeartbeatCheckMonitoredResourcePtrOutput() HeartbeatCheckMonitoredResourcePtrOutput
+	ToHeartbeatCheckMonitoredResourcePtrOutputWithContext(context.Context) HeartbeatCheckMonitoredResourcePtrOutput
+}
+
+type heartbeatCheckMonitoredResourcePtrType HeartbeatCheckMonitoredResourceArgs
+
+func HeartbeatCheckMonitoredResourcePtr(v *HeartbeatCheckMonitoredResourceArgs) HeartbeatCheckMonitoredResourcePtrInput {
+	return (*heartbeatCheckMonitoredResourcePtrType)(v)
+}
+
+func (*heartbeatCheckMonitoredResourcePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**HeartbeatCheckMonitoredResource)(nil)).Elem()
+}
+
+func (i *heartbeatCheckMonitoredResourcePtrType) ToHeartbeatCheckMonitoredResourcePtrOutput() HeartbeatCheckMonitoredResourcePtrOutput {
+	return i.ToHeartbeatCheckMonitoredResourcePtrOutputWithContext(context.Background())
+}
+
+func (i *heartbeatCheckMonitoredResourcePtrType) ToHeartbeatCheckMonitoredResourcePtrOutputWithContext(ctx context.Context) HeartbeatCheckMonitoredResourcePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HeartbeatCheckMonitoredResourcePtrOutput)
+}
+
+type HeartbeatCheckMonitoredResourceOutput struct{ *pulumi.OutputState }
+
+func (HeartbeatCheckMonitoredResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HeartbeatCheckMonitoredResource)(nil)).Elem()
+}
+
+func (o HeartbeatCheckMonitoredResourceOutput) ToHeartbeatCheckMonitoredResourceOutput() HeartbeatCheckMonitoredResourceOutput {
+	return o
+}
+
+func (o HeartbeatCheckMonitoredResourceOutput) ToHeartbeatCheckMonitoredResourceOutputWithContext(ctx context.Context) HeartbeatCheckMonitoredResourceOutput {
+	return o
+}
+
+func (o HeartbeatCheckMonitoredResourceOutput) ToHeartbeatCheckMonitoredResourcePtrOutput() HeartbeatCheckMonitoredResourcePtrOutput {
+	return o.ToHeartbeatCheckMonitoredResourcePtrOutputWithContext(context.Background())
+}
+
+func (o HeartbeatCheckMonitoredResourceOutput) ToHeartbeatCheckMonitoredResourcePtrOutputWithContext(ctx context.Context) HeartbeatCheckMonitoredResourcePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v HeartbeatCheckMonitoredResource) *HeartbeatCheckMonitoredResource {
+		return &v
+	}).(HeartbeatCheckMonitoredResourcePtrOutput)
+}
+
+// Name of the hosting provider
+func (o HeartbeatCheckMonitoredResourceOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v HeartbeatCheckMonitoredResource) *string { return v.Host }).(pulumi.StringPtrOutput)
+}
+
+type HeartbeatCheckMonitoredResourcePtrOutput struct{ *pulumi.OutputState }
+
+func (HeartbeatCheckMonitoredResourcePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**HeartbeatCheckMonitoredResource)(nil)).Elem()
+}
+
+func (o HeartbeatCheckMonitoredResourcePtrOutput) ToHeartbeatCheckMonitoredResourcePtrOutput() HeartbeatCheckMonitoredResourcePtrOutput {
+	return o
+}
+
+func (o HeartbeatCheckMonitoredResourcePtrOutput) ToHeartbeatCheckMonitoredResourcePtrOutputWithContext(ctx context.Context) HeartbeatCheckMonitoredResourcePtrOutput {
+	return o
+}
+
+func (o HeartbeatCheckMonitoredResourcePtrOutput) Elem() HeartbeatCheckMonitoredResourceOutput {
+	return o.ApplyT(func(v *HeartbeatCheckMonitoredResource) HeartbeatCheckMonitoredResource {
+		if v != nil {
+			return *v
+		}
+		var ret HeartbeatCheckMonitoredResource
+		return ret
+	}).(HeartbeatCheckMonitoredResourceOutput)
+}
+
+// Name of the hosting provider
+func (o HeartbeatCheckMonitoredResourcePtrOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *HeartbeatCheckMonitoredResource) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Host
+	}).(pulumi.StringPtrOutput)
+}
+
 type PagespeedCheckAlertConfig struct {
-	AlertBigger  *int `pulumi:"alertBigger"`
-	AlertSlower  *int `pulumi:"alertSlower"`
+	// An alert will be sent if the size of the page is larger than this value (kb).
+	AlertBigger *int `pulumi:"alertBigger"`
+	// An alert will be sent if the load time of the page exceeds this value (ms).
+	AlertSlower *int `pulumi:"alertSlower"`
+	// An alert will be sent if the size of the page is smaller than this value (kb).
 	AlertSmaller *int `pulumi:"alertSmaller"`
 }
 
 // PagespeedCheckAlertConfigInput is an input type that accepts PagespeedCheckAlertConfigArgs and PagespeedCheckAlertConfigOutput values.
 // You can construct a concrete instance of `PagespeedCheckAlertConfigInput` via:
 //
-//          PagespeedCheckAlertConfigArgs{...}
+//	PagespeedCheckAlertConfigArgs{...}
 type PagespeedCheckAlertConfigInput interface {
 	pulumi.Input
 
@@ -28,8 +171,11 @@ type PagespeedCheckAlertConfigInput interface {
 }
 
 type PagespeedCheckAlertConfigArgs struct {
-	AlertBigger  pulumi.IntPtrInput `pulumi:"alertBigger"`
-	AlertSlower  pulumi.IntPtrInput `pulumi:"alertSlower"`
+	// An alert will be sent if the size of the page is larger than this value (kb).
+	AlertBigger pulumi.IntPtrInput `pulumi:"alertBigger"`
+	// An alert will be sent if the load time of the page exceeds this value (ms).
+	AlertSlower pulumi.IntPtrInput `pulumi:"alertSlower"`
+	// An alert will be sent if the size of the page is smaller than this value (kb).
 	AlertSmaller pulumi.IntPtrInput `pulumi:"alertSmaller"`
 }
 
@@ -56,11 +202,11 @@ func (i PagespeedCheckAlertConfigArgs) ToPagespeedCheckAlertConfigPtrOutputWithC
 // PagespeedCheckAlertConfigPtrInput is an input type that accepts PagespeedCheckAlertConfigArgs, PagespeedCheckAlertConfigPtr and PagespeedCheckAlertConfigPtrOutput values.
 // You can construct a concrete instance of `PagespeedCheckAlertConfigPtrInput` via:
 //
-//          PagespeedCheckAlertConfigArgs{...}
+//	        PagespeedCheckAlertConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type PagespeedCheckAlertConfigPtrInput interface {
 	pulumi.Input
 
@@ -110,14 +256,17 @@ func (o PagespeedCheckAlertConfigOutput) ToPagespeedCheckAlertConfigPtrOutputWit
 	}).(PagespeedCheckAlertConfigPtrOutput)
 }
 
+// An alert will be sent if the size of the page is larger than this value (kb).
 func (o PagespeedCheckAlertConfigOutput) AlertBigger() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v PagespeedCheckAlertConfig) *int { return v.AlertBigger }).(pulumi.IntPtrOutput)
 }
 
+// An alert will be sent if the load time of the page exceeds this value (ms).
 func (o PagespeedCheckAlertConfigOutput) AlertSlower() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v PagespeedCheckAlertConfig) *int { return v.AlertSlower }).(pulumi.IntPtrOutput)
 }
 
+// An alert will be sent if the size of the page is smaller than this value (kb).
 func (o PagespeedCheckAlertConfigOutput) AlertSmaller() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v PagespeedCheckAlertConfig) *int { return v.AlertSmaller }).(pulumi.IntPtrOutput)
 }
@@ -146,6 +295,7 @@ func (o PagespeedCheckAlertConfigPtrOutput) Elem() PagespeedCheckAlertConfigOutp
 	}).(PagespeedCheckAlertConfigOutput)
 }
 
+// An alert will be sent if the size of the page is larger than this value (kb).
 func (o PagespeedCheckAlertConfigPtrOutput) AlertBigger() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *PagespeedCheckAlertConfig) *int {
 		if v == nil {
@@ -155,6 +305,7 @@ func (o PagespeedCheckAlertConfigPtrOutput) AlertBigger() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// An alert will be sent if the load time of the page exceeds this value (ms).
 func (o PagespeedCheckAlertConfigPtrOutput) AlertSlower() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *PagespeedCheckAlertConfig) *int {
 		if v == nil {
@@ -164,6 +315,7 @@ func (o PagespeedCheckAlertConfigPtrOutput) AlertSlower() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// An alert will be sent if the size of the page is smaller than this value (kb).
 func (o PagespeedCheckAlertConfigPtrOutput) AlertSmaller() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *PagespeedCheckAlertConfig) *int {
 		if v == nil {
@@ -174,13 +326,14 @@ func (o PagespeedCheckAlertConfigPtrOutput) AlertSmaller() pulumi.IntPtrOutput {
 }
 
 type PagespeedCheckMonitoredResource struct {
+	// URL or IP address of the website under test
 	Address string `pulumi:"address"`
 }
 
 // PagespeedCheckMonitoredResourceInput is an input type that accepts PagespeedCheckMonitoredResourceArgs and PagespeedCheckMonitoredResourceOutput values.
 // You can construct a concrete instance of `PagespeedCheckMonitoredResourceInput` via:
 //
-//          PagespeedCheckMonitoredResourceArgs{...}
+//	PagespeedCheckMonitoredResourceArgs{...}
 type PagespeedCheckMonitoredResourceInput interface {
 	pulumi.Input
 
@@ -189,6 +342,7 @@ type PagespeedCheckMonitoredResourceInput interface {
 }
 
 type PagespeedCheckMonitoredResourceArgs struct {
+	// URL or IP address of the website under test
 	Address pulumi.StringInput `pulumi:"address"`
 }
 
@@ -215,11 +369,11 @@ func (i PagespeedCheckMonitoredResourceArgs) ToPagespeedCheckMonitoredResourcePt
 // PagespeedCheckMonitoredResourcePtrInput is an input type that accepts PagespeedCheckMonitoredResourceArgs, PagespeedCheckMonitoredResourcePtr and PagespeedCheckMonitoredResourcePtrOutput values.
 // You can construct a concrete instance of `PagespeedCheckMonitoredResourcePtrInput` via:
 //
-//          PagespeedCheckMonitoredResourceArgs{...}
+//	        PagespeedCheckMonitoredResourceArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type PagespeedCheckMonitoredResourcePtrInput interface {
 	pulumi.Input
 
@@ -269,6 +423,7 @@ func (o PagespeedCheckMonitoredResourceOutput) ToPagespeedCheckMonitoredResource
 	}).(PagespeedCheckMonitoredResourcePtrOutput)
 }
 
+// URL or IP address of the website under test
 func (o PagespeedCheckMonitoredResourceOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v PagespeedCheckMonitoredResource) string { return v.Address }).(pulumi.StringOutput)
 }
@@ -297,6 +452,7 @@ func (o PagespeedCheckMonitoredResourcePtrOutput) Elem() PagespeedCheckMonitored
 	}).(PagespeedCheckMonitoredResourceOutput)
 }
 
+// URL or IP address of the website under test
 func (o PagespeedCheckMonitoredResourcePtrOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PagespeedCheckMonitoredResource) *string {
 		if v == nil {
@@ -307,17 +463,22 @@ func (o PagespeedCheckMonitoredResourcePtrOutput) Address() pulumi.StringPtrOutp
 }
 
 type SslCheckAlertConfig struct {
-	AlertAts   []int `pulumi:"alertAts"`
-	OnBroken   *bool `pulumi:"onBroken"`
-	OnExpiry   *bool `pulumi:"onExpiry"`
-	OnMixed    *bool `pulumi:"onMixed"`
+	// List representing when alerts should be sent (days). Must be exactly 3 numerical values
+	AlertAts []int `pulumi:"alertAts"`
+	// Whether to enable alerts when SSL certificate issues are found
+	OnBroken *bool `pulumi:"onBroken"`
+	// Whether to enable alerts when the SSL certificate is to expire
+	OnExpiry *bool `pulumi:"onExpiry"`
+	// Whether to enable alerts when mixed content is found
+	OnMixed *bool `pulumi:"onMixed"`
+	// Whether to enable alert reminders
 	OnReminder *bool `pulumi:"onReminder"`
 }
 
 // SslCheckAlertConfigInput is an input type that accepts SslCheckAlertConfigArgs and SslCheckAlertConfigOutput values.
 // You can construct a concrete instance of `SslCheckAlertConfigInput` via:
 //
-//          SslCheckAlertConfigArgs{...}
+//	SslCheckAlertConfigArgs{...}
 type SslCheckAlertConfigInput interface {
 	pulumi.Input
 
@@ -326,11 +487,16 @@ type SslCheckAlertConfigInput interface {
 }
 
 type SslCheckAlertConfigArgs struct {
-	AlertAts   pulumi.IntArrayInput `pulumi:"alertAts"`
-	OnBroken   pulumi.BoolPtrInput  `pulumi:"onBroken"`
-	OnExpiry   pulumi.BoolPtrInput  `pulumi:"onExpiry"`
-	OnMixed    pulumi.BoolPtrInput  `pulumi:"onMixed"`
-	OnReminder pulumi.BoolPtrInput  `pulumi:"onReminder"`
+	// List representing when alerts should be sent (days). Must be exactly 3 numerical values
+	AlertAts pulumi.IntArrayInput `pulumi:"alertAts"`
+	// Whether to enable alerts when SSL certificate issues are found
+	OnBroken pulumi.BoolPtrInput `pulumi:"onBroken"`
+	// Whether to enable alerts when the SSL certificate is to expire
+	OnExpiry pulumi.BoolPtrInput `pulumi:"onExpiry"`
+	// Whether to enable alerts when mixed content is found
+	OnMixed pulumi.BoolPtrInput `pulumi:"onMixed"`
+	// Whether to enable alert reminders
+	OnReminder pulumi.BoolPtrInput `pulumi:"onReminder"`
 }
 
 func (SslCheckAlertConfigArgs) ElementType() reflect.Type {
@@ -356,11 +522,11 @@ func (i SslCheckAlertConfigArgs) ToSslCheckAlertConfigPtrOutputWithContext(ctx c
 // SslCheckAlertConfigPtrInput is an input type that accepts SslCheckAlertConfigArgs, SslCheckAlertConfigPtr and SslCheckAlertConfigPtrOutput values.
 // You can construct a concrete instance of `SslCheckAlertConfigPtrInput` via:
 //
-//          SslCheckAlertConfigArgs{...}
+//	        SslCheckAlertConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type SslCheckAlertConfigPtrInput interface {
 	pulumi.Input
 
@@ -410,22 +576,27 @@ func (o SslCheckAlertConfigOutput) ToSslCheckAlertConfigPtrOutputWithContext(ctx
 	}).(SslCheckAlertConfigPtrOutput)
 }
 
+// List representing when alerts should be sent (days). Must be exactly 3 numerical values
 func (o SslCheckAlertConfigOutput) AlertAts() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v SslCheckAlertConfig) []int { return v.AlertAts }).(pulumi.IntArrayOutput)
 }
 
+// Whether to enable alerts when SSL certificate issues are found
 func (o SslCheckAlertConfigOutput) OnBroken() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SslCheckAlertConfig) *bool { return v.OnBroken }).(pulumi.BoolPtrOutput)
 }
 
+// Whether to enable alerts when the SSL certificate is to expire
 func (o SslCheckAlertConfigOutput) OnExpiry() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SslCheckAlertConfig) *bool { return v.OnExpiry }).(pulumi.BoolPtrOutput)
 }
 
+// Whether to enable alerts when mixed content is found
 func (o SslCheckAlertConfigOutput) OnMixed() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SslCheckAlertConfig) *bool { return v.OnMixed }).(pulumi.BoolPtrOutput)
 }
 
+// Whether to enable alert reminders
 func (o SslCheckAlertConfigOutput) OnReminder() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SslCheckAlertConfig) *bool { return v.OnReminder }).(pulumi.BoolPtrOutput)
 }
@@ -454,6 +625,7 @@ func (o SslCheckAlertConfigPtrOutput) Elem() SslCheckAlertConfigOutput {
 	}).(SslCheckAlertConfigOutput)
 }
 
+// List representing when alerts should be sent (days). Must be exactly 3 numerical values
 func (o SslCheckAlertConfigPtrOutput) AlertAts() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v *SslCheckAlertConfig) []int {
 		if v == nil {
@@ -463,6 +635,7 @@ func (o SslCheckAlertConfigPtrOutput) AlertAts() pulumi.IntArrayOutput {
 	}).(pulumi.IntArrayOutput)
 }
 
+// Whether to enable alerts when SSL certificate issues are found
 func (o SslCheckAlertConfigPtrOutput) OnBroken() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SslCheckAlertConfig) *bool {
 		if v == nil {
@@ -472,6 +645,7 @@ func (o SslCheckAlertConfigPtrOutput) OnBroken() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Whether to enable alerts when the SSL certificate is to expire
 func (o SslCheckAlertConfigPtrOutput) OnExpiry() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SslCheckAlertConfig) *bool {
 		if v == nil {
@@ -481,6 +655,7 @@ func (o SslCheckAlertConfigPtrOutput) OnExpiry() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Whether to enable alerts when mixed content is found
 func (o SslCheckAlertConfigPtrOutput) OnMixed() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SslCheckAlertConfig) *bool {
 		if v == nil {
@@ -490,6 +665,7 @@ func (o SslCheckAlertConfigPtrOutput) OnMixed() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Whether to enable alert reminders
 func (o SslCheckAlertConfigPtrOutput) OnReminder() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SslCheckAlertConfig) *bool {
 		if v == nil {
@@ -500,14 +676,16 @@ func (o SslCheckAlertConfigPtrOutput) OnReminder() pulumi.BoolPtrOutput {
 }
 
 type SslCheckMonitoredResource struct {
-	Address  string  `pulumi:"address"`
+	// URL of the server under test
+	Address string `pulumi:"address"`
+	// Hostname of the server under test
 	Hostname *string `pulumi:"hostname"`
 }
 
 // SslCheckMonitoredResourceInput is an input type that accepts SslCheckMonitoredResourceArgs and SslCheckMonitoredResourceOutput values.
 // You can construct a concrete instance of `SslCheckMonitoredResourceInput` via:
 //
-//          SslCheckMonitoredResourceArgs{...}
+//	SslCheckMonitoredResourceArgs{...}
 type SslCheckMonitoredResourceInput interface {
 	pulumi.Input
 
@@ -516,7 +694,9 @@ type SslCheckMonitoredResourceInput interface {
 }
 
 type SslCheckMonitoredResourceArgs struct {
-	Address  pulumi.StringInput    `pulumi:"address"`
+	// URL of the server under test
+	Address pulumi.StringInput `pulumi:"address"`
+	// Hostname of the server under test
 	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
 }
 
@@ -543,11 +723,11 @@ func (i SslCheckMonitoredResourceArgs) ToSslCheckMonitoredResourcePtrOutputWithC
 // SslCheckMonitoredResourcePtrInput is an input type that accepts SslCheckMonitoredResourceArgs, SslCheckMonitoredResourcePtr and SslCheckMonitoredResourcePtrOutput values.
 // You can construct a concrete instance of `SslCheckMonitoredResourcePtrInput` via:
 //
-//          SslCheckMonitoredResourceArgs{...}
+//	        SslCheckMonitoredResourceArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type SslCheckMonitoredResourcePtrInput interface {
 	pulumi.Input
 
@@ -597,10 +777,12 @@ func (o SslCheckMonitoredResourceOutput) ToSslCheckMonitoredResourcePtrOutputWit
 	}).(SslCheckMonitoredResourcePtrOutput)
 }
 
+// URL of the server under test
 func (o SslCheckMonitoredResourceOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v SslCheckMonitoredResource) string { return v.Address }).(pulumi.StringOutput)
 }
 
+// Hostname of the server under test
 func (o SslCheckMonitoredResourceOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SslCheckMonitoredResource) *string { return v.Hostname }).(pulumi.StringPtrOutput)
 }
@@ -629,6 +811,7 @@ func (o SslCheckMonitoredResourcePtrOutput) Elem() SslCheckMonitoredResourceOutp
 	}).(SslCheckMonitoredResourceOutput)
 }
 
+// URL of the server under test
 func (o SslCheckMonitoredResourcePtrOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslCheckMonitoredResource) *string {
 		if v == nil {
@@ -638,6 +821,7 @@ func (o SslCheckMonitoredResourcePtrOutput) Address() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Hostname of the server under test
 func (o SslCheckMonitoredResourcePtrOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslCheckMonitoredResource) *string {
 		if v == nil {
@@ -648,14 +832,16 @@ func (o SslCheckMonitoredResourcePtrOutput) Hostname() pulumi.StringPtrOutput {
 }
 
 type UptimeCheckDnsCheck struct {
-	DnsIps    []string `pulumi:"dnsIps"`
-	DnsServer *string  `pulumi:"dnsServer"`
+	// List of IP addresses to compare against returned DNS records
+	DnsIps []string `pulumi:"dnsIps"`
+	// FQDN or IP address of the nameserver to query
+	DnsServer *string `pulumi:"dnsServer"`
 }
 
 // UptimeCheckDnsCheckInput is an input type that accepts UptimeCheckDnsCheckArgs and UptimeCheckDnsCheckOutput values.
 // You can construct a concrete instance of `UptimeCheckDnsCheckInput` via:
 //
-//          UptimeCheckDnsCheckArgs{...}
+//	UptimeCheckDnsCheckArgs{...}
 type UptimeCheckDnsCheckInput interface {
 	pulumi.Input
 
@@ -664,8 +850,10 @@ type UptimeCheckDnsCheckInput interface {
 }
 
 type UptimeCheckDnsCheckArgs struct {
-	DnsIps    pulumi.StringArrayInput `pulumi:"dnsIps"`
-	DnsServer pulumi.StringPtrInput   `pulumi:"dnsServer"`
+	// List of IP addresses to compare against returned DNS records
+	DnsIps pulumi.StringArrayInput `pulumi:"dnsIps"`
+	// FQDN or IP address of the nameserver to query
+	DnsServer pulumi.StringPtrInput `pulumi:"dnsServer"`
 }
 
 func (UptimeCheckDnsCheckArgs) ElementType() reflect.Type {
@@ -691,11 +879,11 @@ func (i UptimeCheckDnsCheckArgs) ToUptimeCheckDnsCheckPtrOutputWithContext(ctx c
 // UptimeCheckDnsCheckPtrInput is an input type that accepts UptimeCheckDnsCheckArgs, UptimeCheckDnsCheckPtr and UptimeCheckDnsCheckPtrOutput values.
 // You can construct a concrete instance of `UptimeCheckDnsCheckPtrInput` via:
 //
-//          UptimeCheckDnsCheckArgs{...}
+//	        UptimeCheckDnsCheckArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type UptimeCheckDnsCheckPtrInput interface {
 	pulumi.Input
 
@@ -745,10 +933,12 @@ func (o UptimeCheckDnsCheckOutput) ToUptimeCheckDnsCheckPtrOutputWithContext(ctx
 	}).(UptimeCheckDnsCheckPtrOutput)
 }
 
+// List of IP addresses to compare against returned DNS records
 func (o UptimeCheckDnsCheckOutput) DnsIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v UptimeCheckDnsCheck) []string { return v.DnsIps }).(pulumi.StringArrayOutput)
 }
 
+// FQDN or IP address of the nameserver to query
 func (o UptimeCheckDnsCheckOutput) DnsServer() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckDnsCheck) *string { return v.DnsServer }).(pulumi.StringPtrOutput)
 }
@@ -777,6 +967,7 @@ func (o UptimeCheckDnsCheckPtrOutput) Elem() UptimeCheckDnsCheckOutput {
 	}).(UptimeCheckDnsCheckOutput)
 }
 
+// List of IP addresses to compare against returned DNS records
 func (o UptimeCheckDnsCheckPtrOutput) DnsIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *UptimeCheckDnsCheck) []string {
 		if v == nil {
@@ -786,6 +977,7 @@ func (o UptimeCheckDnsCheckPtrOutput) DnsIps() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
+// FQDN or IP address of the nameserver to query
 func (o UptimeCheckDnsCheckPtrOutput) DnsServer() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckDnsCheck) *string {
 		if v == nil {
@@ -796,25 +988,38 @@ func (o UptimeCheckDnsCheckPtrOutput) DnsServer() pulumi.StringPtrOutput {
 }
 
 type UptimeCheckHttpCheck struct {
+	// Basic Authentication (RFC7235) configuration block
 	BasicAuthentication *UptimeCheckHttpCheckBasicAuthentication `pulumi:"basicAuthentication"`
-	ContentMatchers     *UptimeCheckHttpCheckContentMatchers     `pulumi:"contentMatchers"`
-	EnableCookies       *bool                                    `pulumi:"enableCookies"`
-	FinalEndpoint       *string                                  `pulumi:"finalEndpoint"`
-	FollowRedirects     *bool                                    `pulumi:"followRedirects"`
-	RequestHeaders      map[string]string                        `pulumi:"requestHeaders"`
-	RequestMethod       *string                                  `pulumi:"requestMethod"`
-	RequestPayload      map[string]string                        `pulumi:"requestPayload"`
-	RequestPayloadRaw   *string                                  `pulumi:"requestPayloadRaw"`
-	StatusCodes         []string                                 `pulumi:"statusCodes"`
-	Timeout             *int                                     `pulumi:"timeout"`
-	UserAgent           *string                                  `pulumi:"userAgent"`
-	ValidateSsl         *bool                                    `pulumi:"validateSsl"`
+	// Content matcher configuration block. This is used to assert values within the response of the request
+	ContentMatchers *UptimeCheckHttpCheckContentMatchers `pulumi:"contentMatchers"`
+	// Whether to enable cookie storage
+	EnableCookies *bool `pulumi:"enableCookies"`
+	// Specify where the redirect chain should end
+	FinalEndpoint *string `pulumi:"finalEndpoint"`
+	// Whether to follow redirects when testing. Disabled by default
+	FollowRedirects *bool `pulumi:"followRedirects"`
+	// Represents headers to be sent when making requests
+	RequestHeaders map[string]string `pulumi:"requestHeaders"`
+	// Type of HTTP check. Either HTTP, or HEAD
+	RequestMethod *string `pulumi:"requestMethod"`
+	// Payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `requestPayload` or `requestPayloadRaw` may be specified
+	RequestPayload map[string]string `pulumi:"requestPayload"`
+	// Raw payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `requestPayload` or `requestPayloadRaw` may be specified
+	RequestPayloadRaw *string `pulumi:"requestPayloadRaw"`
+	// List of status codes that trigger an alert. If not specified then the default status codes are used. Once set, the default status codes cannot be restored and ommitting this field does not clear the attribute
+	StatusCodes []string `pulumi:"statusCodes"`
+	// The number of seconds to wait to receive the first byte
+	Timeout *int `pulumi:"timeout"`
+	// Custom user agent string set when testing
+	UserAgent *string `pulumi:"userAgent"`
+	// Whether to send an alert if the SSL certificate is soon to expire
+	ValidateSsl *bool `pulumi:"validateSsl"`
 }
 
 // UptimeCheckHttpCheckInput is an input type that accepts UptimeCheckHttpCheckArgs and UptimeCheckHttpCheckOutput values.
 // You can construct a concrete instance of `UptimeCheckHttpCheckInput` via:
 //
-//          UptimeCheckHttpCheckArgs{...}
+//	UptimeCheckHttpCheckArgs{...}
 type UptimeCheckHttpCheckInput interface {
 	pulumi.Input
 
@@ -823,19 +1028,32 @@ type UptimeCheckHttpCheckInput interface {
 }
 
 type UptimeCheckHttpCheckArgs struct {
+	// Basic Authentication (RFC7235) configuration block
 	BasicAuthentication UptimeCheckHttpCheckBasicAuthenticationPtrInput `pulumi:"basicAuthentication"`
-	ContentMatchers     UptimeCheckHttpCheckContentMatchersPtrInput     `pulumi:"contentMatchers"`
-	EnableCookies       pulumi.BoolPtrInput                             `pulumi:"enableCookies"`
-	FinalEndpoint       pulumi.StringPtrInput                           `pulumi:"finalEndpoint"`
-	FollowRedirects     pulumi.BoolPtrInput                             `pulumi:"followRedirects"`
-	RequestHeaders      pulumi.StringMapInput                           `pulumi:"requestHeaders"`
-	RequestMethod       pulumi.StringPtrInput                           `pulumi:"requestMethod"`
-	RequestPayload      pulumi.StringMapInput                           `pulumi:"requestPayload"`
-	RequestPayloadRaw   pulumi.StringPtrInput                           `pulumi:"requestPayloadRaw"`
-	StatusCodes         pulumi.StringArrayInput                         `pulumi:"statusCodes"`
-	Timeout             pulumi.IntPtrInput                              `pulumi:"timeout"`
-	UserAgent           pulumi.StringPtrInput                           `pulumi:"userAgent"`
-	ValidateSsl         pulumi.BoolPtrInput                             `pulumi:"validateSsl"`
+	// Content matcher configuration block. This is used to assert values within the response of the request
+	ContentMatchers UptimeCheckHttpCheckContentMatchersPtrInput `pulumi:"contentMatchers"`
+	// Whether to enable cookie storage
+	EnableCookies pulumi.BoolPtrInput `pulumi:"enableCookies"`
+	// Specify where the redirect chain should end
+	FinalEndpoint pulumi.StringPtrInput `pulumi:"finalEndpoint"`
+	// Whether to follow redirects when testing. Disabled by default
+	FollowRedirects pulumi.BoolPtrInput `pulumi:"followRedirects"`
+	// Represents headers to be sent when making requests
+	RequestHeaders pulumi.StringMapInput `pulumi:"requestHeaders"`
+	// Type of HTTP check. Either HTTP, or HEAD
+	RequestMethod pulumi.StringPtrInput `pulumi:"requestMethod"`
+	// Payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `requestPayload` or `requestPayloadRaw` may be specified
+	RequestPayload pulumi.StringMapInput `pulumi:"requestPayload"`
+	// Raw payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `requestPayload` or `requestPayloadRaw` may be specified
+	RequestPayloadRaw pulumi.StringPtrInput `pulumi:"requestPayloadRaw"`
+	// List of status codes that trigger an alert. If not specified then the default status codes are used. Once set, the default status codes cannot be restored and ommitting this field does not clear the attribute
+	StatusCodes pulumi.StringArrayInput `pulumi:"statusCodes"`
+	// The number of seconds to wait to receive the first byte
+	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
+	// Custom user agent string set when testing
+	UserAgent pulumi.StringPtrInput `pulumi:"userAgent"`
+	// Whether to send an alert if the SSL certificate is soon to expire
+	ValidateSsl pulumi.BoolPtrInput `pulumi:"validateSsl"`
 }
 
 func (UptimeCheckHttpCheckArgs) ElementType() reflect.Type {
@@ -861,11 +1079,11 @@ func (i UptimeCheckHttpCheckArgs) ToUptimeCheckHttpCheckPtrOutputWithContext(ctx
 // UptimeCheckHttpCheckPtrInput is an input type that accepts UptimeCheckHttpCheckArgs, UptimeCheckHttpCheckPtr and UptimeCheckHttpCheckPtrOutput values.
 // You can construct a concrete instance of `UptimeCheckHttpCheckPtrInput` via:
 //
-//          UptimeCheckHttpCheckArgs{...}
+//	        UptimeCheckHttpCheckArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type UptimeCheckHttpCheckPtrInput interface {
 	pulumi.Input
 
@@ -915,54 +1133,67 @@ func (o UptimeCheckHttpCheckOutput) ToUptimeCheckHttpCheckPtrOutputWithContext(c
 	}).(UptimeCheckHttpCheckPtrOutput)
 }
 
+// Basic Authentication (RFC7235) configuration block
 func (o UptimeCheckHttpCheckOutput) BasicAuthentication() UptimeCheckHttpCheckBasicAuthenticationPtrOutput {
 	return o.ApplyT(func(v UptimeCheckHttpCheck) *UptimeCheckHttpCheckBasicAuthentication { return v.BasicAuthentication }).(UptimeCheckHttpCheckBasicAuthenticationPtrOutput)
 }
 
+// Content matcher configuration block. This is used to assert values within the response of the request
 func (o UptimeCheckHttpCheckOutput) ContentMatchers() UptimeCheckHttpCheckContentMatchersPtrOutput {
 	return o.ApplyT(func(v UptimeCheckHttpCheck) *UptimeCheckHttpCheckContentMatchers { return v.ContentMatchers }).(UptimeCheckHttpCheckContentMatchersPtrOutput)
 }
 
+// Whether to enable cookie storage
 func (o UptimeCheckHttpCheckOutput) EnableCookies() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v UptimeCheckHttpCheck) *bool { return v.EnableCookies }).(pulumi.BoolPtrOutput)
 }
 
+// Specify where the redirect chain should end
 func (o UptimeCheckHttpCheckOutput) FinalEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckHttpCheck) *string { return v.FinalEndpoint }).(pulumi.StringPtrOutput)
 }
 
+// Whether to follow redirects when testing. Disabled by default
 func (o UptimeCheckHttpCheckOutput) FollowRedirects() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v UptimeCheckHttpCheck) *bool { return v.FollowRedirects }).(pulumi.BoolPtrOutput)
 }
 
+// Represents headers to be sent when making requests
 func (o UptimeCheckHttpCheckOutput) RequestHeaders() pulumi.StringMapOutput {
 	return o.ApplyT(func(v UptimeCheckHttpCheck) map[string]string { return v.RequestHeaders }).(pulumi.StringMapOutput)
 }
 
+// Type of HTTP check. Either HTTP, or HEAD
 func (o UptimeCheckHttpCheckOutput) RequestMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckHttpCheck) *string { return v.RequestMethod }).(pulumi.StringPtrOutput)
 }
 
+// Payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `requestPayload` or `requestPayloadRaw` may be specified
 func (o UptimeCheckHttpCheckOutput) RequestPayload() pulumi.StringMapOutput {
 	return o.ApplyT(func(v UptimeCheckHttpCheck) map[string]string { return v.RequestPayload }).(pulumi.StringMapOutput)
 }
 
+// Raw payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `requestPayload` or `requestPayloadRaw` may be specified
 func (o UptimeCheckHttpCheckOutput) RequestPayloadRaw() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckHttpCheck) *string { return v.RequestPayloadRaw }).(pulumi.StringPtrOutput)
 }
 
+// List of status codes that trigger an alert. If not specified then the default status codes are used. Once set, the default status codes cannot be restored and ommitting this field does not clear the attribute
 func (o UptimeCheckHttpCheckOutput) StatusCodes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v UptimeCheckHttpCheck) []string { return v.StatusCodes }).(pulumi.StringArrayOutput)
 }
 
+// The number of seconds to wait to receive the first byte
 func (o UptimeCheckHttpCheckOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v UptimeCheckHttpCheck) *int { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
+// Custom user agent string set when testing
 func (o UptimeCheckHttpCheckOutput) UserAgent() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckHttpCheck) *string { return v.UserAgent }).(pulumi.StringPtrOutput)
 }
 
+// Whether to send an alert if the SSL certificate is soon to expire
 func (o UptimeCheckHttpCheckOutput) ValidateSsl() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v UptimeCheckHttpCheck) *bool { return v.ValidateSsl }).(pulumi.BoolPtrOutput)
 }
@@ -991,6 +1222,7 @@ func (o UptimeCheckHttpCheckPtrOutput) Elem() UptimeCheckHttpCheckOutput {
 	}).(UptimeCheckHttpCheckOutput)
 }
 
+// Basic Authentication (RFC7235) configuration block
 func (o UptimeCheckHttpCheckPtrOutput) BasicAuthentication() UptimeCheckHttpCheckBasicAuthenticationPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckHttpCheck) *UptimeCheckHttpCheckBasicAuthentication {
 		if v == nil {
@@ -1000,6 +1232,7 @@ func (o UptimeCheckHttpCheckPtrOutput) BasicAuthentication() UptimeCheckHttpChec
 	}).(UptimeCheckHttpCheckBasicAuthenticationPtrOutput)
 }
 
+// Content matcher configuration block. This is used to assert values within the response of the request
 func (o UptimeCheckHttpCheckPtrOutput) ContentMatchers() UptimeCheckHttpCheckContentMatchersPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckHttpCheck) *UptimeCheckHttpCheckContentMatchers {
 		if v == nil {
@@ -1009,6 +1242,7 @@ func (o UptimeCheckHttpCheckPtrOutput) ContentMatchers() UptimeCheckHttpCheckCon
 	}).(UptimeCheckHttpCheckContentMatchersPtrOutput)
 }
 
+// Whether to enable cookie storage
 func (o UptimeCheckHttpCheckPtrOutput) EnableCookies() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckHttpCheck) *bool {
 		if v == nil {
@@ -1018,6 +1252,7 @@ func (o UptimeCheckHttpCheckPtrOutput) EnableCookies() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Specify where the redirect chain should end
 func (o UptimeCheckHttpCheckPtrOutput) FinalEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckHttpCheck) *string {
 		if v == nil {
@@ -1027,6 +1262,7 @@ func (o UptimeCheckHttpCheckPtrOutput) FinalEndpoint() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Whether to follow redirects when testing. Disabled by default
 func (o UptimeCheckHttpCheckPtrOutput) FollowRedirects() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckHttpCheck) *bool {
 		if v == nil {
@@ -1036,6 +1272,7 @@ func (o UptimeCheckHttpCheckPtrOutput) FollowRedirects() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Represents headers to be sent when making requests
 func (o UptimeCheckHttpCheckPtrOutput) RequestHeaders() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *UptimeCheckHttpCheck) map[string]string {
 		if v == nil {
@@ -1045,6 +1282,7 @@ func (o UptimeCheckHttpCheckPtrOutput) RequestHeaders() pulumi.StringMapOutput {
 	}).(pulumi.StringMapOutput)
 }
 
+// Type of HTTP check. Either HTTP, or HEAD
 func (o UptimeCheckHttpCheckPtrOutput) RequestMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckHttpCheck) *string {
 		if v == nil {
@@ -1054,6 +1292,7 @@ func (o UptimeCheckHttpCheckPtrOutput) RequestMethod() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `requestPayload` or `requestPayloadRaw` may be specified
 func (o UptimeCheckHttpCheckPtrOutput) RequestPayload() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *UptimeCheckHttpCheck) map[string]string {
 		if v == nil {
@@ -1063,6 +1302,7 @@ func (o UptimeCheckHttpCheckPtrOutput) RequestPayload() pulumi.StringMapOutput {
 	}).(pulumi.StringMapOutput)
 }
 
+// Raw payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `requestPayload` or `requestPayloadRaw` may be specified
 func (o UptimeCheckHttpCheckPtrOutput) RequestPayloadRaw() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckHttpCheck) *string {
 		if v == nil {
@@ -1072,6 +1312,7 @@ func (o UptimeCheckHttpCheckPtrOutput) RequestPayloadRaw() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
+// List of status codes that trigger an alert. If not specified then the default status codes are used. Once set, the default status codes cannot be restored and ommitting this field does not clear the attribute
 func (o UptimeCheckHttpCheckPtrOutput) StatusCodes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *UptimeCheckHttpCheck) []string {
 		if v == nil {
@@ -1081,6 +1322,7 @@ func (o UptimeCheckHttpCheckPtrOutput) StatusCodes() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
+// The number of seconds to wait to receive the first byte
 func (o UptimeCheckHttpCheckPtrOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckHttpCheck) *int {
 		if v == nil {
@@ -1090,6 +1332,7 @@ func (o UptimeCheckHttpCheckPtrOutput) Timeout() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// Custom user agent string set when testing
 func (o UptimeCheckHttpCheckPtrOutput) UserAgent() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckHttpCheck) *string {
 		if v == nil {
@@ -1099,6 +1342,7 @@ func (o UptimeCheckHttpCheckPtrOutput) UserAgent() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Whether to send an alert if the SSL certificate is soon to expire
 func (o UptimeCheckHttpCheckPtrOutput) ValidateSsl() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckHttpCheck) *bool {
 		if v == nil {
@@ -1116,7 +1360,7 @@ type UptimeCheckHttpCheckBasicAuthentication struct {
 // UptimeCheckHttpCheckBasicAuthenticationInput is an input type that accepts UptimeCheckHttpCheckBasicAuthenticationArgs and UptimeCheckHttpCheckBasicAuthenticationOutput values.
 // You can construct a concrete instance of `UptimeCheckHttpCheckBasicAuthenticationInput` via:
 //
-//          UptimeCheckHttpCheckBasicAuthenticationArgs{...}
+//	UptimeCheckHttpCheckBasicAuthenticationArgs{...}
 type UptimeCheckHttpCheckBasicAuthenticationInput interface {
 	pulumi.Input
 
@@ -1152,11 +1396,11 @@ func (i UptimeCheckHttpCheckBasicAuthenticationArgs) ToUptimeCheckHttpCheckBasic
 // UptimeCheckHttpCheckBasicAuthenticationPtrInput is an input type that accepts UptimeCheckHttpCheckBasicAuthenticationArgs, UptimeCheckHttpCheckBasicAuthenticationPtr and UptimeCheckHttpCheckBasicAuthenticationPtrOutput values.
 // You can construct a concrete instance of `UptimeCheckHttpCheckBasicAuthenticationPtrInput` via:
 //
-//          UptimeCheckHttpCheckBasicAuthenticationArgs{...}
+//	        UptimeCheckHttpCheckBasicAuthenticationArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type UptimeCheckHttpCheckBasicAuthenticationPtrInput interface {
 	pulumi.Input
 
@@ -1257,15 +1501,18 @@ func (o UptimeCheckHttpCheckBasicAuthenticationPtrOutput) Username() pulumi.Stri
 }
 
 type UptimeCheckHttpCheckContentMatchers struct {
-	Content        string  `pulumi:"content"`
-	IncludeHeaders *bool   `pulumi:"includeHeaders"`
-	Matcher        *string `pulumi:"matcher"`
+	// String to look for within the response. Considered down if not found
+	Content string `pulumi:"content"`
+	// Include header content in string match search
+	IncludeHeaders *bool `pulumi:"includeHeaders"`
+	// Whether to consider the check as down if the content is present within the response
+	Matcher *string `pulumi:"matcher"`
 }
 
 // UptimeCheckHttpCheckContentMatchersInput is an input type that accepts UptimeCheckHttpCheckContentMatchersArgs and UptimeCheckHttpCheckContentMatchersOutput values.
 // You can construct a concrete instance of `UptimeCheckHttpCheckContentMatchersInput` via:
 //
-//          UptimeCheckHttpCheckContentMatchersArgs{...}
+//	UptimeCheckHttpCheckContentMatchersArgs{...}
 type UptimeCheckHttpCheckContentMatchersInput interface {
 	pulumi.Input
 
@@ -1274,9 +1521,12 @@ type UptimeCheckHttpCheckContentMatchersInput interface {
 }
 
 type UptimeCheckHttpCheckContentMatchersArgs struct {
-	Content        pulumi.StringInput    `pulumi:"content"`
-	IncludeHeaders pulumi.BoolPtrInput   `pulumi:"includeHeaders"`
-	Matcher        pulumi.StringPtrInput `pulumi:"matcher"`
+	// String to look for within the response. Considered down if not found
+	Content pulumi.StringInput `pulumi:"content"`
+	// Include header content in string match search
+	IncludeHeaders pulumi.BoolPtrInput `pulumi:"includeHeaders"`
+	// Whether to consider the check as down if the content is present within the response
+	Matcher pulumi.StringPtrInput `pulumi:"matcher"`
 }
 
 func (UptimeCheckHttpCheckContentMatchersArgs) ElementType() reflect.Type {
@@ -1302,11 +1552,11 @@ func (i UptimeCheckHttpCheckContentMatchersArgs) ToUptimeCheckHttpCheckContentMa
 // UptimeCheckHttpCheckContentMatchersPtrInput is an input type that accepts UptimeCheckHttpCheckContentMatchersArgs, UptimeCheckHttpCheckContentMatchersPtr and UptimeCheckHttpCheckContentMatchersPtrOutput values.
 // You can construct a concrete instance of `UptimeCheckHttpCheckContentMatchersPtrInput` via:
 //
-//          UptimeCheckHttpCheckContentMatchersArgs{...}
+//	        UptimeCheckHttpCheckContentMatchersArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type UptimeCheckHttpCheckContentMatchersPtrInput interface {
 	pulumi.Input
 
@@ -1356,14 +1606,17 @@ func (o UptimeCheckHttpCheckContentMatchersOutput) ToUptimeCheckHttpCheckContent
 	}).(UptimeCheckHttpCheckContentMatchersPtrOutput)
 }
 
+// String to look for within the response. Considered down if not found
 func (o UptimeCheckHttpCheckContentMatchersOutput) Content() pulumi.StringOutput {
 	return o.ApplyT(func(v UptimeCheckHttpCheckContentMatchers) string { return v.Content }).(pulumi.StringOutput)
 }
 
+// Include header content in string match search
 func (o UptimeCheckHttpCheckContentMatchersOutput) IncludeHeaders() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v UptimeCheckHttpCheckContentMatchers) *bool { return v.IncludeHeaders }).(pulumi.BoolPtrOutput)
 }
 
+// Whether to consider the check as down if the content is present within the response
 func (o UptimeCheckHttpCheckContentMatchersOutput) Matcher() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckHttpCheckContentMatchers) *string { return v.Matcher }).(pulumi.StringPtrOutput)
 }
@@ -1392,6 +1645,7 @@ func (o UptimeCheckHttpCheckContentMatchersPtrOutput) Elem() UptimeCheckHttpChec
 	}).(UptimeCheckHttpCheckContentMatchersOutput)
 }
 
+// String to look for within the response. Considered down if not found
 func (o UptimeCheckHttpCheckContentMatchersPtrOutput) Content() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckHttpCheckContentMatchers) *string {
 		if v == nil {
@@ -1401,6 +1655,7 @@ func (o UptimeCheckHttpCheckContentMatchersPtrOutput) Content() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
+// Include header content in string match search
 func (o UptimeCheckHttpCheckContentMatchersPtrOutput) IncludeHeaders() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckHttpCheckContentMatchers) *bool {
 		if v == nil {
@@ -1410,6 +1665,7 @@ func (o UptimeCheckHttpCheckContentMatchersPtrOutput) IncludeHeaders() pulumi.Bo
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Whether to consider the check as down if the content is present within the response
 func (o UptimeCheckHttpCheckContentMatchersPtrOutput) Matcher() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckHttpCheckContentMatchers) *string {
 		if v == nil {
@@ -1420,13 +1676,14 @@ func (o UptimeCheckHttpCheckContentMatchersPtrOutput) Matcher() pulumi.StringPtr
 }
 
 type UptimeCheckIcmpCheck struct {
+	// Dummy attribute to allow for a nested block. This field should not be changed
 	Enabled *bool `pulumi:"enabled"`
 }
 
 // UptimeCheckIcmpCheckInput is an input type that accepts UptimeCheckIcmpCheckArgs and UptimeCheckIcmpCheckOutput values.
 // You can construct a concrete instance of `UptimeCheckIcmpCheckInput` via:
 //
-//          UptimeCheckIcmpCheckArgs{...}
+//	UptimeCheckIcmpCheckArgs{...}
 type UptimeCheckIcmpCheckInput interface {
 	pulumi.Input
 
@@ -1435,6 +1692,7 @@ type UptimeCheckIcmpCheckInput interface {
 }
 
 type UptimeCheckIcmpCheckArgs struct {
+	// Dummy attribute to allow for a nested block. This field should not be changed
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 }
 
@@ -1461,11 +1719,11 @@ func (i UptimeCheckIcmpCheckArgs) ToUptimeCheckIcmpCheckPtrOutputWithContext(ctx
 // UptimeCheckIcmpCheckPtrInput is an input type that accepts UptimeCheckIcmpCheckArgs, UptimeCheckIcmpCheckPtr and UptimeCheckIcmpCheckPtrOutput values.
 // You can construct a concrete instance of `UptimeCheckIcmpCheckPtrInput` via:
 //
-//          UptimeCheckIcmpCheckArgs{...}
+//	        UptimeCheckIcmpCheckArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type UptimeCheckIcmpCheckPtrInput interface {
 	pulumi.Input
 
@@ -1515,6 +1773,7 @@ func (o UptimeCheckIcmpCheckOutput) ToUptimeCheckIcmpCheckPtrOutputWithContext(c
 	}).(UptimeCheckIcmpCheckPtrOutput)
 }
 
+// Dummy attribute to allow for a nested block. This field should not be changed
 func (o UptimeCheckIcmpCheckOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v UptimeCheckIcmpCheck) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -1543,6 +1802,7 @@ func (o UptimeCheckIcmpCheckPtrOutput) Elem() UptimeCheckIcmpCheckOutput {
 	}).(UptimeCheckIcmpCheckOutput)
 }
 
+// Dummy attribute to allow for a nested block. This field should not be changed
 func (o UptimeCheckIcmpCheckPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckIcmpCheck) *bool {
 		if v == nil {
@@ -1553,18 +1813,24 @@ func (o UptimeCheckIcmpCheckPtrOutput) Enabled() pulumi.BoolPtrOutput {
 }
 
 type UptimeCheckLocation struct {
+	// Location description
 	Description *string `pulumi:"description"`
-	Ipv4        *string `pulumi:"ipv4"`
-	Ipv6        *string `pulumi:"ipv6"`
-	Region      *string `pulumi:"region"`
-	RegionCode  *string `pulumi:"regionCode"`
-	Status      *string `pulumi:"status"`
+	// Location IPv4 address
+	Ipv4 *string `pulumi:"ipv4"`
+	// Location IPv6 address
+	Ipv6 *string `pulumi:"ipv6"`
+	// Location region
+	Region *string `pulumi:"region"`
+	// Location region code
+	RegionCode *string `pulumi:"regionCode"`
+	// Location status
+	Status *string `pulumi:"status"`
 }
 
 // UptimeCheckLocationInput is an input type that accepts UptimeCheckLocationArgs and UptimeCheckLocationOutput values.
 // You can construct a concrete instance of `UptimeCheckLocationInput` via:
 //
-//          UptimeCheckLocationArgs{...}
+//	UptimeCheckLocationArgs{...}
 type UptimeCheckLocationInput interface {
 	pulumi.Input
 
@@ -1573,12 +1839,18 @@ type UptimeCheckLocationInput interface {
 }
 
 type UptimeCheckLocationArgs struct {
+	// Location description
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	Ipv4        pulumi.StringPtrInput `pulumi:"ipv4"`
-	Ipv6        pulumi.StringPtrInput `pulumi:"ipv6"`
-	Region      pulumi.StringPtrInput `pulumi:"region"`
-	RegionCode  pulumi.StringPtrInput `pulumi:"regionCode"`
-	Status      pulumi.StringPtrInput `pulumi:"status"`
+	// Location IPv4 address
+	Ipv4 pulumi.StringPtrInput `pulumi:"ipv4"`
+	// Location IPv6 address
+	Ipv6 pulumi.StringPtrInput `pulumi:"ipv6"`
+	// Location region
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// Location region code
+	RegionCode pulumi.StringPtrInput `pulumi:"regionCode"`
+	// Location status
+	Status pulumi.StringPtrInput `pulumi:"status"`
 }
 
 func (UptimeCheckLocationArgs) ElementType() reflect.Type {
@@ -1596,7 +1868,7 @@ func (i UptimeCheckLocationArgs) ToUptimeCheckLocationOutputWithContext(ctx cont
 // UptimeCheckLocationArrayInput is an input type that accepts UptimeCheckLocationArray and UptimeCheckLocationArrayOutput values.
 // You can construct a concrete instance of `UptimeCheckLocationArrayInput` via:
 //
-//          UptimeCheckLocationArray{ UptimeCheckLocationArgs{...} }
+//	UptimeCheckLocationArray{ UptimeCheckLocationArgs{...} }
 type UptimeCheckLocationArrayInput interface {
 	pulumi.Input
 
@@ -1632,26 +1904,32 @@ func (o UptimeCheckLocationOutput) ToUptimeCheckLocationOutputWithContext(ctx co
 	return o
 }
 
+// Location description
 func (o UptimeCheckLocationOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckLocation) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Location IPv4 address
 func (o UptimeCheckLocationOutput) Ipv4() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckLocation) *string { return v.Ipv4 }).(pulumi.StringPtrOutput)
 }
 
+// Location IPv6 address
 func (o UptimeCheckLocationOutput) Ipv6() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckLocation) *string { return v.Ipv6 }).(pulumi.StringPtrOutput)
 }
 
+// Location region
 func (o UptimeCheckLocationOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckLocation) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
+// Location region code
 func (o UptimeCheckLocationOutput) RegionCode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckLocation) *string { return v.RegionCode }).(pulumi.StringPtrOutput)
 }
 
+// Location status
 func (o UptimeCheckLocationOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckLocation) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
@@ -1677,14 +1955,16 @@ func (o UptimeCheckLocationArrayOutput) Index(i pulumi.IntInput) UptimeCheckLoca
 }
 
 type UptimeCheckMonitoredResource struct {
-	Address string  `pulumi:"address"`
-	Host    *string `pulumi:"host"`
+	// URL, FQDN, or IP address of the server under test
+	Address string `pulumi:"address"`
+	// Name of the hosting provider
+	Host *string `pulumi:"host"`
 }
 
 // UptimeCheckMonitoredResourceInput is an input type that accepts UptimeCheckMonitoredResourceArgs and UptimeCheckMonitoredResourceOutput values.
 // You can construct a concrete instance of `UptimeCheckMonitoredResourceInput` via:
 //
-//          UptimeCheckMonitoredResourceArgs{...}
+//	UptimeCheckMonitoredResourceArgs{...}
 type UptimeCheckMonitoredResourceInput interface {
 	pulumi.Input
 
@@ -1693,8 +1973,10 @@ type UptimeCheckMonitoredResourceInput interface {
 }
 
 type UptimeCheckMonitoredResourceArgs struct {
-	Address pulumi.StringInput    `pulumi:"address"`
-	Host    pulumi.StringPtrInput `pulumi:"host"`
+	// URL, FQDN, or IP address of the server under test
+	Address pulumi.StringInput `pulumi:"address"`
+	// Name of the hosting provider
+	Host pulumi.StringPtrInput `pulumi:"host"`
 }
 
 func (UptimeCheckMonitoredResourceArgs) ElementType() reflect.Type {
@@ -1720,11 +2002,11 @@ func (i UptimeCheckMonitoredResourceArgs) ToUptimeCheckMonitoredResourcePtrOutpu
 // UptimeCheckMonitoredResourcePtrInput is an input type that accepts UptimeCheckMonitoredResourceArgs, UptimeCheckMonitoredResourcePtr and UptimeCheckMonitoredResourcePtrOutput values.
 // You can construct a concrete instance of `UptimeCheckMonitoredResourcePtrInput` via:
 //
-//          UptimeCheckMonitoredResourceArgs{...}
+//	        UptimeCheckMonitoredResourceArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type UptimeCheckMonitoredResourcePtrInput interface {
 	pulumi.Input
 
@@ -1774,10 +2056,12 @@ func (o UptimeCheckMonitoredResourceOutput) ToUptimeCheckMonitoredResourcePtrOut
 	}).(UptimeCheckMonitoredResourcePtrOutput)
 }
 
+// URL, FQDN, or IP address of the server under test
 func (o UptimeCheckMonitoredResourceOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v UptimeCheckMonitoredResource) string { return v.Address }).(pulumi.StringOutput)
 }
 
+// Name of the hosting provider
 func (o UptimeCheckMonitoredResourceOutput) Host() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckMonitoredResource) *string { return v.Host }).(pulumi.StringPtrOutput)
 }
@@ -1806,6 +2090,7 @@ func (o UptimeCheckMonitoredResourcePtrOutput) Elem() UptimeCheckMonitoredResour
 	}).(UptimeCheckMonitoredResourceOutput)
 }
 
+// URL, FQDN, or IP address of the server under test
 func (o UptimeCheckMonitoredResourcePtrOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckMonitoredResource) *string {
 		if v == nil {
@@ -1815,6 +2100,7 @@ func (o UptimeCheckMonitoredResourcePtrOutput) Address() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+// Name of the hosting provider
 func (o UptimeCheckMonitoredResourcePtrOutput) Host() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckMonitoredResource) *string {
 		if v == nil {
@@ -1825,16 +2111,20 @@ func (o UptimeCheckMonitoredResourcePtrOutput) Host() pulumi.StringPtrOutput {
 }
 
 type UptimeCheckTcpCheck struct {
+	// Authentication configuration block
 	Authentication *UptimeCheckTcpCheckAuthentication `pulumi:"authentication"`
-	Port           int                                `pulumi:"port"`
-	Protocol       *string                            `pulumi:"protocol"`
-	Timeout        *int                               `pulumi:"timeout"`
+	// Destination port for TCP checks
+	Port int `pulumi:"port"`
+	// Type of TCP check. Either SMTP, SSH or TCP
+	Protocol *string `pulumi:"protocol"`
+	// The number of seconds to wait to receive the first byte
+	Timeout *int `pulumi:"timeout"`
 }
 
 // UptimeCheckTcpCheckInput is an input type that accepts UptimeCheckTcpCheckArgs and UptimeCheckTcpCheckOutput values.
 // You can construct a concrete instance of `UptimeCheckTcpCheckInput` via:
 //
-//          UptimeCheckTcpCheckArgs{...}
+//	UptimeCheckTcpCheckArgs{...}
 type UptimeCheckTcpCheckInput interface {
 	pulumi.Input
 
@@ -1843,10 +2133,14 @@ type UptimeCheckTcpCheckInput interface {
 }
 
 type UptimeCheckTcpCheckArgs struct {
+	// Authentication configuration block
 	Authentication UptimeCheckTcpCheckAuthenticationPtrInput `pulumi:"authentication"`
-	Port           pulumi.IntInput                           `pulumi:"port"`
-	Protocol       pulumi.StringPtrInput                     `pulumi:"protocol"`
-	Timeout        pulumi.IntPtrInput                        `pulumi:"timeout"`
+	// Destination port for TCP checks
+	Port pulumi.IntInput `pulumi:"port"`
+	// Type of TCP check. Either SMTP, SSH or TCP
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
+	// The number of seconds to wait to receive the first byte
+	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
 }
 
 func (UptimeCheckTcpCheckArgs) ElementType() reflect.Type {
@@ -1872,11 +2166,11 @@ func (i UptimeCheckTcpCheckArgs) ToUptimeCheckTcpCheckPtrOutputWithContext(ctx c
 // UptimeCheckTcpCheckPtrInput is an input type that accepts UptimeCheckTcpCheckArgs, UptimeCheckTcpCheckPtr and UptimeCheckTcpCheckPtrOutput values.
 // You can construct a concrete instance of `UptimeCheckTcpCheckPtrInput` via:
 //
-//          UptimeCheckTcpCheckArgs{...}
+//	        UptimeCheckTcpCheckArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type UptimeCheckTcpCheckPtrInput interface {
 	pulumi.Input
 
@@ -1926,18 +2220,22 @@ func (o UptimeCheckTcpCheckOutput) ToUptimeCheckTcpCheckPtrOutputWithContext(ctx
 	}).(UptimeCheckTcpCheckPtrOutput)
 }
 
+// Authentication configuration block
 func (o UptimeCheckTcpCheckOutput) Authentication() UptimeCheckTcpCheckAuthenticationPtrOutput {
 	return o.ApplyT(func(v UptimeCheckTcpCheck) *UptimeCheckTcpCheckAuthentication { return v.Authentication }).(UptimeCheckTcpCheckAuthenticationPtrOutput)
 }
 
+// Destination port for TCP checks
 func (o UptimeCheckTcpCheckOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v UptimeCheckTcpCheck) int { return v.Port }).(pulumi.IntOutput)
 }
 
+// Type of TCP check. Either SMTP, SSH or TCP
 func (o UptimeCheckTcpCheckOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckTcpCheck) *string { return v.Protocol }).(pulumi.StringPtrOutput)
 }
 
+// The number of seconds to wait to receive the first byte
 func (o UptimeCheckTcpCheckOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v UptimeCheckTcpCheck) *int { return v.Timeout }).(pulumi.IntPtrOutput)
 }
@@ -1966,6 +2264,7 @@ func (o UptimeCheckTcpCheckPtrOutput) Elem() UptimeCheckTcpCheckOutput {
 	}).(UptimeCheckTcpCheckOutput)
 }
 
+// Authentication configuration block
 func (o UptimeCheckTcpCheckPtrOutput) Authentication() UptimeCheckTcpCheckAuthenticationPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckTcpCheck) *UptimeCheckTcpCheckAuthentication {
 		if v == nil {
@@ -1975,6 +2274,7 @@ func (o UptimeCheckTcpCheckPtrOutput) Authentication() UptimeCheckTcpCheckAuthen
 	}).(UptimeCheckTcpCheckAuthenticationPtrOutput)
 }
 
+// Destination port for TCP checks
 func (o UptimeCheckTcpCheckPtrOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckTcpCheck) *int {
 		if v == nil {
@@ -1984,6 +2284,7 @@ func (o UptimeCheckTcpCheckPtrOutput) Port() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// Type of TCP check. Either SMTP, SSH or TCP
 func (o UptimeCheckTcpCheckPtrOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckTcpCheck) *string {
 		if v == nil {
@@ -1993,6 +2294,7 @@ func (o UptimeCheckTcpCheckPtrOutput) Protocol() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The number of seconds to wait to receive the first byte
 func (o UptimeCheckTcpCheckPtrOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *UptimeCheckTcpCheck) *int {
 		if v == nil {
@@ -2010,7 +2312,7 @@ type UptimeCheckTcpCheckAuthentication struct {
 // UptimeCheckTcpCheckAuthenticationInput is an input type that accepts UptimeCheckTcpCheckAuthenticationArgs and UptimeCheckTcpCheckAuthenticationOutput values.
 // You can construct a concrete instance of `UptimeCheckTcpCheckAuthenticationInput` via:
 //
-//          UptimeCheckTcpCheckAuthenticationArgs{...}
+//	UptimeCheckTcpCheckAuthenticationArgs{...}
 type UptimeCheckTcpCheckAuthenticationInput interface {
 	pulumi.Input
 
@@ -2046,11 +2348,11 @@ func (i UptimeCheckTcpCheckAuthenticationArgs) ToUptimeCheckTcpCheckAuthenticati
 // UptimeCheckTcpCheckAuthenticationPtrInput is an input type that accepts UptimeCheckTcpCheckAuthenticationArgs, UptimeCheckTcpCheckAuthenticationPtr and UptimeCheckTcpCheckAuthenticationPtrOutput values.
 // You can construct a concrete instance of `UptimeCheckTcpCheckAuthenticationPtrInput` via:
 //
-//          UptimeCheckTcpCheckAuthenticationArgs{...}
+//	        UptimeCheckTcpCheckAuthenticationArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type UptimeCheckTcpCheckAuthenticationPtrInput interface {
 	pulumi.Input
 
@@ -2151,18 +2453,24 @@ func (o UptimeCheckTcpCheckAuthenticationPtrOutput) Username() pulumi.StringPtrO
 }
 
 type GetPagespeedMonitoringLocationsLocation struct {
+	// Location description
 	Description string `pulumi:"description"`
-	Ipv4        string `pulumi:"ipv4"`
-	Ipv6        string `pulumi:"ipv6"`
-	Region      string `pulumi:"region"`
-	RegionCode  string `pulumi:"regionCode"`
-	Status      string `pulumi:"status"`
+	// Location IPv4 address
+	Ipv4 string `pulumi:"ipv4"`
+	// Location IPv6 address
+	Ipv6 string `pulumi:"ipv6"`
+	// Location region
+	Region string `pulumi:"region"`
+	// Location region code
+	RegionCode string `pulumi:"regionCode"`
+	// Location status
+	Status string `pulumi:"status"`
 }
 
 // GetPagespeedMonitoringLocationsLocationInput is an input type that accepts GetPagespeedMonitoringLocationsLocationArgs and GetPagespeedMonitoringLocationsLocationOutput values.
 // You can construct a concrete instance of `GetPagespeedMonitoringLocationsLocationInput` via:
 //
-//          GetPagespeedMonitoringLocationsLocationArgs{...}
+//	GetPagespeedMonitoringLocationsLocationArgs{...}
 type GetPagespeedMonitoringLocationsLocationInput interface {
 	pulumi.Input
 
@@ -2171,12 +2479,18 @@ type GetPagespeedMonitoringLocationsLocationInput interface {
 }
 
 type GetPagespeedMonitoringLocationsLocationArgs struct {
+	// Location description
 	Description pulumi.StringInput `pulumi:"description"`
-	Ipv4        pulumi.StringInput `pulumi:"ipv4"`
-	Ipv6        pulumi.StringInput `pulumi:"ipv6"`
-	Region      pulumi.StringInput `pulumi:"region"`
-	RegionCode  pulumi.StringInput `pulumi:"regionCode"`
-	Status      pulumi.StringInput `pulumi:"status"`
+	// Location IPv4 address
+	Ipv4 pulumi.StringInput `pulumi:"ipv4"`
+	// Location IPv6 address
+	Ipv6 pulumi.StringInput `pulumi:"ipv6"`
+	// Location region
+	Region pulumi.StringInput `pulumi:"region"`
+	// Location region code
+	RegionCode pulumi.StringInput `pulumi:"regionCode"`
+	// Location status
+	Status pulumi.StringInput `pulumi:"status"`
 }
 
 func (GetPagespeedMonitoringLocationsLocationArgs) ElementType() reflect.Type {
@@ -2194,7 +2508,7 @@ func (i GetPagespeedMonitoringLocationsLocationArgs) ToGetPagespeedMonitoringLoc
 // GetPagespeedMonitoringLocationsLocationArrayInput is an input type that accepts GetPagespeedMonitoringLocationsLocationArray and GetPagespeedMonitoringLocationsLocationArrayOutput values.
 // You can construct a concrete instance of `GetPagespeedMonitoringLocationsLocationArrayInput` via:
 //
-//          GetPagespeedMonitoringLocationsLocationArray{ GetPagespeedMonitoringLocationsLocationArgs{...} }
+//	GetPagespeedMonitoringLocationsLocationArray{ GetPagespeedMonitoringLocationsLocationArgs{...} }
 type GetPagespeedMonitoringLocationsLocationArrayInput interface {
 	pulumi.Input
 
@@ -2230,26 +2544,32 @@ func (o GetPagespeedMonitoringLocationsLocationOutput) ToGetPagespeedMonitoringL
 	return o
 }
 
+// Location description
 func (o GetPagespeedMonitoringLocationsLocationOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPagespeedMonitoringLocationsLocation) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// Location IPv4 address
 func (o GetPagespeedMonitoringLocationsLocationOutput) Ipv4() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPagespeedMonitoringLocationsLocation) string { return v.Ipv4 }).(pulumi.StringOutput)
 }
 
+// Location IPv6 address
 func (o GetPagespeedMonitoringLocationsLocationOutput) Ipv6() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPagespeedMonitoringLocationsLocation) string { return v.Ipv6 }).(pulumi.StringOutput)
 }
 
+// Location region
 func (o GetPagespeedMonitoringLocationsLocationOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPagespeedMonitoringLocationsLocation) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// Location region code
 func (o GetPagespeedMonitoringLocationsLocationOutput) RegionCode() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPagespeedMonitoringLocationsLocation) string { return v.RegionCode }).(pulumi.StringOutput)
 }
 
+// Location status
 func (o GetPagespeedMonitoringLocationsLocationOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPagespeedMonitoringLocationsLocation) string { return v.Status }).(pulumi.StringOutput)
 }
@@ -2275,18 +2595,24 @@ func (o GetPagespeedMonitoringLocationsLocationArrayOutput) Index(i pulumi.IntIn
 }
 
 type GetUptimeMonitoringLocationsLocation struct {
+	// Location description
 	Description string `pulumi:"description"`
-	Ipv4        string `pulumi:"ipv4"`
-	Ipv6        string `pulumi:"ipv6"`
-	Region      string `pulumi:"region"`
-	RegionCode  string `pulumi:"regionCode"`
-	Status      string `pulumi:"status"`
+	// Location IPv4 address
+	Ipv4 string `pulumi:"ipv4"`
+	// Location IPv6 address
+	Ipv6 string `pulumi:"ipv6"`
+	// Location region
+	Region string `pulumi:"region"`
+	// Location region code
+	RegionCode string `pulumi:"regionCode"`
+	// Location status
+	Status string `pulumi:"status"`
 }
 
 // GetUptimeMonitoringLocationsLocationInput is an input type that accepts GetUptimeMonitoringLocationsLocationArgs and GetUptimeMonitoringLocationsLocationOutput values.
 // You can construct a concrete instance of `GetUptimeMonitoringLocationsLocationInput` via:
 //
-//          GetUptimeMonitoringLocationsLocationArgs{...}
+//	GetUptimeMonitoringLocationsLocationArgs{...}
 type GetUptimeMonitoringLocationsLocationInput interface {
 	pulumi.Input
 
@@ -2295,12 +2621,18 @@ type GetUptimeMonitoringLocationsLocationInput interface {
 }
 
 type GetUptimeMonitoringLocationsLocationArgs struct {
+	// Location description
 	Description pulumi.StringInput `pulumi:"description"`
-	Ipv4        pulumi.StringInput `pulumi:"ipv4"`
-	Ipv6        pulumi.StringInput `pulumi:"ipv6"`
-	Region      pulumi.StringInput `pulumi:"region"`
-	RegionCode  pulumi.StringInput `pulumi:"regionCode"`
-	Status      pulumi.StringInput `pulumi:"status"`
+	// Location IPv4 address
+	Ipv4 pulumi.StringInput `pulumi:"ipv4"`
+	// Location IPv6 address
+	Ipv6 pulumi.StringInput `pulumi:"ipv6"`
+	// Location region
+	Region pulumi.StringInput `pulumi:"region"`
+	// Location region code
+	RegionCode pulumi.StringInput `pulumi:"regionCode"`
+	// Location status
+	Status pulumi.StringInput `pulumi:"status"`
 }
 
 func (GetUptimeMonitoringLocationsLocationArgs) ElementType() reflect.Type {
@@ -2318,7 +2650,7 @@ func (i GetUptimeMonitoringLocationsLocationArgs) ToGetUptimeMonitoringLocations
 // GetUptimeMonitoringLocationsLocationArrayInput is an input type that accepts GetUptimeMonitoringLocationsLocationArray and GetUptimeMonitoringLocationsLocationArrayOutput values.
 // You can construct a concrete instance of `GetUptimeMonitoringLocationsLocationArrayInput` via:
 //
-//          GetUptimeMonitoringLocationsLocationArray{ GetUptimeMonitoringLocationsLocationArgs{...} }
+//	GetUptimeMonitoringLocationsLocationArray{ GetUptimeMonitoringLocationsLocationArgs{...} }
 type GetUptimeMonitoringLocationsLocationArrayInput interface {
 	pulumi.Input
 
@@ -2354,26 +2686,32 @@ func (o GetUptimeMonitoringLocationsLocationOutput) ToGetUptimeMonitoringLocatio
 	return o
 }
 
+// Location description
 func (o GetUptimeMonitoringLocationsLocationOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUptimeMonitoringLocationsLocation) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// Location IPv4 address
 func (o GetUptimeMonitoringLocationsLocationOutput) Ipv4() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUptimeMonitoringLocationsLocation) string { return v.Ipv4 }).(pulumi.StringOutput)
 }
 
+// Location IPv6 address
 func (o GetUptimeMonitoringLocationsLocationOutput) Ipv6() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUptimeMonitoringLocationsLocation) string { return v.Ipv6 }).(pulumi.StringOutput)
 }
 
+// Location region
 func (o GetUptimeMonitoringLocationsLocationOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUptimeMonitoringLocationsLocation) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// Location region code
 func (o GetUptimeMonitoringLocationsLocationOutput) RegionCode() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUptimeMonitoringLocationsLocation) string { return v.RegionCode }).(pulumi.StringOutput)
 }
 
+// Location status
 func (o GetUptimeMonitoringLocationsLocationOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUptimeMonitoringLocationsLocation) string { return v.Status }).(pulumi.StringOutput)
 }
@@ -2399,6 +2737,8 @@ func (o GetUptimeMonitoringLocationsLocationArrayOutput) Index(i pulumi.IntInput
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*HeartbeatCheckMonitoredResourceInput)(nil)).Elem(), HeartbeatCheckMonitoredResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HeartbeatCheckMonitoredResourcePtrInput)(nil)).Elem(), HeartbeatCheckMonitoredResourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PagespeedCheckAlertConfigInput)(nil)).Elem(), PagespeedCheckAlertConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PagespeedCheckAlertConfigPtrInput)(nil)).Elem(), PagespeedCheckAlertConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PagespeedCheckMonitoredResourceInput)(nil)).Elem(), PagespeedCheckMonitoredResourceArgs{})
@@ -2429,6 +2769,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPagespeedMonitoringLocationsLocationArrayInput)(nil)).Elem(), GetPagespeedMonitoringLocationsLocationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUptimeMonitoringLocationsLocationInput)(nil)).Elem(), GetUptimeMonitoringLocationsLocationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetUptimeMonitoringLocationsLocationArrayInput)(nil)).Elem(), GetUptimeMonitoringLocationsLocationArray{})
+	pulumi.RegisterOutputType(HeartbeatCheckMonitoredResourceOutput{})
+	pulumi.RegisterOutputType(HeartbeatCheckMonitoredResourcePtrOutput{})
 	pulumi.RegisterOutputType(PagespeedCheckAlertConfigOutput{})
 	pulumi.RegisterOutputType(PagespeedCheckAlertConfigPtrOutput{})
 	pulumi.RegisterOutputType(PagespeedCheckMonitoredResourceOutput{})

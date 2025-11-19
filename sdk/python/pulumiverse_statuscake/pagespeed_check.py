@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -25,9 +30,9 @@ class PagespeedCheckArgs:
                  paused: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a PagespeedCheck resource.
-        :param pulumi.Input['PagespeedCheckAlertConfigArgs'] alert_config: Alert configuration block. Omitting this block disabled all alerts
+        :param pulumi.Input['PagespeedCheckAlertConfigArgs'] alert_config: Alert configuration block. An empty block disables all alerts
         :param pulumi.Input[int] check_interval: Number of seconds between checks
-        :param pulumi.Input['PagespeedCheckMonitoredResourceArgs'] monitored_resource: Monitored resource configuration block. The describes server under test
+        :param pulumi.Input['PagespeedCheckMonitoredResourceArgs'] monitored_resource: Monitored resource configuration block. This describes the server under test
         :param pulumi.Input[str] region: Region on which to run checks
         :param pulumi.Input[Sequence[pulumi.Input[str]]] contact_groups: List of contact group IDs
         :param pulumi.Input[str] name: Name of the check
@@ -48,7 +53,7 @@ class PagespeedCheckArgs:
     @pulumi.getter(name="alertConfig")
     def alert_config(self) -> pulumi.Input['PagespeedCheckAlertConfigArgs']:
         """
-        Alert configuration block. Omitting this block disabled all alerts
+        Alert configuration block. An empty block disables all alerts
         """
         return pulumi.get(self, "alert_config")
 
@@ -72,7 +77,7 @@ class PagespeedCheckArgs:
     @pulumi.getter(name="monitoredResource")
     def monitored_resource(self) -> pulumi.Input['PagespeedCheckMonitoredResourceArgs']:
         """
-        Monitored resource configuration block. The describes server under test
+        Monitored resource configuration block. This describes the server under test
         """
         return pulumi.get(self, "monitored_resource")
 
@@ -142,11 +147,11 @@ class _PagespeedCheckState:
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering PagespeedCheck resources.
-        :param pulumi.Input['PagespeedCheckAlertConfigArgs'] alert_config: Alert configuration block. Omitting this block disabled all alerts
+        :param pulumi.Input['PagespeedCheckAlertConfigArgs'] alert_config: Alert configuration block. An empty block disables all alerts
         :param pulumi.Input[int] check_interval: Number of seconds between checks
         :param pulumi.Input[Sequence[pulumi.Input[str]]] contact_groups: List of contact group IDs
         :param pulumi.Input[str] location: Assigned monitoring location on which checks will be run
-        :param pulumi.Input['PagespeedCheckMonitoredResourceArgs'] monitored_resource: Monitored resource configuration block. The describes server under test
+        :param pulumi.Input['PagespeedCheckMonitoredResourceArgs'] monitored_resource: Monitored resource configuration block. This describes the server under test
         :param pulumi.Input[str] name: Name of the check
         :param pulumi.Input[bool] paused: Whether the check should be run
         :param pulumi.Input[str] region: Region on which to run checks
@@ -172,7 +177,7 @@ class _PagespeedCheckState:
     @pulumi.getter(name="alertConfig")
     def alert_config(self) -> Optional[pulumi.Input['PagespeedCheckAlertConfigArgs']]:
         """
-        Alert configuration block. Omitting this block disabled all alerts
+        Alert configuration block. An empty block disables all alerts
         """
         return pulumi.get(self, "alert_config")
 
@@ -220,7 +225,7 @@ class _PagespeedCheckState:
     @pulumi.getter(name="monitoredResource")
     def monitored_resource(self) -> Optional[pulumi.Input['PagespeedCheckMonitoredResourceArgs']]:
         """
-        Monitored resource configuration block. The describes server under test
+        Monitored resource configuration block. This describes the server under test
         """
         return pulumi.get(self, "monitored_resource")
 
@@ -270,10 +275,10 @@ class PagespeedCheck(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alert_config: Optional[pulumi.Input[pulumi.InputType['PagespeedCheckAlertConfigArgs']]] = None,
+                 alert_config: Optional[pulumi.Input[Union['PagespeedCheckAlertConfigArgs', 'PagespeedCheckAlertConfigArgsDict']]] = None,
                  check_interval: Optional[pulumi.Input[int]] = None,
                  contact_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 monitored_resource: Optional[pulumi.Input[pulumi.InputType['PagespeedCheckMonitoredResourceArgs']]] = None,
+                 monitored_resource: Optional[pulumi.Input[Union['PagespeedCheckMonitoredResourceArgs', 'PagespeedCheckMonitoredResourceArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -282,10 +287,10 @@ class PagespeedCheck(pulumi.CustomResource):
         Create a PagespeedCheck resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['PagespeedCheckAlertConfigArgs']] alert_config: Alert configuration block. Omitting this block disabled all alerts
+        :param pulumi.Input[Union['PagespeedCheckAlertConfigArgs', 'PagespeedCheckAlertConfigArgsDict']] alert_config: Alert configuration block. An empty block disables all alerts
         :param pulumi.Input[int] check_interval: Number of seconds between checks
         :param pulumi.Input[Sequence[pulumi.Input[str]]] contact_groups: List of contact group IDs
-        :param pulumi.Input[pulumi.InputType['PagespeedCheckMonitoredResourceArgs']] monitored_resource: Monitored resource configuration block. The describes server under test
+        :param pulumi.Input[Union['PagespeedCheckMonitoredResourceArgs', 'PagespeedCheckMonitoredResourceArgsDict']] monitored_resource: Monitored resource configuration block. This describes the server under test
         :param pulumi.Input[str] name: Name of the check
         :param pulumi.Input[bool] paused: Whether the check should be run
         :param pulumi.Input[str] region: Region on which to run checks
@@ -313,24 +318,17 @@ class PagespeedCheck(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alert_config: Optional[pulumi.Input[pulumi.InputType['PagespeedCheckAlertConfigArgs']]] = None,
+                 alert_config: Optional[pulumi.Input[Union['PagespeedCheckAlertConfigArgs', 'PagespeedCheckAlertConfigArgsDict']]] = None,
                  check_interval: Optional[pulumi.Input[int]] = None,
                  contact_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 monitored_resource: Optional[pulumi.Input[pulumi.InputType['PagespeedCheckMonitoredResourceArgs']]] = None,
+                 monitored_resource: Optional[pulumi.Input[Union['PagespeedCheckMonitoredResourceArgs', 'PagespeedCheckMonitoredResourceArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
-        if opts is None:
-            opts = pulumi.ResourceOptions()
-        else:
-            opts = copy.copy(opts)
+        opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
-        if opts.version is None:
-            opts.version = _utilities.get_version()
-        if opts.plugin_download_url is None:
-            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -362,11 +360,11 @@ class PagespeedCheck(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alert_config: Optional[pulumi.Input[pulumi.InputType['PagespeedCheckAlertConfigArgs']]] = None,
+            alert_config: Optional[pulumi.Input[Union['PagespeedCheckAlertConfigArgs', 'PagespeedCheckAlertConfigArgsDict']]] = None,
             check_interval: Optional[pulumi.Input[int]] = None,
             contact_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             location: Optional[pulumi.Input[str]] = None,
-            monitored_resource: Optional[pulumi.Input[pulumi.InputType['PagespeedCheckMonitoredResourceArgs']]] = None,
+            monitored_resource: Optional[pulumi.Input[Union['PagespeedCheckMonitoredResourceArgs', 'PagespeedCheckMonitoredResourceArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             paused: Optional[pulumi.Input[bool]] = None,
             region: Optional[pulumi.Input[str]] = None) -> 'PagespeedCheck':
@@ -377,11 +375,11 @@ class PagespeedCheck(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['PagespeedCheckAlertConfigArgs']] alert_config: Alert configuration block. Omitting this block disabled all alerts
+        :param pulumi.Input[Union['PagespeedCheckAlertConfigArgs', 'PagespeedCheckAlertConfigArgsDict']] alert_config: Alert configuration block. An empty block disables all alerts
         :param pulumi.Input[int] check_interval: Number of seconds between checks
         :param pulumi.Input[Sequence[pulumi.Input[str]]] contact_groups: List of contact group IDs
         :param pulumi.Input[str] location: Assigned monitoring location on which checks will be run
-        :param pulumi.Input[pulumi.InputType['PagespeedCheckMonitoredResourceArgs']] monitored_resource: Monitored resource configuration block. The describes server under test
+        :param pulumi.Input[Union['PagespeedCheckMonitoredResourceArgs', 'PagespeedCheckMonitoredResourceArgsDict']] monitored_resource: Monitored resource configuration block. This describes the server under test
         :param pulumi.Input[str] name: Name of the check
         :param pulumi.Input[bool] paused: Whether the check should be run
         :param pulumi.Input[str] region: Region on which to run checks
@@ -404,7 +402,7 @@ class PagespeedCheck(pulumi.CustomResource):
     @pulumi.getter(name="alertConfig")
     def alert_config(self) -> pulumi.Output['outputs.PagespeedCheckAlertConfig']:
         """
-        Alert configuration block. Omitting this block disabled all alerts
+        Alert configuration block. An empty block disables all alerts
         """
         return pulumi.get(self, "alert_config")
 
@@ -436,7 +434,7 @@ class PagespeedCheck(pulumi.CustomResource):
     @pulumi.getter(name="monitoredResource")
     def monitored_resource(self) -> pulumi.Output['outputs.PagespeedCheckMonitoredResource']:
         """
-        Monitored resource configuration block. The describes server under test
+        Monitored resource configuration block. This describes the server under test
         """
         return pulumi.get(self, "monitored_resource")
 

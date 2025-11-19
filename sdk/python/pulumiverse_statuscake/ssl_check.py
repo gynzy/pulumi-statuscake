@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -27,7 +32,7 @@ class SslCheckArgs:
         The set of arguments for constructing a SslCheck resource.
         :param pulumi.Input['SslCheckAlertConfigArgs'] alert_config: Alert configuration block
         :param pulumi.Input[int] check_interval: Number of seconds between checks
-        :param pulumi.Input['SslCheckMonitoredResourceArgs'] monitored_resource: Monitored resource configuration block. The describes server under test
+        :param pulumi.Input['SslCheckMonitoredResourceArgs'] monitored_resource: Monitored resource configuration block. This describes the server under test
         :param pulumi.Input[Sequence[pulumi.Input[str]]] contact_groups: List of contact group IDs
         :param pulumi.Input[bool] follow_redirects: Whether to follow redirects when testing. Disabled by default
         :param pulumi.Input[bool] paused: Whether the check should be run
@@ -73,7 +78,7 @@ class SslCheckArgs:
     @pulumi.getter(name="monitoredResource")
     def monitored_resource(self) -> pulumi.Input['SslCheckMonitoredResourceArgs']:
         """
-        Monitored resource configuration block. The describes server under test
+        Monitored resource configuration block. This describes the server under test
         """
         return pulumi.get(self, "monitored_resource")
 
@@ -146,7 +151,7 @@ class _SslCheckState:
         :param pulumi.Input[int] check_interval: Number of seconds between checks
         :param pulumi.Input[Sequence[pulumi.Input[str]]] contact_groups: List of contact group IDs
         :param pulumi.Input[bool] follow_redirects: Whether to follow redirects when testing. Disabled by default
-        :param pulumi.Input['SslCheckMonitoredResourceArgs'] monitored_resource: Monitored resource configuration block. The describes server under test
+        :param pulumi.Input['SslCheckMonitoredResourceArgs'] monitored_resource: Monitored resource configuration block. This describes the server under test
         :param pulumi.Input[bool] paused: Whether the check should be run
         :param pulumi.Input[str] user_agent: Custom user agent string set when testing
         """
@@ -217,7 +222,7 @@ class _SslCheckState:
     @pulumi.getter(name="monitoredResource")
     def monitored_resource(self) -> Optional[pulumi.Input['SslCheckMonitoredResourceArgs']]:
         """
-        Monitored resource configuration block. The describes server under test
+        Monitored resource configuration block. This describes the server under test
         """
         return pulumi.get(self, "monitored_resource")
 
@@ -255,11 +260,11 @@ class SslCheck(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alert_config: Optional[pulumi.Input[pulumi.InputType['SslCheckAlertConfigArgs']]] = None,
+                 alert_config: Optional[pulumi.Input[Union['SslCheckAlertConfigArgs', 'SslCheckAlertConfigArgsDict']]] = None,
                  check_interval: Optional[pulumi.Input[int]] = None,
                  contact_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  follow_redirects: Optional[pulumi.Input[bool]] = None,
-                 monitored_resource: Optional[pulumi.Input[pulumi.InputType['SslCheckMonitoredResourceArgs']]] = None,
+                 monitored_resource: Optional[pulumi.Input[Union['SslCheckMonitoredResourceArgs', 'SslCheckMonitoredResourceArgsDict']]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  user_agent: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -267,11 +272,11 @@ class SslCheck(pulumi.CustomResource):
         Create a SslCheck resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['SslCheckAlertConfigArgs']] alert_config: Alert configuration block
+        :param pulumi.Input[Union['SslCheckAlertConfigArgs', 'SslCheckAlertConfigArgsDict']] alert_config: Alert configuration block
         :param pulumi.Input[int] check_interval: Number of seconds between checks
         :param pulumi.Input[Sequence[pulumi.Input[str]]] contact_groups: List of contact group IDs
         :param pulumi.Input[bool] follow_redirects: Whether to follow redirects when testing. Disabled by default
-        :param pulumi.Input[pulumi.InputType['SslCheckMonitoredResourceArgs']] monitored_resource: Monitored resource configuration block. The describes server under test
+        :param pulumi.Input[Union['SslCheckMonitoredResourceArgs', 'SslCheckMonitoredResourceArgsDict']] monitored_resource: Monitored resource configuration block. This describes the server under test
         :param pulumi.Input[bool] paused: Whether the check should be run
         :param pulumi.Input[str] user_agent: Custom user agent string set when testing
         """
@@ -298,24 +303,17 @@ class SslCheck(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alert_config: Optional[pulumi.Input[pulumi.InputType['SslCheckAlertConfigArgs']]] = None,
+                 alert_config: Optional[pulumi.Input[Union['SslCheckAlertConfigArgs', 'SslCheckAlertConfigArgsDict']]] = None,
                  check_interval: Optional[pulumi.Input[int]] = None,
                  contact_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  follow_redirects: Optional[pulumi.Input[bool]] = None,
-                 monitored_resource: Optional[pulumi.Input[pulumi.InputType['SslCheckMonitoredResourceArgs']]] = None,
+                 monitored_resource: Optional[pulumi.Input[Union['SslCheckMonitoredResourceArgs', 'SslCheckMonitoredResourceArgsDict']]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  user_agent: Optional[pulumi.Input[str]] = None,
                  __props__=None):
-        if opts is None:
-            opts = pulumi.ResourceOptions()
-        else:
-            opts = copy.copy(opts)
+        opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
-        if opts.version is None:
-            opts.version = _utilities.get_version()
-        if opts.plugin_download_url is None:
-            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -344,11 +342,11 @@ class SslCheck(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alert_config: Optional[pulumi.Input[pulumi.InputType['SslCheckAlertConfigArgs']]] = None,
+            alert_config: Optional[pulumi.Input[Union['SslCheckAlertConfigArgs', 'SslCheckAlertConfigArgsDict']]] = None,
             check_interval: Optional[pulumi.Input[int]] = None,
             contact_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             follow_redirects: Optional[pulumi.Input[bool]] = None,
-            monitored_resource: Optional[pulumi.Input[pulumi.InputType['SslCheckMonitoredResourceArgs']]] = None,
+            monitored_resource: Optional[pulumi.Input[Union['SslCheckMonitoredResourceArgs', 'SslCheckMonitoredResourceArgsDict']]] = None,
             paused: Optional[pulumi.Input[bool]] = None,
             user_agent: Optional[pulumi.Input[str]] = None) -> 'SslCheck':
         """
@@ -358,11 +356,11 @@ class SslCheck(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['SslCheckAlertConfigArgs']] alert_config: Alert configuration block
+        :param pulumi.Input[Union['SslCheckAlertConfigArgs', 'SslCheckAlertConfigArgsDict']] alert_config: Alert configuration block
         :param pulumi.Input[int] check_interval: Number of seconds between checks
         :param pulumi.Input[Sequence[pulumi.Input[str]]] contact_groups: List of contact group IDs
         :param pulumi.Input[bool] follow_redirects: Whether to follow redirects when testing. Disabled by default
-        :param pulumi.Input[pulumi.InputType['SslCheckMonitoredResourceArgs']] monitored_resource: Monitored resource configuration block. The describes server under test
+        :param pulumi.Input[Union['SslCheckMonitoredResourceArgs', 'SslCheckMonitoredResourceArgsDict']] monitored_resource: Monitored resource configuration block. This describes the server under test
         :param pulumi.Input[bool] paused: Whether the check should be run
         :param pulumi.Input[str] user_agent: Custom user agent string set when testing
         """
@@ -415,7 +413,7 @@ class SslCheck(pulumi.CustomResource):
     @pulumi.getter(name="monitoredResource")
     def monitored_resource(self) -> pulumi.Output['outputs.SslCheckMonitoredResource']:
         """
-        Monitored resource configuration block. The describes server under test
+        Monitored resource configuration block. This describes the server under test
         """
         return pulumi.get(self, "monitored_resource")
 

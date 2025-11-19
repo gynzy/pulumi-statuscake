@@ -17,7 +17,7 @@ namespace Pulumiverse.Statuscake
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
     [StatuscakeResourceType("pulumi:providers:statuscake")]
-    public partial class Provider : Pulumi.ProviderResource
+    public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
         /// The API token for operations. This can also be provided as an environment variable `STATUSCAKE_API_TOKEN`
@@ -50,7 +50,7 @@ namespace Pulumiverse.Statuscake
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/pulumiverse",
+                PluginDownloadURL = "github://api.github.com/gynzy",
                 AdditionalSecretOutputs =
                 {
                     "apiToken",
@@ -63,7 +63,7 @@ namespace Pulumiverse.Statuscake
         }
     }
 
-    public sealed class ProviderArgs : Pulumi.ResourceArgs
+    public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
         [Input("apiToken")]
         private Input<string>? _apiToken;
@@ -119,5 +119,6 @@ namespace Pulumiverse.Statuscake
         {
             ApiToken = Utilities.GetEnv("STATUSCAKE_API_TOKEN");
         }
+        public static new ProviderArgs Empty => new ProviderArgs();
     }
 }

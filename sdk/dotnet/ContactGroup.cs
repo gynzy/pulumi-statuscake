@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Statuscake
 {
     [StatuscakeResourceType("statuscake:index/contactGroup:ContactGroup")]
-    public partial class ContactGroup : Pulumi.CustomResource
+    public partial class ContactGroup : global::Pulumi.CustomResource
     {
         /// <summary>
         /// List of email addresses
@@ -66,7 +66,7 @@ namespace Pulumiverse.Statuscake
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/pulumiverse",
+                PluginDownloadURL = "github://api.github.com/gynzy",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -88,7 +88,7 @@ namespace Pulumiverse.Statuscake
         }
     }
 
-    public sealed class ContactGroupArgs : Pulumi.ResourceArgs
+    public sealed class ContactGroupArgs : global::Pulumi.ResourceArgs
     {
         [Input("emailAddresses")]
         private InputList<string>? _emailAddresses;
@@ -141,9 +141,10 @@ namespace Pulumiverse.Statuscake
         public ContactGroupArgs()
         {
         }
+        public static new ContactGroupArgs Empty => new ContactGroupArgs();
     }
 
-    public sealed class ContactGroupState : Pulumi.ResourceArgs
+    public sealed class ContactGroupState : global::Pulumi.ResourceArgs
     {
         [Input("emailAddresses")]
         private InputList<string>? _emailAddresses;
@@ -196,5 +197,6 @@ namespace Pulumiverse.Statuscake
         public ContactGroupState()
         {
         }
+        public static new ContactGroupState Empty => new ContactGroupState();
     }
 }

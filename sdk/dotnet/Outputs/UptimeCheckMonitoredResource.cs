@@ -14,7 +14,13 @@ namespace Pulumiverse.Statuscake.Outputs
     [OutputType]
     public sealed class UptimeCheckMonitoredResource
     {
+        /// <summary>
+        /// URL, FQDN, or IP address of the server under test
+        /// </summary>
         public readonly string Address;
+        /// <summary>
+        /// Name of the hosting provider
+        /// </summary>
         public readonly string? Host;
 
         [OutputConstructor]

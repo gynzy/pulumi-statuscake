@@ -14,10 +14,25 @@ namespace Pulumiverse.Statuscake.Outputs
     [OutputType]
     public sealed class SslCheckAlertConfig
     {
+        /// <summary>
+        /// List representing when alerts should be sent (days). Must be exactly 3 numerical values
+        /// </summary>
         public readonly ImmutableArray<int> AlertAts;
+        /// <summary>
+        /// Whether to enable alerts when SSL certificate issues are found
+        /// </summary>
         public readonly bool? OnBroken;
+        /// <summary>
+        /// Whether to enable alerts when the SSL certificate is to expire
+        /// </summary>
         public readonly bool? OnExpiry;
+        /// <summary>
+        /// Whether to enable alerts when mixed content is found
+        /// </summary>
         public readonly bool? OnMixed;
+        /// <summary>
+        /// Whether to enable alert reminders
+        /// </summary>
         public readonly bool? OnReminder;
 
         [OutputConstructor]

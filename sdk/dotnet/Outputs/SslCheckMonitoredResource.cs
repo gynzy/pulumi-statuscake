@@ -14,7 +14,13 @@ namespace Pulumiverse.Statuscake.Outputs
     [OutputType]
     public sealed class SslCheckMonitoredResource
     {
+        /// <summary>
+        /// URL of the server under test
+        /// </summary>
         public readonly string Address;
+        /// <summary>
+        /// Hostname of the server under test
+        /// </summary>
         public readonly string? Hostname;
 
         [OutputConstructor]

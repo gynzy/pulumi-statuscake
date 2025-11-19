@@ -8,10 +8,11 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-statuscake/sdk/go/statuscake/internal"
 )
 
 func LookupContactGroup(ctx *pulumi.Context, args *LookupContactGroupArgs, opts ...pulumi.InvokeOption) (*LookupContactGroupResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupContactGroupResult
 	err := ctx.Invoke("statuscake:index/getContactGroup:getContactGroup", args, &rv, opts...)
 	if err != nil {
@@ -36,15 +37,11 @@ type LookupContactGroupResult struct {
 }
 
 func LookupContactGroupOutput(ctx *pulumi.Context, args LookupContactGroupOutputArgs, opts ...pulumi.InvokeOption) LookupContactGroupResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupContactGroupResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (LookupContactGroupResultOutput, error) {
 			args := v.(LookupContactGroupArgs)
-			r, err := LookupContactGroup(ctx, &args, opts...)
-			var s LookupContactGroupResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("statuscake:index/getContactGroup:getContactGroup", args, LookupContactGroupResultOutput{}, options).(LookupContactGroupResultOutput), nil
 		}).(LookupContactGroupResultOutput)
 }
 

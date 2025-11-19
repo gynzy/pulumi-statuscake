@@ -13,14 +13,17 @@ namespace Pulumiverse.Statuscake
     public static class GetUptimeMonitoringLocations
     {
         public static Task<GetUptimeMonitoringLocationsResult> InvokeAsync(GetUptimeMonitoringLocationsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetUptimeMonitoringLocationsResult>("statuscake:index/getUptimeMonitoringLocations:getUptimeMonitoringLocations", args ?? new GetUptimeMonitoringLocationsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetUptimeMonitoringLocationsResult>("statuscake:index/getUptimeMonitoringLocations:getUptimeMonitoringLocations", args ?? new GetUptimeMonitoringLocationsArgs(), options.WithDefaults());
 
         public static Output<GetUptimeMonitoringLocationsResult> Invoke(GetUptimeMonitoringLocationsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetUptimeMonitoringLocationsResult>("statuscake:index/getUptimeMonitoringLocations:getUptimeMonitoringLocations", args ?? new GetUptimeMonitoringLocationsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetUptimeMonitoringLocationsResult>("statuscake:index/getUptimeMonitoringLocations:getUptimeMonitoringLocations", args ?? new GetUptimeMonitoringLocationsInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetUptimeMonitoringLocationsResult> Invoke(GetUptimeMonitoringLocationsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetUptimeMonitoringLocationsResult>("statuscake:index/getUptimeMonitoringLocations:getUptimeMonitoringLocations", args ?? new GetUptimeMonitoringLocationsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetUptimeMonitoringLocationsArgs : Pulumi.InvokeArgs
+    public sealed class GetUptimeMonitoringLocationsArgs : global::Pulumi.InvokeArgs
     {
         [Input("regionCode")]
         public string? RegionCode { get; set; }
@@ -28,9 +31,10 @@ namespace Pulumiverse.Statuscake
         public GetUptimeMonitoringLocationsArgs()
         {
         }
+        public static new GetUptimeMonitoringLocationsArgs Empty => new GetUptimeMonitoringLocationsArgs();
     }
 
-    public sealed class GetUptimeMonitoringLocationsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetUptimeMonitoringLocationsInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("regionCode")]
         public Input<string>? RegionCode { get; set; }
@@ -38,6 +42,7 @@ namespace Pulumiverse.Statuscake
         public GetUptimeMonitoringLocationsInvokeArgs()
         {
         }
+        public static new GetUptimeMonitoringLocationsInvokeArgs Empty => new GetUptimeMonitoringLocationsInvokeArgs();
     }
 
 

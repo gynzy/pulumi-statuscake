@@ -8,10 +8,11 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-statuscake/sdk/go/statuscake/internal"
 )
 
 func GetUptimeMonitoringLocations(ctx *pulumi.Context, args *GetUptimeMonitoringLocationsArgs, opts ...pulumi.InvokeOption) (*GetUptimeMonitoringLocationsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetUptimeMonitoringLocationsResult
 	err := ctx.Invoke("statuscake:index/getUptimeMonitoringLocations:getUptimeMonitoringLocations", args, &rv, opts...)
 	if err != nil {
@@ -34,15 +35,11 @@ type GetUptimeMonitoringLocationsResult struct {
 }
 
 func GetUptimeMonitoringLocationsOutput(ctx *pulumi.Context, args GetUptimeMonitoringLocationsOutputArgs, opts ...pulumi.InvokeOption) GetUptimeMonitoringLocationsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetUptimeMonitoringLocationsResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetUptimeMonitoringLocationsResultOutput, error) {
 			args := v.(GetUptimeMonitoringLocationsArgs)
-			r, err := GetUptimeMonitoringLocations(ctx, &args, opts...)
-			var s GetUptimeMonitoringLocationsResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("statuscake:index/getUptimeMonitoringLocations:getUptimeMonitoringLocations", args, GetUptimeMonitoringLocationsResultOutput{}, options).(GetUptimeMonitoringLocationsResultOutput), nil
 		}).(GetUptimeMonitoringLocationsResultOutput)
 }
 

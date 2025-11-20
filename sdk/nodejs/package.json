@@ -1,6 +1,6 @@
 {
     "name": "@gynzy/statuscake",
-    "version": "v1.0.2-gynzy2",
+    "version": "v1.0.2-gynzy5",
     "description": "A Pulumi package for creating and managing Statuscake resources.",
     "keywords": [
         "pulumi",

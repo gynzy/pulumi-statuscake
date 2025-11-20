@@ -1,6 +1,6 @@
 {
-    "name": "@pulumiverse/statuscake",
-    "version": "${VERSION}",
+    "name": "@gynzy/statuscake",
+    "version": "v1.0.2-gynzy2",
     "description": "A Pulumi package for creating and managing Statuscake resources.",
     "keywords": [
         "pulumi",
@@ -24,6 +24,6 @@
     },
     "pulumi": {
         "resource": true,
-        "server": "github://api.github.com/pulumiverse"
+        "server": "github://api.github.com/gynzy"
     }
 }

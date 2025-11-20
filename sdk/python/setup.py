@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'statuscake', PLUGIN_VERSION, '--server', 'github://api.github.com/pulumiverse'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'statuscake', PLUGIN_VERSION, '--server', 'github://api.github.com/gynzy'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""

@@ -11,19 +11,29 @@ using Pulumi;
 namespace Pulumiverse.Statuscake.Inputs
 {
 
-    public sealed class PagespeedCheckAlertConfigGetArgs : Pulumi.ResourceArgs
+    public sealed class PagespeedCheckAlertConfigGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// An alert will be sent if the size of the page is larger than this value (kb).
+        /// </summary>
         [Input("alertBigger")]
         public Input<int>? AlertBigger { get; set; }
 
+        /// <summary>
+        /// An alert will be sent if the load time of the page exceeds this value (ms).
+        /// </summary>
         [Input("alertSlower")]
         public Input<int>? AlertSlower { get; set; }
 
+        /// <summary>
+        /// An alert will be sent if the size of the page is smaller than this value (kb).
+        /// </summary>
         [Input("alertSmaller")]
         public Input<int>? AlertSmaller { get; set; }
 
         public PagespeedCheckAlertConfigGetArgs()
         {
         }
+        public static new PagespeedCheckAlertConfigGetArgs Empty => new PagespeedCheckAlertConfigGetArgs();
     }
 }

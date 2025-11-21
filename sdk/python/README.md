@@ -17,7 +17,7 @@ error: could not load plugin for statuscake provider 'urn:pulumi:my-stack::my-pr
 You can use this command to install the missing version:
 
 ```
-pulumi plugin install resource statuscake vX.Y.Z --server github://api.github.com/pulumiverse
+pulumi plugin install resource statuscake vX.Y.Z --server github://api.github.com/gynzy
 ```
 
 This package is available for several languages/platforms:

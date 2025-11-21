@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Statuscake
 {
     [StatuscakeResourceType("statuscake:index/uptimeCheck:UptimeCheck")]
-    public partial class UptimeCheck : Pulumi.CustomResource
+    public partial class UptimeCheck : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Number of seconds between checks
@@ -56,7 +56,7 @@ namespace Pulumiverse.Statuscake
         public Output<ImmutableArray<Outputs.UptimeCheckLocation>> Locations { get; private set; } = null!;
 
         /// <summary>
-        /// Monitored resource configuration block. The describes server under test
+        /// Monitored resource configuration block. This describes the server under test
         /// </summary>
         [Output("monitoredResource")]
         public Output<Outputs.UptimeCheckMonitoredResource> MonitoredResource { get; private set; } = null!;
@@ -121,7 +121,7 @@ namespace Pulumiverse.Statuscake
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/pulumiverse",
+                PluginDownloadURL = "github://api.github.com/gynzy",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -143,7 +143,7 @@ namespace Pulumiverse.Statuscake
         }
     }
 
-    public sealed class UptimeCheckArgs : Pulumi.ResourceArgs
+    public sealed class UptimeCheckArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Number of seconds between checks
@@ -188,7 +188,7 @@ namespace Pulumiverse.Statuscake
         public Input<Inputs.UptimeCheckIcmpCheckArgs>? IcmpCheck { get; set; }
 
         /// <summary>
-        /// Monitored resource configuration block. The describes server under test
+        /// Monitored resource configuration block. This describes the server under test
         /// </summary>
         [Input("monitoredResource", required: true)]
         public Input<Inputs.UptimeCheckMonitoredResourceArgs> MonitoredResource { get; set; } = null!;
@@ -245,9 +245,10 @@ namespace Pulumiverse.Statuscake
         public UptimeCheckArgs()
         {
         }
+        public static new UptimeCheckArgs Empty => new UptimeCheckArgs();
     }
 
-    public sealed class UptimeCheckState : Pulumi.ResourceArgs
+    public sealed class UptimeCheckState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Number of seconds between checks
@@ -304,7 +305,7 @@ namespace Pulumiverse.Statuscake
         }
 
         /// <summary>
-        /// Monitored resource configuration block. The describes server under test
+        /// Monitored resource configuration block. This describes the server under test
         /// </summary>
         [Input("monitoredResource")]
         public Input<Inputs.UptimeCheckMonitoredResourceGetArgs>? MonitoredResource { get; set; }
@@ -361,5 +362,6 @@ namespace Pulumiverse.Statuscake
         public UptimeCheckState()
         {
         }
+        public static new UptimeCheckState Empty => new UptimeCheckState();
     }
 }

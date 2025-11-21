@@ -2,16 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export function getPagespeedMonitoringLocations(args?: GetPagespeedMonitoringLocationsArgs, opts?: pulumi.InvokeOptions): Promise<GetPagespeedMonitoringLocationsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
-
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("statuscake:index/getPagespeedMonitoringLocations:getPagespeedMonitoringLocations", {
         "regionCode": args.regionCode,
     }, opts);
@@ -35,9 +32,12 @@ export interface GetPagespeedMonitoringLocationsResult {
     readonly locations: outputs.GetPagespeedMonitoringLocationsLocation[];
     readonly regionCode?: string;
 }
-
-export function getPagespeedMonitoringLocationsOutput(args?: GetPagespeedMonitoringLocationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPagespeedMonitoringLocationsResult> {
-    return pulumi.output(args).apply(a => getPagespeedMonitoringLocations(a, opts))
+export function getPagespeedMonitoringLocationsOutput(args?: GetPagespeedMonitoringLocationsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPagespeedMonitoringLocationsResult> {
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("statuscake:index/getPagespeedMonitoringLocations:getPagespeedMonitoringLocations", {
+        "regionCode": args.regionCode,
+    }, opts);
 }
 
 /**

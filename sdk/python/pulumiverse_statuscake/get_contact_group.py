@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -93,27 +98,29 @@ def get_contact_group(id: Optional[str] = None,
     """
     __args__ = dict()
     __args__['id'] = id
-    if opts is None:
-        opts = pulumi.InvokeOptions()
-    if opts.version is None:
-        opts.version = _utilities.get_version()
-        if opts.plugin_download_url is None:
-            opts.plugin_download_url = _utilities.get_plugin_download_url()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('statuscake:index/getContactGroup:getContactGroup', __args__, opts=opts, typ=GetContactGroupResult).value
 
     return AwaitableGetContactGroupResult(
-        email_addresses=__ret__.email_addresses,
-        id=__ret__.id,
-        integrations=__ret__.integrations,
-        mobile_numbers=__ret__.mobile_numbers,
-        name=__ret__.name,
-        ping_url=__ret__.ping_url)
-
-
-@_utilities.lift_output_func(get_contact_group)
+        email_addresses=pulumi.get(__ret__, 'email_addresses'),
+        id=pulumi.get(__ret__, 'id'),
+        integrations=pulumi.get(__ret__, 'integrations'),
+        mobile_numbers=pulumi.get(__ret__, 'mobile_numbers'),
+        name=pulumi.get(__ret__, 'name'),
+        ping_url=pulumi.get(__ret__, 'ping_url'))
 def get_contact_group_output(id: Optional[pulumi.Input[str]] = None,
-                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetContactGroupResult]:
+                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetContactGroupResult]:
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('statuscake:index/getContactGroup:getContactGroup', __args__, opts=opts, typ=GetContactGroupResult)
+    return __ret__.apply(lambda __response__: GetContactGroupResult(
+        email_addresses=pulumi.get(__response__, 'email_addresses'),
+        id=pulumi.get(__response__, 'id'),
+        integrations=pulumi.get(__response__, 'integrations'),
+        mobile_numbers=pulumi.get(__response__, 'mobile_numbers'),
+        name=pulumi.get(__response__, 'name'),
+        ping_url=pulumi.get(__response__, 'ping_url')))

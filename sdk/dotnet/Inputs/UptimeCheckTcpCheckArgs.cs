@@ -11,22 +11,35 @@ using Pulumi;
 namespace Pulumiverse.Statuscake.Inputs
 {
 
-    public sealed class UptimeCheckTcpCheckArgs : Pulumi.ResourceArgs
+    public sealed class UptimeCheckTcpCheckArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Authentication configuration block
+        /// </summary>
         [Input("authentication")]
         public Input<Inputs.UptimeCheckTcpCheckAuthenticationArgs>? Authentication { get; set; }
 
+        /// <summary>
+        /// Destination port for TCP checks
+        /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
 
+        /// <summary>
+        /// Type of TCP check. Either SMTP, SSH or TCP
+        /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
+        /// <summary>
+        /// The number of seconds to wait to receive the first byte
+        /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
 
         public UptimeCheckTcpCheckArgs()
         {
         }
+        public static new UptimeCheckTcpCheckArgs Empty => new UptimeCheckTcpCheckArgs();
     }
 }

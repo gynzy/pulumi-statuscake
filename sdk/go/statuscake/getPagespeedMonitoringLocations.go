@@ -8,10 +8,11 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-statuscake/sdk/go/statuscake/internal"
 )
 
 func GetPagespeedMonitoringLocations(ctx *pulumi.Context, args *GetPagespeedMonitoringLocationsArgs, opts ...pulumi.InvokeOption) (*GetPagespeedMonitoringLocationsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetPagespeedMonitoringLocationsResult
 	err := ctx.Invoke("statuscake:index/getPagespeedMonitoringLocations:getPagespeedMonitoringLocations", args, &rv, opts...)
 	if err != nil {
@@ -34,15 +35,11 @@ type GetPagespeedMonitoringLocationsResult struct {
 }
 
 func GetPagespeedMonitoringLocationsOutput(ctx *pulumi.Context, args GetPagespeedMonitoringLocationsOutputArgs, opts ...pulumi.InvokeOption) GetPagespeedMonitoringLocationsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetPagespeedMonitoringLocationsResult, error) {
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) (GetPagespeedMonitoringLocationsResultOutput, error) {
 			args := v.(GetPagespeedMonitoringLocationsArgs)
-			r, err := GetPagespeedMonitoringLocations(ctx, &args, opts...)
-			var s GetPagespeedMonitoringLocationsResult
-			if r != nil {
-				s = *r
-			}
-			return s, err
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("statuscake:index/getPagespeedMonitoringLocations:getPagespeedMonitoringLocations", args, GetPagespeedMonitoringLocationsResultOutput{}, options).(GetPagespeedMonitoringLocationsResultOutput), nil
 		}).(GetPagespeedMonitoringLocationsResultOutput)
 }
 

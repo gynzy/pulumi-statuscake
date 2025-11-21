@@ -12,27 +12,28 @@
     "attribution": "This Pulumi package is based on the [`statuscake` Terraform Provider](https://github.com/pulumiverse/terraform-provider-statuscake).",
     "repository": "https://github.com/pulumiverse/pulumi-statuscake",
     "logoUrl": "https://raw.githubusercontent.com/pulumiverse/pulumi-statuscake/main/statuscake.svg",
-    "pluginDownloadURL": "github://api.github.com/pulumiverse",
+    "pluginDownloadURL": "github://api.github.com/gynzy",
     "publisher": "Pulumiverse",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },
     "language": {
         "csharp": {
-            "compatibility": "tfbridge20",
-            "namespaces": null,
             "packageReferences": {
                 "Pulumi": "3.*"
             },
+            "compatibility": "tfbridge20",
             "rootNamespace": "Pulumiverse"
         },
         "go": {
-            "generateExtraInputTypes": true,
+            "importBasePath": "github.com/pulumiverse/pulumi-statuscake/sdk/go/statuscake",
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/pulumiverse/pulumi-statuscake/sdk/go/statuscake"
+            "generateExtraInputTypes": true
         },
         "nodejs": {
-            "compatibility": "tfbridge20",
+            "packageName": "@gynzy/statuscake",
+            "packageDescription": "A Pulumi package for creating and managing Statuscake resources.",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/pulumiverse/terraform-provider-statuscake)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-statuscake` repo](https://github.com/pulumiverse/pulumi-statuscake/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-statuscake` repo](https://github.com/pulumiverse/terraform-provider-statuscake/issues).",
             "dependencies": {
                 "@pulumi/pulumi": "^3.0.0"
             },
@@ -40,19 +41,17 @@
                 "@types/mime": "^2.0.0",
                 "@types/node": "^10.0.0"
             },
-            "disableUnionOutputTypes": true,
-            "packageDescription": "A Pulumi package for creating and managing Statuscake resources.",
-            "packageName": "@pulumiverse/statuscake",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/pulumiverse/terraform-provider-statuscake)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-statuscake` repo](https://github.com/pulumi/pulumi-statuscake/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`pulumiverse/terraform-provider-statuscake` repo](https://github.com/pulumiverse/terraform-provider-statuscake/issues).",
-            "typescriptVersion": ""
+            "compatibility": "tfbridge20",
+            "disableUnionOutputTypes": true
         },
         "python": {
-            "compatibility": "tfbridge20",
             "packageName": "pulumiverse_statuscake",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/pulumiverse/terraform-provider-statuscake)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-statuscake` repo](https://github.com/pulumi/pulumi-statuscake/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`pulumiverse/terraform-provider-statuscake` repo](https://github.com/pulumiverse/terraform-provider-statuscake/issues).",
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
-            }
+            },
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/pulumiverse/terraform-provider-statuscake)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-statuscake` repo](https://github.com/pulumiverse/pulumi-statuscake/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-statuscake` repo](https://github.com/pulumiverse/terraform-provider-statuscake/issues).",
+            "compatibility": "tfbridge20",
+            "pyproject": {}
         }
     },
     "config": {
@@ -93,31 +92,28 @@
         ]
     },
     "types": {
+        "statuscake:index/HeartbeatCheckMonitoredResource:HeartbeatCheckMonitoredResource": {
+            "properties": {
+                "host": {
+                    "type": "string",
+                    "description": "Name of the hosting provider\n"
+                }
+            },
+            "type": "object"
+        },
         "statuscake:index/PagespeedCheckAlertConfig:PagespeedCheckAlertConfig": {
             "properties": {
                 "alertBigger": {
                     "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "An alert will be sent if the size of the page is larger than this value (kb).\n"
                 },
                 "alertSlower": {
                     "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "An alert will be sent if the load time of the page exceeds this value (ms).\n"
                 },
                 "alertSmaller": {
                     "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "An alert will be sent if the size of the page is smaller than this value (kb).\n"
                 }
             },
             "type": "object"
@@ -126,12 +122,7 @@
             "properties": {
                 "address": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
-                    "willReplaceOnChanges": true
+                    "description": "URL or IP address of the website under test\n"
                 }
             },
             "type": "object",
@@ -146,43 +137,23 @@
                     "items": {
                         "type": "integer"
                     },
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "List representing when alerts should be sent (days). Must be exactly 3 numerical values\n"
                 },
                 "onBroken": {
                     "type": "boolean",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Whether to enable alerts when SSL certificate issues are found\n"
                 },
                 "onExpiry": {
                     "type": "boolean",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Whether to enable alerts when the SSL certificate is to expire\n"
                 },
                 "onMixed": {
                     "type": "boolean",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Whether to enable alerts when mixed content is found\n"
                 },
                 "onReminder": {
                     "type": "boolean",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Whether to enable alert reminders\n"
                 }
             },
             "type": "object",
@@ -194,20 +165,11 @@
             "properties": {
                 "address": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
-                    "willReplaceOnChanges": true
+                    "description": "URL of the server under test\n"
                 },
                 "hostname": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Hostname of the server under test\n"
                 }
             },
             "type": "object",
@@ -222,19 +184,11 @@
                     "items": {
                         "type": "string"
                     },
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "List of IP addresses to compare against returned DNS records\n"
                 },
                 "dnsServer": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "FQDN or IP address of the nameserver to query\n"
                 }
             },
             "type": "object",
@@ -246,62 +200,34 @@
             "properties": {
                 "basicAuthentication": {
                     "$ref": "#/types/statuscake:index/UptimeCheckHttpCheckBasicAuthentication:UptimeCheckHttpCheckBasicAuthentication",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Basic Authentication (RFC7235) configuration block\n"
                 },
                 "contentMatchers": {
                     "$ref": "#/types/statuscake:index/UptimeCheckHttpCheckContentMatchers:UptimeCheckHttpCheckContentMatchers",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Content matcher configuration block. This is used to assert values within the response of the request\n"
                 },
                 "enableCookies": {
                     "type": "boolean",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Whether to enable cookie storage\n"
                 },
                 "finalEndpoint": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Specify where the redirect chain should end\n"
                 },
                 "followRedirects": {
                     "type": "boolean",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Whether to follow redirects when testing. Disabled by default\n"
                 },
                 "requestHeaders": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Represents headers to be sent when making requests\n"
                 },
                 "requestMethod": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
+                    "description": "Type of HTTP check. Either HTTP, or HEAD\n",
                     "willReplaceOnChanges": true
                 },
                 "requestPayload": {
@@ -309,78 +235,49 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `request_payload` or `request_payload_raw` may be specified\n"
                 },
                 "requestPayloadRaw": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Raw payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `request_payload` or `request_payload_raw` may be specified\n"
                 },
                 "statusCodes": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "List of status codes that trigger an alert. If not specified then the default status codes are used. Once set, the default status codes cannot be restored and ommitting this field does not clear the attribute\n"
                 },
                 "timeout": {
                     "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "The number of seconds to wait to receive the first byte\n"
                 },
                 "userAgent": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Custom user agent string set when testing\n"
                 },
                 "validateSsl": {
                     "type": "boolean",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Whether to send an alert if the SSL certificate is soon to expire\n"
                 }
             },
             "type": "object",
-            "required": [
-                "statusCodes"
-            ]
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "statusCodes"
+                    ]
+                }
+            }
         },
         "statuscake:index/UptimeCheckHttpCheckBasicAuthentication:UptimeCheckHttpCheckBasicAuthentication": {
             "properties": {
                 "password": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "secret": true
                 },
                 "username": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "type": "string"
                 }
             },
             "type": "object",
@@ -393,27 +290,15 @@
             "properties": {
                 "content": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "String to look for within the response. Considered down if not found\n"
                 },
                 "includeHeaders": {
                     "type": "boolean",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Include header content in string match search\n"
                 },
                 "matcher": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Whether to consider the check as down if the content is present within the response\n"
                 }
             },
             "type": "object",
@@ -425,11 +310,7 @@
             "properties": {
                 "enabled": {
                     "type": "boolean",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Dummy attribute to allow for a nested block. This field should not be changed\n"
                 }
             },
             "type": "object"
@@ -438,51 +319,27 @@
             "properties": {
                 "description": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Location description\n"
                 },
                 "ipv4": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Location IPv4 address\n"
                 },
                 "ipv6": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Location IPv6 address\n"
                 },
                 "region": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Location region\n"
                 },
                 "regionCode": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Location region code\n"
                 },
                 "status": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Location status\n"
                 }
             },
             "type": "object",
@@ -503,20 +360,11 @@
             "properties": {
                 "address": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
-                    "willReplaceOnChanges": true
+                    "description": "URL, FQDN, or IP address of the server under test\n"
                 },
                 "host": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Name of the hosting provider\n"
                 }
             },
             "type": "object",
@@ -528,36 +376,20 @@
             "properties": {
                 "authentication": {
                     "$ref": "#/types/statuscake:index/UptimeCheckTcpCheckAuthentication:UptimeCheckTcpCheckAuthentication",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Authentication configuration block\n"
                 },
                 "port": {
                     "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Destination port for TCP checks\n"
                 },
                 "protocol": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    },
+                    "description": "Type of TCP check. Either SMTP, SSH or TCP\n",
                     "willReplaceOnChanges": true
                 },
                 "timeout": {
                     "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "The number of seconds to wait to receive the first byte\n"
                 }
             },
             "type": "object",
@@ -569,19 +401,10 @@
             "properties": {
                 "password": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "secret": true
                 },
                 "username": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "type": "string"
                 }
             },
             "type": "object",
@@ -594,51 +417,27 @@
             "properties": {
                 "description": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Location description\n"
                 },
                 "ipv4": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Location IPv4 address\n"
                 },
                 "ipv6": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Location IPv6 address\n"
                 },
                 "region": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Location region\n"
                 },
                 "regionCode": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Location region code\n"
                 },
                 "status": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Location status\n"
                 }
             },
             "type": "object",
@@ -660,51 +459,27 @@
             "properties": {
                 "description": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Location description\n"
                 },
                 "ipv4": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Location IPv4 address\n"
                 },
                 "ipv6": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Location IPv6 address\n"
                 },
                 "region": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Location region\n"
                 },
                 "regionCode": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Location region code\n"
                 },
                 "status": {
                     "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
+                    "description": "Location status\n"
                 }
             },
             "type": "object",
@@ -888,6 +663,124 @@
                 "type": "object"
             }
         },
+        "statuscake:index/heartbeatCheck:HeartbeatCheck": {
+            "properties": {
+                "checkUrl": {
+                    "type": "string",
+                    "description": "URL of the heartbeat check\n"
+                },
+                "contactGroups": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of contact group IDs\n"
+                },
+                "monitoredResource": {
+                    "$ref": "#/types/statuscake:index/HeartbeatCheckMonitoredResource:HeartbeatCheckMonitoredResource",
+                    "description": "Monitored resource configuration block. This describes the server under test\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the check\n"
+                },
+                "paused": {
+                    "type": "boolean",
+                    "description": "Whether the check should be run\n"
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "Number of seconds since the last ping before the check is considered down.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of tags\n"
+                }
+            },
+            "required": [
+                "checkUrl",
+                "name",
+                "period"
+            ],
+            "inputProperties": {
+                "contactGroups": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of contact group IDs\n"
+                },
+                "monitoredResource": {
+                    "$ref": "#/types/statuscake:index/HeartbeatCheckMonitoredResource:HeartbeatCheckMonitoredResource",
+                    "description": "Monitored resource configuration block. This describes the server under test\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the check\n"
+                },
+                "paused": {
+                    "type": "boolean",
+                    "description": "Whether the check should be run\n"
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "Number of seconds since the last ping before the check is considered down.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of tags\n"
+                }
+            },
+            "requiredInputs": [
+                "period"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering HeartbeatCheck resources.\n",
+                "properties": {
+                    "checkUrl": {
+                        "type": "string",
+                        "description": "URL of the heartbeat check\n"
+                    },
+                    "contactGroups": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of contact group IDs\n"
+                    },
+                    "monitoredResource": {
+                        "$ref": "#/types/statuscake:index/HeartbeatCheckMonitoredResource:HeartbeatCheckMonitoredResource",
+                        "description": "Monitored resource configuration block. This describes the server under test\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the check\n"
+                    },
+                    "paused": {
+                        "type": "boolean",
+                        "description": "Whether the check should be run\n"
+                    },
+                    "period": {
+                        "type": "integer",
+                        "description": "Number of seconds since the last ping before the check is considered down.\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of tags\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "statuscake:index/maintenanceWindow:MaintenanceWindow": {
             "properties": {
                 "end": {
@@ -1017,7 +910,7 @@
             "properties": {
                 "alertConfig": {
                     "$ref": "#/types/statuscake:index/PagespeedCheckAlertConfig:PagespeedCheckAlertConfig",
-                    "description": "Alert configuration block. Omitting this block disabled all alerts\n"
+                    "description": "Alert configuration block. An empty block disables all alerts\n"
                 },
                 "checkInterval": {
                     "type": "integer",
@@ -1036,7 +929,7 @@
                 },
                 "monitoredResource": {
                     "$ref": "#/types/statuscake:index/PagespeedCheckMonitoredResource:PagespeedCheckMonitoredResource",
-                    "description": "Monitored resource configuration block. The describes server under test\n"
+                    "description": "Monitored resource configuration block. This describes the server under test\n"
                 },
                 "name": {
                     "type": "string",
@@ -1062,7 +955,7 @@
             "inputProperties": {
                 "alertConfig": {
                     "$ref": "#/types/statuscake:index/PagespeedCheckAlertConfig:PagespeedCheckAlertConfig",
-                    "description": "Alert configuration block. Omitting this block disabled all alerts\n"
+                    "description": "Alert configuration block. An empty block disables all alerts\n"
                 },
                 "checkInterval": {
                     "type": "integer",
@@ -1077,7 +970,7 @@
                 },
                 "monitoredResource": {
                     "$ref": "#/types/statuscake:index/PagespeedCheckMonitoredResource:PagespeedCheckMonitoredResource",
-                    "description": "Monitored resource configuration block. The describes server under test\n"
+                    "description": "Monitored resource configuration block. This describes the server under test\n"
                 },
                 "name": {
                     "type": "string",
@@ -1103,7 +996,7 @@
                 "properties": {
                     "alertConfig": {
                         "$ref": "#/types/statuscake:index/PagespeedCheckAlertConfig:PagespeedCheckAlertConfig",
-                        "description": "Alert configuration block. Omitting this block disabled all alerts\n"
+                        "description": "Alert configuration block. An empty block disables all alerts\n"
                     },
                     "checkInterval": {
                         "type": "integer",
@@ -1122,7 +1015,7 @@
                     },
                     "monitoredResource": {
                         "$ref": "#/types/statuscake:index/PagespeedCheckMonitoredResource:PagespeedCheckMonitoredResource",
-                        "description": "Monitored resource configuration block. The describes server under test\n"
+                        "description": "Monitored resource configuration block. This describes the server under test\n"
                     },
                     "name": {
                         "type": "string",
@@ -1163,7 +1056,7 @@
                 },
                 "monitoredResource": {
                     "$ref": "#/types/statuscake:index/SslCheckMonitoredResource:SslCheckMonitoredResource",
-                    "description": "Monitored resource configuration block. The describes server under test\n"
+                    "description": "Monitored resource configuration block. This describes the server under test\n"
                 },
                 "paused": {
                     "type": "boolean",
@@ -1201,7 +1094,7 @@
                 },
                 "monitoredResource": {
                     "$ref": "#/types/statuscake:index/SslCheckMonitoredResource:SslCheckMonitoredResource",
-                    "description": "Monitored resource configuration block. The describes server under test\n"
+                    "description": "Monitored resource configuration block. This describes the server under test\n"
                 },
                 "paused": {
                     "type": "boolean",
@@ -1241,7 +1134,7 @@
                     },
                     "monitoredResource": {
                         "$ref": "#/types/statuscake:index/SslCheckMonitoredResource:SslCheckMonitoredResource",
-                        "description": "Monitored resource configuration block. The describes server under test\n"
+                        "description": "Monitored resource configuration block. This describes the server under test\n"
                     },
                     "paused": {
                         "type": "boolean",
@@ -1293,7 +1186,7 @@
                 },
                 "monitoredResource": {
                     "$ref": "#/types/statuscake:index/UptimeCheckMonitoredResource:UptimeCheckMonitoredResource",
-                    "description": "Monitored resource configuration block. The describes server under test\n"
+                    "description": "Monitored resource configuration block. This describes the server under test\n"
                 },
                 "name": {
                     "type": "string",
@@ -1365,7 +1258,7 @@
                 },
                 "monitoredResource": {
                     "$ref": "#/types/statuscake:index/UptimeCheckMonitoredResource:UptimeCheckMonitoredResource",
-                    "description": "Monitored resource configuration block. The describes server under test\n"
+                    "description": "Monitored resource configuration block. This describes the server under test\n"
                 },
                 "name": {
                     "type": "string",
@@ -1445,7 +1338,7 @@
                     },
                     "monitoredResource": {
                         "$ref": "#/types/statuscake:index/UptimeCheckMonitoredResource:UptimeCheckMonitoredResource",
-                        "description": "Monitored resource configuration block. The describes server under test\n"
+                        "description": "Monitored resource configuration block. This describes the server under test\n"
                     },
                     "name": {
                         "type": "string",

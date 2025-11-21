@@ -74,7 +74,7 @@ func Provider() tfbridge.ProviderInfo {
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/
-		PluginDownloadURL: "github://api.github.com/pulumiverse",
+		PluginDownloadURL: "github://api.github.com/gynzy",
 		Description:       "A Pulumi package for creating and managing Statuscake resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
@@ -116,6 +116,7 @@ func Provider() tfbridge.ProviderInfo {
 			// 	},
 			// },
 			"statuscake_contact_group":      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ContactGroup")},
+			"statuscake_heartbeat_check":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "HeartbeatCheck")},
 			"statuscake_maintenance_window": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "MaintenanceWindow")},
 			"statuscake_pagespeed_check":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "PagespeedCheck")},
 			"statuscake_ssl_check":          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SslCheck")},
@@ -130,7 +131,7 @@ func Provider() tfbridge.ProviderInfo {
 			"statuscake_uptime_monitoring_locations":    {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getUptimeMonitoringLocations")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
-			PackageName: "@pulumiverse/statuscake",
+			PackageName: "@gynzy/statuscake",
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^3.0.0",

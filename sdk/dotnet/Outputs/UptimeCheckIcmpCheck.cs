@@ -14,6 +14,9 @@ namespace Pulumiverse.Statuscake.Outputs
     [OutputType]
     public sealed class UptimeCheckIcmpCheck
     {
+        /// <summary>
+        /// Dummy attribute to allow for a nested block. This field should not be changed
+        /// </summary>
         public readonly bool? Enabled;
 
         [OutputConstructor]

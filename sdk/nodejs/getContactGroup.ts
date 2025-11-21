@@ -5,11 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 export function getContactGroup(args: GetContactGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetContactGroupResult> {
-    if (!opts) {
-        opts = {}
-    }
-
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("statuscake:index/getContactGroup:getContactGroup", {
         "id": args.id,
     }, opts);
@@ -33,9 +29,11 @@ export interface GetContactGroupResult {
     readonly name: string;
     readonly pingUrl: string;
 }
-
-export function getContactGroupOutput(args: GetContactGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetContactGroupResult> {
-    return pulumi.output(args).apply(a => getContactGroup(a, opts))
+export function getContactGroupOutput(args: GetContactGroupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetContactGroupResult> {
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("statuscake:index/getContactGroup:getContactGroup", {
+        "id": args.id,
+    }, opts);
 }
 
 /**

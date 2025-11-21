@@ -14,9 +14,21 @@ namespace Pulumiverse.Statuscake.Outputs
     [OutputType]
     public sealed class UptimeCheckTcpCheck
     {
+        /// <summary>
+        /// Authentication configuration block
+        /// </summary>
         public readonly Outputs.UptimeCheckTcpCheckAuthentication? Authentication;
+        /// <summary>
+        /// Destination port for TCP checks
+        /// </summary>
         public readonly int Port;
+        /// <summary>
+        /// Type of TCP check. Either SMTP, SSH or TCP
+        /// </summary>
         public readonly string? Protocol;
+        /// <summary>
+        /// The number of seconds to wait to receive the first byte
+        /// </summary>
         public readonly int? Timeout;
 
         [OutputConstructor]

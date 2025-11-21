@@ -4,13 +4,19 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
 __all__ = [
+    'HeartbeatCheckMonitoredResource',
     'PagespeedCheckAlertConfig',
     'PagespeedCheckMonitoredResource',
     'SslCheckAlertConfig',
@@ -27,6 +33,25 @@ __all__ = [
     'GetPagespeedMonitoringLocationsLocationResult',
     'GetUptimeMonitoringLocationsLocationResult',
 ]
+
+@pulumi.output_type
+class HeartbeatCheckMonitoredResource(dict):
+    def __init__(__self__, *,
+                 host: Optional[str] = None):
+        """
+        :param str host: Name of the hosting provider
+        """
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+
+    @property
+    @pulumi.getter
+    def host(self) -> Optional[str]:
+        """
+        Name of the hosting provider
+        """
+        return pulumi.get(self, "host")
+
 
 @pulumi.output_type
 class PagespeedCheckAlertConfig(dict):
@@ -55,6 +80,11 @@ class PagespeedCheckAlertConfig(dict):
                  alert_bigger: Optional[int] = None,
                  alert_slower: Optional[int] = None,
                  alert_smaller: Optional[int] = None):
+        """
+        :param int alert_bigger: An alert will be sent if the size of the page is larger than this value (kb).
+        :param int alert_slower: An alert will be sent if the load time of the page exceeds this value (ms).
+        :param int alert_smaller: An alert will be sent if the size of the page is smaller than this value (kb).
+        """
         if alert_bigger is not None:
             pulumi.set(__self__, "alert_bigger", alert_bigger)
         if alert_slower is not None:
@@ -65,16 +95,25 @@ class PagespeedCheckAlertConfig(dict):
     @property
     @pulumi.getter(name="alertBigger")
     def alert_bigger(self) -> Optional[int]:
+        """
+        An alert will be sent if the size of the page is larger than this value (kb).
+        """
         return pulumi.get(self, "alert_bigger")
 
     @property
     @pulumi.getter(name="alertSlower")
     def alert_slower(self) -> Optional[int]:
+        """
+        An alert will be sent if the load time of the page exceeds this value (ms).
+        """
         return pulumi.get(self, "alert_slower")
 
     @property
     @pulumi.getter(name="alertSmaller")
     def alert_smaller(self) -> Optional[int]:
+        """
+        An alert will be sent if the size of the page is smaller than this value (kb).
+        """
         return pulumi.get(self, "alert_smaller")
 
 
@@ -82,11 +121,17 @@ class PagespeedCheckAlertConfig(dict):
 class PagespeedCheckMonitoredResource(dict):
     def __init__(__self__, *,
                  address: str):
+        """
+        :param str address: URL or IP address of the website under test
+        """
         pulumi.set(__self__, "address", address)
 
     @property
     @pulumi.getter
     def address(self) -> str:
+        """
+        URL or IP address of the website under test
+        """
         return pulumi.get(self, "address")
 
 
@@ -123,6 +168,13 @@ class SslCheckAlertConfig(dict):
                  on_expiry: Optional[bool] = None,
                  on_mixed: Optional[bool] = None,
                  on_reminder: Optional[bool] = None):
+        """
+        :param Sequence[int] alert_ats: List representing when alerts should be sent (days). Must be exactly 3 numerical values
+        :param bool on_broken: Whether to enable alerts when SSL certificate issues are found
+        :param bool on_expiry: Whether to enable alerts when the SSL certificate is to expire
+        :param bool on_mixed: Whether to enable alerts when mixed content is found
+        :param bool on_reminder: Whether to enable alert reminders
+        """
         pulumi.set(__self__, "alert_ats", alert_ats)
         if on_broken is not None:
             pulumi.set(__self__, "on_broken", on_broken)
@@ -136,26 +188,41 @@ class SslCheckAlertConfig(dict):
     @property
     @pulumi.getter(name="alertAts")
     def alert_ats(self) -> Sequence[int]:
+        """
+        List representing when alerts should be sent (days). Must be exactly 3 numerical values
+        """
         return pulumi.get(self, "alert_ats")
 
     @property
     @pulumi.getter(name="onBroken")
     def on_broken(self) -> Optional[bool]:
+        """
+        Whether to enable alerts when SSL certificate issues are found
+        """
         return pulumi.get(self, "on_broken")
 
     @property
     @pulumi.getter(name="onExpiry")
     def on_expiry(self) -> Optional[bool]:
+        """
+        Whether to enable alerts when the SSL certificate is to expire
+        """
         return pulumi.get(self, "on_expiry")
 
     @property
     @pulumi.getter(name="onMixed")
     def on_mixed(self) -> Optional[bool]:
+        """
+        Whether to enable alerts when mixed content is found
+        """
         return pulumi.get(self, "on_mixed")
 
     @property
     @pulumi.getter(name="onReminder")
     def on_reminder(self) -> Optional[bool]:
+        """
+        Whether to enable alert reminders
+        """
         return pulumi.get(self, "on_reminder")
 
 
@@ -164,6 +231,10 @@ class SslCheckMonitoredResource(dict):
     def __init__(__self__, *,
                  address: str,
                  hostname: Optional[str] = None):
+        """
+        :param str address: URL of the server under test
+        :param str hostname: Hostname of the server under test
+        """
         pulumi.set(__self__, "address", address)
         if hostname is not None:
             pulumi.set(__self__, "hostname", hostname)
@@ -171,11 +242,17 @@ class SslCheckMonitoredResource(dict):
     @property
     @pulumi.getter
     def address(self) -> str:
+        """
+        URL of the server under test
+        """
         return pulumi.get(self, "address")
 
     @property
     @pulumi.getter
     def hostname(self) -> Optional[str]:
+        """
+        Hostname of the server under test
+        """
         return pulumi.get(self, "hostname")
 
 
@@ -203,6 +280,10 @@ class UptimeCheckDnsCheck(dict):
     def __init__(__self__, *,
                  dns_ips: Sequence[str],
                  dns_server: Optional[str] = None):
+        """
+        :param Sequence[str] dns_ips: List of IP addresses to compare against returned DNS records
+        :param str dns_server: FQDN or IP address of the nameserver to query
+        """
         pulumi.set(__self__, "dns_ips", dns_ips)
         if dns_server is not None:
             pulumi.set(__self__, "dns_server", dns_server)
@@ -210,11 +291,17 @@ class UptimeCheckDnsCheck(dict):
     @property
     @pulumi.getter(name="dnsIps")
     def dns_ips(self) -> Sequence[str]:
+        """
+        List of IP addresses to compare against returned DNS records
+        """
         return pulumi.get(self, "dns_ips")
 
     @property
     @pulumi.getter(name="dnsServer")
     def dns_server(self) -> Optional[str]:
+        """
+        FQDN or IP address of the nameserver to query
+        """
         return pulumi.get(self, "dns_server")
 
 
@@ -223,9 +310,7 @@ class UptimeCheckHttpCheck(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "statusCodes":
-            suggest = "status_codes"
-        elif key == "basicAuthentication":
+        if key == "basicAuthentication":
             suggest = "basic_authentication"
         elif key == "contentMatchers":
             suggest = "content_matchers"
@@ -243,6 +328,8 @@ class UptimeCheckHttpCheck(dict):
             suggest = "request_payload"
         elif key == "requestPayloadRaw":
             suggest = "request_payload_raw"
+        elif key == "statusCodes":
+            suggest = "status_codes"
         elif key == "userAgent":
             suggest = "user_agent"
         elif key == "validateSsl":
@@ -260,7 +347,6 @@ class UptimeCheckHttpCheck(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 status_codes: Sequence[str],
                  basic_authentication: Optional['outputs.UptimeCheckHttpCheckBasicAuthentication'] = None,
                  content_matchers: Optional['outputs.UptimeCheckHttpCheckContentMatchers'] = None,
                  enable_cookies: Optional[bool] = None,
@@ -270,10 +356,25 @@ class UptimeCheckHttpCheck(dict):
                  request_method: Optional[str] = None,
                  request_payload: Optional[Mapping[str, str]] = None,
                  request_payload_raw: Optional[str] = None,
+                 status_codes: Optional[Sequence[str]] = None,
                  timeout: Optional[int] = None,
                  user_agent: Optional[str] = None,
                  validate_ssl: Optional[bool] = None):
-        pulumi.set(__self__, "status_codes", status_codes)
+        """
+        :param 'UptimeCheckHttpCheckBasicAuthenticationArgs' basic_authentication: Basic Authentication (RFC7235) configuration block
+        :param 'UptimeCheckHttpCheckContentMatchersArgs' content_matchers: Content matcher configuration block. This is used to assert values within the response of the request
+        :param bool enable_cookies: Whether to enable cookie storage
+        :param str final_endpoint: Specify where the redirect chain should end
+        :param bool follow_redirects: Whether to follow redirects when testing. Disabled by default
+        :param Mapping[str, str] request_headers: Represents headers to be sent when making requests
+        :param str request_method: Type of HTTP check. Either HTTP, or HEAD
+        :param Mapping[str, str] request_payload: Payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `request_payload` or `request_payload_raw` may be specified
+        :param str request_payload_raw: Raw payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `request_payload` or `request_payload_raw` may be specified
+        :param Sequence[str] status_codes: List of status codes that trigger an alert. If not specified then the default status codes are used. Once set, the default status codes cannot be restored and ommitting this field does not clear the attribute
+        :param int timeout: The number of seconds to wait to receive the first byte
+        :param str user_agent: Custom user agent string set when testing
+        :param bool validate_ssl: Whether to send an alert if the SSL certificate is soon to expire
+        """
         if basic_authentication is not None:
             pulumi.set(__self__, "basic_authentication", basic_authentication)
         if content_matchers is not None:
@@ -292,6 +393,8 @@ class UptimeCheckHttpCheck(dict):
             pulumi.set(__self__, "request_payload", request_payload)
         if request_payload_raw is not None:
             pulumi.set(__self__, "request_payload_raw", request_payload_raw)
+        if status_codes is not None:
+            pulumi.set(__self__, "status_codes", status_codes)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
         if user_agent is not None:
@@ -300,68 +403,107 @@ class UptimeCheckHttpCheck(dict):
             pulumi.set(__self__, "validate_ssl", validate_ssl)
 
     @property
-    @pulumi.getter(name="statusCodes")
-    def status_codes(self) -> Sequence[str]:
-        return pulumi.get(self, "status_codes")
-
-    @property
     @pulumi.getter(name="basicAuthentication")
     def basic_authentication(self) -> Optional['outputs.UptimeCheckHttpCheckBasicAuthentication']:
+        """
+        Basic Authentication (RFC7235) configuration block
+        """
         return pulumi.get(self, "basic_authentication")
 
     @property
     @pulumi.getter(name="contentMatchers")
     def content_matchers(self) -> Optional['outputs.UptimeCheckHttpCheckContentMatchers']:
+        """
+        Content matcher configuration block. This is used to assert values within the response of the request
+        """
         return pulumi.get(self, "content_matchers")
 
     @property
     @pulumi.getter(name="enableCookies")
     def enable_cookies(self) -> Optional[bool]:
+        """
+        Whether to enable cookie storage
+        """
         return pulumi.get(self, "enable_cookies")
 
     @property
     @pulumi.getter(name="finalEndpoint")
     def final_endpoint(self) -> Optional[str]:
+        """
+        Specify where the redirect chain should end
+        """
         return pulumi.get(self, "final_endpoint")
 
     @property
     @pulumi.getter(name="followRedirects")
     def follow_redirects(self) -> Optional[bool]:
+        """
+        Whether to follow redirects when testing. Disabled by default
+        """
         return pulumi.get(self, "follow_redirects")
 
     @property
     @pulumi.getter(name="requestHeaders")
     def request_headers(self) -> Optional[Mapping[str, str]]:
+        """
+        Represents headers to be sent when making requests
+        """
         return pulumi.get(self, "request_headers")
 
     @property
     @pulumi.getter(name="requestMethod")
     def request_method(self) -> Optional[str]:
+        """
+        Type of HTTP check. Either HTTP, or HEAD
+        """
         return pulumi.get(self, "request_method")
 
     @property
     @pulumi.getter(name="requestPayload")
     def request_payload(self) -> Optional[Mapping[str, str]]:
+        """
+        Payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `request_payload` or `request_payload_raw` may be specified
+        """
         return pulumi.get(self, "request_payload")
 
     @property
     @pulumi.getter(name="requestPayloadRaw")
     def request_payload_raw(self) -> Optional[str]:
+        """
+        Raw payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `request_payload` or `request_payload_raw` may be specified
+        """
         return pulumi.get(self, "request_payload_raw")
+
+    @property
+    @pulumi.getter(name="statusCodes")
+    def status_codes(self) -> Optional[Sequence[str]]:
+        """
+        List of status codes that trigger an alert. If not specified then the default status codes are used. Once set, the default status codes cannot be restored and ommitting this field does not clear the attribute
+        """
+        return pulumi.get(self, "status_codes")
 
     @property
     @pulumi.getter
     def timeout(self) -> Optional[int]:
+        """
+        The number of seconds to wait to receive the first byte
+        """
         return pulumi.get(self, "timeout")
 
     @property
     @pulumi.getter(name="userAgent")
     def user_agent(self) -> Optional[str]:
+        """
+        Custom user agent string set when testing
+        """
         return pulumi.get(self, "user_agent")
 
     @property
     @pulumi.getter(name="validateSsl")
     def validate_ssl(self) -> Optional[bool]:
+        """
+        Whether to send an alert if the SSL certificate is soon to expire
+        """
         return pulumi.get(self, "validate_ssl")
 
 
@@ -407,6 +549,11 @@ class UptimeCheckHttpCheckContentMatchers(dict):
                  content: str,
                  include_headers: Optional[bool] = None,
                  matcher: Optional[str] = None):
+        """
+        :param str content: String to look for within the response. Considered down if not found
+        :param bool include_headers: Include header content in string match search
+        :param str matcher: Whether to consider the check as down if the content is present within the response
+        """
         pulumi.set(__self__, "content", content)
         if include_headers is not None:
             pulumi.set(__self__, "include_headers", include_headers)
@@ -416,16 +563,25 @@ class UptimeCheckHttpCheckContentMatchers(dict):
     @property
     @pulumi.getter
     def content(self) -> str:
+        """
+        String to look for within the response. Considered down if not found
+        """
         return pulumi.get(self, "content")
 
     @property
     @pulumi.getter(name="includeHeaders")
     def include_headers(self) -> Optional[bool]:
+        """
+        Include header content in string match search
+        """
         return pulumi.get(self, "include_headers")
 
     @property
     @pulumi.getter
     def matcher(self) -> Optional[str]:
+        """
+        Whether to consider the check as down if the content is present within the response
+        """
         return pulumi.get(self, "matcher")
 
 
@@ -433,12 +589,18 @@ class UptimeCheckHttpCheckContentMatchers(dict):
 class UptimeCheckIcmpCheck(dict):
     def __init__(__self__, *,
                  enabled: Optional[bool] = None):
+        """
+        :param bool enabled: Dummy attribute to allow for a nested block. This field should not be changed
+        """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter
     def enabled(self) -> Optional[bool]:
+        """
+        Dummy attribute to allow for a nested block. This field should not be changed
+        """
         return pulumi.get(self, "enabled")
 
 
@@ -468,6 +630,14 @@ class UptimeCheckLocation(dict):
                  region: Optional[str] = None,
                  region_code: Optional[str] = None,
                  status: Optional[str] = None):
+        """
+        :param str description: Location description
+        :param str ipv4: Location IPv4 address
+        :param str ipv6: Location IPv6 address
+        :param str region: Location region
+        :param str region_code: Location region code
+        :param str status: Location status
+        """
         if description is not None:
             pulumi.set(__self__, "description", description)
         if ipv4 is not None:
@@ -484,31 +654,49 @@ class UptimeCheckLocation(dict):
     @property
     @pulumi.getter
     def description(self) -> Optional[str]:
+        """
+        Location description
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def ipv4(self) -> Optional[str]:
+        """
+        Location IPv4 address
+        """
         return pulumi.get(self, "ipv4")
 
     @property
     @pulumi.getter
     def ipv6(self) -> Optional[str]:
+        """
+        Location IPv6 address
+        """
         return pulumi.get(self, "ipv6")
 
     @property
     @pulumi.getter
     def region(self) -> Optional[str]:
+        """
+        Location region
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="regionCode")
     def region_code(self) -> Optional[str]:
+        """
+        Location region code
+        """
         return pulumi.get(self, "region_code")
 
     @property
     @pulumi.getter
     def status(self) -> Optional[str]:
+        """
+        Location status
+        """
         return pulumi.get(self, "status")
 
 
@@ -517,6 +705,10 @@ class UptimeCheckMonitoredResource(dict):
     def __init__(__self__, *,
                  address: str,
                  host: Optional[str] = None):
+        """
+        :param str address: URL, FQDN, or IP address of the server under test
+        :param str host: Name of the hosting provider
+        """
         pulumi.set(__self__, "address", address)
         if host is not None:
             pulumi.set(__self__, "host", host)
@@ -524,11 +716,17 @@ class UptimeCheckMonitoredResource(dict):
     @property
     @pulumi.getter
     def address(self) -> str:
+        """
+        URL, FQDN, or IP address of the server under test
+        """
         return pulumi.get(self, "address")
 
     @property
     @pulumi.getter
     def host(self) -> Optional[str]:
+        """
+        Name of the hosting provider
+        """
         return pulumi.get(self, "host")
 
 
@@ -539,6 +737,12 @@ class UptimeCheckTcpCheck(dict):
                  authentication: Optional['outputs.UptimeCheckTcpCheckAuthentication'] = None,
                  protocol: Optional[str] = None,
                  timeout: Optional[int] = None):
+        """
+        :param int port: Destination port for TCP checks
+        :param 'UptimeCheckTcpCheckAuthenticationArgs' authentication: Authentication configuration block
+        :param str protocol: Type of TCP check. Either SMTP, SSH or TCP
+        :param int timeout: The number of seconds to wait to receive the first byte
+        """
         pulumi.set(__self__, "port", port)
         if authentication is not None:
             pulumi.set(__self__, "authentication", authentication)
@@ -550,21 +754,33 @@ class UptimeCheckTcpCheck(dict):
     @property
     @pulumi.getter
     def port(self) -> int:
+        """
+        Destination port for TCP checks
+        """
         return pulumi.get(self, "port")
 
     @property
     @pulumi.getter
     def authentication(self) -> Optional['outputs.UptimeCheckTcpCheckAuthentication']:
+        """
+        Authentication configuration block
+        """
         return pulumi.get(self, "authentication")
 
     @property
     @pulumi.getter
     def protocol(self) -> Optional[str]:
+        """
+        Type of TCP check. Either SMTP, SSH or TCP
+        """
         return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter
     def timeout(self) -> Optional[int]:
+        """
+        The number of seconds to wait to receive the first byte
+        """
         return pulumi.get(self, "timeout")
 
 
@@ -596,6 +812,14 @@ class GetPagespeedMonitoringLocationsLocationResult(dict):
                  region: str,
                  region_code: str,
                  status: str):
+        """
+        :param str description: Location description
+        :param str ipv4: Location IPv4 address
+        :param str ipv6: Location IPv6 address
+        :param str region: Location region
+        :param str region_code: Location region code
+        :param str status: Location status
+        """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "ipv4", ipv4)
         pulumi.set(__self__, "ipv6", ipv6)
@@ -606,31 +830,49 @@ class GetPagespeedMonitoringLocationsLocationResult(dict):
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Location description
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def ipv4(self) -> str:
+        """
+        Location IPv4 address
+        """
         return pulumi.get(self, "ipv4")
 
     @property
     @pulumi.getter
     def ipv6(self) -> str:
+        """
+        Location IPv6 address
+        """
         return pulumi.get(self, "ipv6")
 
     @property
     @pulumi.getter
     def region(self) -> str:
+        """
+        Location region
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="regionCode")
     def region_code(self) -> str:
+        """
+        Location region code
+        """
         return pulumi.get(self, "region_code")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Location status
+        """
         return pulumi.get(self, "status")
 
 
@@ -643,6 +885,14 @@ class GetUptimeMonitoringLocationsLocationResult(dict):
                  region: str,
                  region_code: str,
                  status: str):
+        """
+        :param str description: Location description
+        :param str ipv4: Location IPv4 address
+        :param str ipv6: Location IPv6 address
+        :param str region: Location region
+        :param str region_code: Location region code
+        :param str status: Location status
+        """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "ipv4", ipv4)
         pulumi.set(__self__, "ipv6", ipv6)
@@ -653,31 +903,49 @@ class GetUptimeMonitoringLocationsLocationResult(dict):
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Location description
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def ipv4(self) -> str:
+        """
+        Location IPv4 address
+        """
         return pulumi.get(self, "ipv4")
 
     @property
     @pulumi.getter
     def ipv6(self) -> str:
+        """
+        Location IPv6 address
+        """
         return pulumi.get(self, "ipv6")
 
     @property
     @pulumi.getter
     def region(self) -> str:
+        """
+        Location region
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="regionCode")
     def region_code(self) -> str:
+        """
+        Location region code
+        """
         return pulumi.get(self, "region_code")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Location status
+        """
         return pulumi.get(self, "status")
 
 

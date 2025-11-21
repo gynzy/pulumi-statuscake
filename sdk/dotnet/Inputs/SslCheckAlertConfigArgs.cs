@@ -11,30 +11,47 @@ using Pulumi;
 namespace Pulumiverse.Statuscake.Inputs
 {
 
-    public sealed class SslCheckAlertConfigArgs : Pulumi.ResourceArgs
+    public sealed class SslCheckAlertConfigArgs : global::Pulumi.ResourceArgs
     {
         [Input("alertAts", required: true)]
         private InputList<int>? _alertAts;
+
+        /// <summary>
+        /// List representing when alerts should be sent (days). Must be exactly 3 numerical values
+        /// </summary>
         public InputList<int> AlertAts
         {
             get => _alertAts ?? (_alertAts = new InputList<int>());
             set => _alertAts = value;
         }
 
+        /// <summary>
+        /// Whether to enable alerts when SSL certificate issues are found
+        /// </summary>
         [Input("onBroken")]
         public Input<bool>? OnBroken { get; set; }
 
+        /// <summary>
+        /// Whether to enable alerts when the SSL certificate is to expire
+        /// </summary>
         [Input("onExpiry")]
         public Input<bool>? OnExpiry { get; set; }
 
+        /// <summary>
+        /// Whether to enable alerts when mixed content is found
+        /// </summary>
         [Input("onMixed")]
         public Input<bool>? OnMixed { get; set; }
 
+        /// <summary>
+        /// Whether to enable alert reminders
+        /// </summary>
         [Input("onReminder")]
         public Input<bool>? OnReminder { get; set; }
 
         public SslCheckAlertConfigArgs()
         {
         }
+        public static new SslCheckAlertConfigArgs Empty => new SslCheckAlertConfigArgs();
     }
 }

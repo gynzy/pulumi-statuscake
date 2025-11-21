@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Statuscake
 {
     [StatuscakeResourceType("statuscake:index/maintenanceWindow:MaintenanceWindow")]
-    public partial class MaintenanceWindow : Pulumi.CustomResource
+    public partial class MaintenanceWindow : global::Pulumi.CustomResource
     {
         /// <summary>
         /// End of the maintenance window (RFC3339 format)
@@ -78,7 +78,7 @@ namespace Pulumiverse.Statuscake
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/pulumiverse",
+                PluginDownloadURL = "github://api.github.com/gynzy",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -100,7 +100,7 @@ namespace Pulumiverse.Statuscake
         }
     }
 
-    public sealed class MaintenanceWindowArgs : Pulumi.ResourceArgs
+    public sealed class MaintenanceWindowArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// End of the maintenance window (RFC3339 format)
@@ -159,9 +159,10 @@ namespace Pulumiverse.Statuscake
         public MaintenanceWindowArgs()
         {
         }
+        public static new MaintenanceWindowArgs Empty => new MaintenanceWindowArgs();
     }
 
-    public sealed class MaintenanceWindowState : Pulumi.ResourceArgs
+    public sealed class MaintenanceWindowState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// End of the maintenance window (RFC3339 format)
@@ -220,5 +221,6 @@ namespace Pulumiverse.Statuscake
         public MaintenanceWindowState()
         {
         }
+        public static new MaintenanceWindowState Empty => new MaintenanceWindowState();
     }
 }

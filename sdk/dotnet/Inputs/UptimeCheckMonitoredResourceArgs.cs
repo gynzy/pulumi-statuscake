@@ -11,16 +11,23 @@ using Pulumi;
 namespace Pulumiverse.Statuscake.Inputs
 {
 
-    public sealed class UptimeCheckMonitoredResourceArgs : Pulumi.ResourceArgs
+    public sealed class UptimeCheckMonitoredResourceArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// URL, FQDN, or IP address of the server under test
+        /// </summary>
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
 
+        /// <summary>
+        /// Name of the hosting provider
+        /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
 
         public UptimeCheckMonitoredResourceArgs()
         {
         }
+        public static new UptimeCheckMonitoredResourceArgs Empty => new UptimeCheckMonitoredResourceArgs();
     }
 }

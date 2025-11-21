@@ -11,16 +11,23 @@ using Pulumi;
 namespace Pulumiverse.Statuscake.Inputs
 {
 
-    public sealed class SslCheckMonitoredResourceArgs : Pulumi.ResourceArgs
+    public sealed class SslCheckMonitoredResourceArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// URL of the server under test
+        /// </summary>
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
 
+        /// <summary>
+        /// Hostname of the server under test
+        /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
 
         public SslCheckMonitoredResourceArgs()
         {
         }
+        public static new SslCheckMonitoredResourceArgs Empty => new SslCheckMonitoredResourceArgs();
     }
 }

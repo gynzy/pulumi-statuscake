@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -32,7 +37,7 @@ class UptimeCheckArgs:
         """
         The set of arguments for constructing a UptimeCheck resource.
         :param pulumi.Input[int] check_interval: Number of seconds between checks
-        :param pulumi.Input['UptimeCheckMonitoredResourceArgs'] monitored_resource: Monitored resource configuration block. The describes server under test
+        :param pulumi.Input['UptimeCheckMonitoredResourceArgs'] monitored_resource: Monitored resource configuration block. This describes the server under test
         :param pulumi.Input[int] confirmation: Number of confirmation servers to confirm downtime before an alert is triggered
         :param pulumi.Input[Sequence[pulumi.Input[str]]] contact_groups: List of contact group IDs
         :param pulumi.Input['UptimeCheckDnsCheckArgs'] dns_check: DNS check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
@@ -87,7 +92,7 @@ class UptimeCheckArgs:
     @pulumi.getter(name="monitoredResource")
     def monitored_resource(self) -> pulumi.Input['UptimeCheckMonitoredResourceArgs']:
         """
-        Monitored resource configuration block. The describes server under test
+        Monitored resource configuration block. This describes the server under test
         """
         return pulumi.get(self, "monitored_resource")
 
@@ -255,7 +260,7 @@ class _UptimeCheckState:
         :param pulumi.Input['UptimeCheckHttpCheckArgs'] http_check: HTTP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
         :param pulumi.Input['UptimeCheckIcmpCheckArgs'] icmp_check: ICMP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
         :param pulumi.Input[Sequence[pulumi.Input['UptimeCheckLocationArgs']]] locations: List of assigned monitoring locations on which to run checks
-        :param pulumi.Input['UptimeCheckMonitoredResourceArgs'] monitored_resource: Monitored resource configuration block. The describes server under test
+        :param pulumi.Input['UptimeCheckMonitoredResourceArgs'] monitored_resource: Monitored resource configuration block. This describes the server under test
         :param pulumi.Input[str] name: Name of the check
         :param pulumi.Input[bool] paused: Whether the check should be run
         :param pulumi.Input[Sequence[pulumi.Input[str]]] regions: List of regions on which to run checks. The values required for this parameter can be retrieved from the `GET
@@ -381,7 +386,7 @@ class _UptimeCheckState:
     @pulumi.getter(name="monitoredResource")
     def monitored_resource(self) -> Optional[pulumi.Input['UptimeCheckMonitoredResourceArgs']]:
         """
-        Monitored resource configuration block. The describes server under test
+        Monitored resource configuration block. This describes the server under test
         """
         return pulumi.get(self, "monitored_resource")
 
@@ -471,15 +476,15 @@ class UptimeCheck(pulumi.CustomResource):
                  check_interval: Optional[pulumi.Input[int]] = None,
                  confirmation: Optional[pulumi.Input[int]] = None,
                  contact_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 dns_check: Optional[pulumi.Input[pulumi.InputType['UptimeCheckDnsCheckArgs']]] = None,
-                 http_check: Optional[pulumi.Input[pulumi.InputType['UptimeCheckHttpCheckArgs']]] = None,
-                 icmp_check: Optional[pulumi.Input[pulumi.InputType['UptimeCheckIcmpCheckArgs']]] = None,
-                 monitored_resource: Optional[pulumi.Input[pulumi.InputType['UptimeCheckMonitoredResourceArgs']]] = None,
+                 dns_check: Optional[pulumi.Input[Union['UptimeCheckDnsCheckArgs', 'UptimeCheckDnsCheckArgsDict']]] = None,
+                 http_check: Optional[pulumi.Input[Union['UptimeCheckHttpCheckArgs', 'UptimeCheckHttpCheckArgsDict']]] = None,
+                 icmp_check: Optional[pulumi.Input[Union['UptimeCheckIcmpCheckArgs', 'UptimeCheckIcmpCheckArgsDict']]] = None,
+                 monitored_resource: Optional[pulumi.Input[Union['UptimeCheckMonitoredResourceArgs', 'UptimeCheckMonitoredResourceArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 tcp_check: Optional[pulumi.Input[pulumi.InputType['UptimeCheckTcpCheckArgs']]] = None,
+                 tcp_check: Optional[pulumi.Input[Union['UptimeCheckTcpCheckArgs', 'UptimeCheckTcpCheckArgsDict']]] = None,
                  trigger_rate: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
@@ -489,16 +494,16 @@ class UptimeCheck(pulumi.CustomResource):
         :param pulumi.Input[int] check_interval: Number of seconds between checks
         :param pulumi.Input[int] confirmation: Number of confirmation servers to confirm downtime before an alert is triggered
         :param pulumi.Input[Sequence[pulumi.Input[str]]] contact_groups: List of contact group IDs
-        :param pulumi.Input[pulumi.InputType['UptimeCheckDnsCheckArgs']] dns_check: DNS check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
-        :param pulumi.Input[pulumi.InputType['UptimeCheckHttpCheckArgs']] http_check: HTTP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
-        :param pulumi.Input[pulumi.InputType['UptimeCheckIcmpCheckArgs']] icmp_check: ICMP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
-        :param pulumi.Input[pulumi.InputType['UptimeCheckMonitoredResourceArgs']] monitored_resource: Monitored resource configuration block. The describes server under test
+        :param pulumi.Input[Union['UptimeCheckDnsCheckArgs', 'UptimeCheckDnsCheckArgsDict']] dns_check: DNS check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+        :param pulumi.Input[Union['UptimeCheckHttpCheckArgs', 'UptimeCheckHttpCheckArgsDict']] http_check: HTTP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+        :param pulumi.Input[Union['UptimeCheckIcmpCheckArgs', 'UptimeCheckIcmpCheckArgsDict']] icmp_check: ICMP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+        :param pulumi.Input[Union['UptimeCheckMonitoredResourceArgs', 'UptimeCheckMonitoredResourceArgsDict']] monitored_resource: Monitored resource configuration block. This describes the server under test
         :param pulumi.Input[str] name: Name of the check
         :param pulumi.Input[bool] paused: Whether the check should be run
         :param pulumi.Input[Sequence[pulumi.Input[str]]] regions: List of regions on which to run checks. The values required for this parameter can be retrieved from the `GET
                /v1/uptime-locations` endpoint
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags
-        :param pulumi.Input[pulumi.InputType['UptimeCheckTcpCheckArgs']] tcp_check: TCP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+        :param pulumi.Input[Union['UptimeCheckTcpCheckArgs', 'UptimeCheckTcpCheckArgsDict']] tcp_check: TCP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
         :param pulumi.Input[int] trigger_rate: The number of minutes to wait before sending an alert
         """
         ...
@@ -527,27 +532,20 @@ class UptimeCheck(pulumi.CustomResource):
                  check_interval: Optional[pulumi.Input[int]] = None,
                  confirmation: Optional[pulumi.Input[int]] = None,
                  contact_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 dns_check: Optional[pulumi.Input[pulumi.InputType['UptimeCheckDnsCheckArgs']]] = None,
-                 http_check: Optional[pulumi.Input[pulumi.InputType['UptimeCheckHttpCheckArgs']]] = None,
-                 icmp_check: Optional[pulumi.Input[pulumi.InputType['UptimeCheckIcmpCheckArgs']]] = None,
-                 monitored_resource: Optional[pulumi.Input[pulumi.InputType['UptimeCheckMonitoredResourceArgs']]] = None,
+                 dns_check: Optional[pulumi.Input[Union['UptimeCheckDnsCheckArgs', 'UptimeCheckDnsCheckArgsDict']]] = None,
+                 http_check: Optional[pulumi.Input[Union['UptimeCheckHttpCheckArgs', 'UptimeCheckHttpCheckArgsDict']]] = None,
+                 icmp_check: Optional[pulumi.Input[Union['UptimeCheckIcmpCheckArgs', 'UptimeCheckIcmpCheckArgsDict']]] = None,
+                 monitored_resource: Optional[pulumi.Input[Union['UptimeCheckMonitoredResourceArgs', 'UptimeCheckMonitoredResourceArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  paused: Optional[pulumi.Input[bool]] = None,
                  regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 tcp_check: Optional[pulumi.Input[pulumi.InputType['UptimeCheckTcpCheckArgs']]] = None,
+                 tcp_check: Optional[pulumi.Input[Union['UptimeCheckTcpCheckArgs', 'UptimeCheckTcpCheckArgsDict']]] = None,
                  trigger_rate: Optional[pulumi.Input[int]] = None,
                  __props__=None):
-        if opts is None:
-            opts = pulumi.ResourceOptions()
-        else:
-            opts = copy.copy(opts)
+        opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
-        if opts.version is None:
-            opts.version = _utilities.get_version()
-        if opts.plugin_download_url is None:
-            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -584,16 +582,16 @@ class UptimeCheck(pulumi.CustomResource):
             check_interval: Optional[pulumi.Input[int]] = None,
             confirmation: Optional[pulumi.Input[int]] = None,
             contact_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            dns_check: Optional[pulumi.Input[pulumi.InputType['UptimeCheckDnsCheckArgs']]] = None,
-            http_check: Optional[pulumi.Input[pulumi.InputType['UptimeCheckHttpCheckArgs']]] = None,
-            icmp_check: Optional[pulumi.Input[pulumi.InputType['UptimeCheckIcmpCheckArgs']]] = None,
-            locations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UptimeCheckLocationArgs']]]]] = None,
-            monitored_resource: Optional[pulumi.Input[pulumi.InputType['UptimeCheckMonitoredResourceArgs']]] = None,
+            dns_check: Optional[pulumi.Input[Union['UptimeCheckDnsCheckArgs', 'UptimeCheckDnsCheckArgsDict']]] = None,
+            http_check: Optional[pulumi.Input[Union['UptimeCheckHttpCheckArgs', 'UptimeCheckHttpCheckArgsDict']]] = None,
+            icmp_check: Optional[pulumi.Input[Union['UptimeCheckIcmpCheckArgs', 'UptimeCheckIcmpCheckArgsDict']]] = None,
+            locations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UptimeCheckLocationArgs', 'UptimeCheckLocationArgsDict']]]]] = None,
+            monitored_resource: Optional[pulumi.Input[Union['UptimeCheckMonitoredResourceArgs', 'UptimeCheckMonitoredResourceArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             paused: Optional[pulumi.Input[bool]] = None,
             regions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            tcp_check: Optional[pulumi.Input[pulumi.InputType['UptimeCheckTcpCheckArgs']]] = None,
+            tcp_check: Optional[pulumi.Input[Union['UptimeCheckTcpCheckArgs', 'UptimeCheckTcpCheckArgsDict']]] = None,
             trigger_rate: Optional[pulumi.Input[int]] = None) -> 'UptimeCheck':
         """
         Get an existing UptimeCheck resource's state with the given name, id, and optional extra
@@ -605,17 +603,17 @@ class UptimeCheck(pulumi.CustomResource):
         :param pulumi.Input[int] check_interval: Number of seconds between checks
         :param pulumi.Input[int] confirmation: Number of confirmation servers to confirm downtime before an alert is triggered
         :param pulumi.Input[Sequence[pulumi.Input[str]]] contact_groups: List of contact group IDs
-        :param pulumi.Input[pulumi.InputType['UptimeCheckDnsCheckArgs']] dns_check: DNS check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
-        :param pulumi.Input[pulumi.InputType['UptimeCheckHttpCheckArgs']] http_check: HTTP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
-        :param pulumi.Input[pulumi.InputType['UptimeCheckIcmpCheckArgs']] icmp_check: ICMP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UptimeCheckLocationArgs']]]] locations: List of assigned monitoring locations on which to run checks
-        :param pulumi.Input[pulumi.InputType['UptimeCheckMonitoredResourceArgs']] monitored_resource: Monitored resource configuration block. The describes server under test
+        :param pulumi.Input[Union['UptimeCheckDnsCheckArgs', 'UptimeCheckDnsCheckArgsDict']] dns_check: DNS check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+        :param pulumi.Input[Union['UptimeCheckHttpCheckArgs', 'UptimeCheckHttpCheckArgsDict']] http_check: HTTP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+        :param pulumi.Input[Union['UptimeCheckIcmpCheckArgs', 'UptimeCheckIcmpCheckArgsDict']] icmp_check: ICMP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+        :param pulumi.Input[Sequence[pulumi.Input[Union['UptimeCheckLocationArgs', 'UptimeCheckLocationArgsDict']]]] locations: List of assigned monitoring locations on which to run checks
+        :param pulumi.Input[Union['UptimeCheckMonitoredResourceArgs', 'UptimeCheckMonitoredResourceArgsDict']] monitored_resource: Monitored resource configuration block. This describes the server under test
         :param pulumi.Input[str] name: Name of the check
         :param pulumi.Input[bool] paused: Whether the check should be run
         :param pulumi.Input[Sequence[pulumi.Input[str]]] regions: List of regions on which to run checks. The values required for this parameter can be retrieved from the `GET
                /v1/uptime-locations` endpoint
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: List of tags
-        :param pulumi.Input[pulumi.InputType['UptimeCheckTcpCheckArgs']] tcp_check: TCP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+        :param pulumi.Input[Union['UptimeCheckTcpCheckArgs', 'UptimeCheckTcpCheckArgsDict']] tcp_check: TCP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
         :param pulumi.Input[int] trigger_rate: The number of minutes to wait before sending an alert
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -698,7 +696,7 @@ class UptimeCheck(pulumi.CustomResource):
     @pulumi.getter(name="monitoredResource")
     def monitored_resource(self) -> pulumi.Output['outputs.UptimeCheckMonitoredResource']:
         """
-        Monitored resource configuration block. The describes server under test
+        Monitored resource configuration block. This describes the server under test
         """
         return pulumi.get(self, "monitored_resource")
 

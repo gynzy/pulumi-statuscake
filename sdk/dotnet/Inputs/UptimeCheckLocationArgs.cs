@@ -11,28 +11,47 @@ using Pulumi;
 namespace Pulumiverse.Statuscake.Inputs
 {
 
-    public sealed class UptimeCheckLocationArgs : Pulumi.ResourceArgs
+    public sealed class UptimeCheckLocationArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Location description
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Location IPv4 address
+        /// </summary>
         [Input("ipv4")]
         public Input<string>? Ipv4 { get; set; }
 
+        /// <summary>
+        /// Location IPv6 address
+        /// </summary>
         [Input("ipv6")]
         public Input<string>? Ipv6 { get; set; }
 
+        /// <summary>
+        /// Location region
+        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        /// <summary>
+        /// Location region code
+        /// </summary>
         [Input("regionCode")]
         public Input<string>? RegionCode { get; set; }
 
+        /// <summary>
+        /// Location status
+        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         public UptimeCheckLocationArgs()
         {
         }
+        public static new UptimeCheckLocationArgs Empty => new UptimeCheckLocationArgs();
     }
 }

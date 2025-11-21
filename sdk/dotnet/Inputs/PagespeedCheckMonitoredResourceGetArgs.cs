@@ -11,13 +11,17 @@ using Pulumi;
 namespace Pulumiverse.Statuscake.Inputs
 {
 
-    public sealed class PagespeedCheckMonitoredResourceGetArgs : Pulumi.ResourceArgs
+    public sealed class PagespeedCheckMonitoredResourceGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// URL or IP address of the website under test
+        /// </summary>
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
 
         public PagespeedCheckMonitoredResourceGetArgs()
         {
         }
+        public static new PagespeedCheckMonitoredResourceGetArgs Empty => new PagespeedCheckMonitoredResourceGetArgs();
     }
 }

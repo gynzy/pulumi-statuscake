@@ -14,7 +14,13 @@ namespace Pulumiverse.Statuscake.Outputs
     [OutputType]
     public sealed class UptimeCheckDnsCheck
     {
+        /// <summary>
+        /// List of IP addresses to compare against returned DNS records
+        /// </summary>
         public readonly ImmutableArray<string> DnsIps;
+        /// <summary>
+        /// FQDN or IP address of the nameserver to query
+        /// </summary>
         public readonly string? DnsServer;
 
         [OutputConstructor]

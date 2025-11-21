@@ -11,21 +11,29 @@ using Pulumi;
 namespace Pulumiverse.Statuscake.Inputs
 {
 
-    public sealed class UptimeCheckDnsCheckGetArgs : Pulumi.ResourceArgs
+    public sealed class UptimeCheckDnsCheckGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("dnsIps", required: true)]
         private InputList<string>? _dnsIps;
+
+        /// <summary>
+        /// List of IP addresses to compare against returned DNS records
+        /// </summary>
         public InputList<string> DnsIps
         {
             get => _dnsIps ?? (_dnsIps = new InputList<string>());
             set => _dnsIps = value;
         }
 
+        /// <summary>
+        /// FQDN or IP address of the nameserver to query
+        /// </summary>
         [Input("dnsServer")]
         public Input<string>? DnsServer { get; set; }
 
         public UptimeCheckDnsCheckGetArgs()
         {
         }
+        public static new UptimeCheckDnsCheckGetArgs Empty => new UptimeCheckDnsCheckGetArgs();
     }
 }

@@ -5,15 +5,56 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./contactGroup";
-export * from "./getContactGroup";
-export * from "./getPagespeedMonitoringLocations";
-export * from "./getUptimeMonitoringLocations";
-export * from "./maintenanceWindow";
-export * from "./pagespeedCheck";
-export * from "./provider";
-export * from "./sslCheck";
-export * from "./uptimeCheck";
+export { ContactGroupArgs, ContactGroupState } from "./contactGroup";
+export type ContactGroup = import("./contactGroup").ContactGroup;
+export const ContactGroup: typeof import("./contactGroup").ContactGroup = null as any;
+utilities.lazyLoad(exports, ["ContactGroup"], () => require("./contactGroup"));
+
+export { GetContactGroupArgs, GetContactGroupResult, GetContactGroupOutputArgs } from "./getContactGroup";
+export const getContactGroup: typeof import("./getContactGroup").getContactGroup = null as any;
+export const getContactGroupOutput: typeof import("./getContactGroup").getContactGroupOutput = null as any;
+utilities.lazyLoad(exports, ["getContactGroup","getContactGroupOutput"], () => require("./getContactGroup"));
+
+export { GetPagespeedMonitoringLocationsArgs, GetPagespeedMonitoringLocationsResult, GetPagespeedMonitoringLocationsOutputArgs } from "./getPagespeedMonitoringLocations";
+export const getPagespeedMonitoringLocations: typeof import("./getPagespeedMonitoringLocations").getPagespeedMonitoringLocations = null as any;
+export const getPagespeedMonitoringLocationsOutput: typeof import("./getPagespeedMonitoringLocations").getPagespeedMonitoringLocationsOutput = null as any;
+utilities.lazyLoad(exports, ["getPagespeedMonitoringLocations","getPagespeedMonitoringLocationsOutput"], () => require("./getPagespeedMonitoringLocations"));
+
+export { GetUptimeMonitoringLocationsArgs, GetUptimeMonitoringLocationsResult, GetUptimeMonitoringLocationsOutputArgs } from "./getUptimeMonitoringLocations";
+export const getUptimeMonitoringLocations: typeof import("./getUptimeMonitoringLocations").getUptimeMonitoringLocations = null as any;
+export const getUptimeMonitoringLocationsOutput: typeof import("./getUptimeMonitoringLocations").getUptimeMonitoringLocationsOutput = null as any;
+utilities.lazyLoad(exports, ["getUptimeMonitoringLocations","getUptimeMonitoringLocationsOutput"], () => require("./getUptimeMonitoringLocations"));
+
+export { HeartbeatCheckArgs, HeartbeatCheckState } from "./heartbeatCheck";
+export type HeartbeatCheck = import("./heartbeatCheck").HeartbeatCheck;
+export const HeartbeatCheck: typeof import("./heartbeatCheck").HeartbeatCheck = null as any;
+utilities.lazyLoad(exports, ["HeartbeatCheck"], () => require("./heartbeatCheck"));
+
+export { MaintenanceWindowArgs, MaintenanceWindowState } from "./maintenanceWindow";
+export type MaintenanceWindow = import("./maintenanceWindow").MaintenanceWindow;
+export const MaintenanceWindow: typeof import("./maintenanceWindow").MaintenanceWindow = null as any;
+utilities.lazyLoad(exports, ["MaintenanceWindow"], () => require("./maintenanceWindow"));
+
+export { PagespeedCheckArgs, PagespeedCheckState } from "./pagespeedCheck";
+export type PagespeedCheck = import("./pagespeedCheck").PagespeedCheck;
+export const PagespeedCheck: typeof import("./pagespeedCheck").PagespeedCheck = null as any;
+utilities.lazyLoad(exports, ["PagespeedCheck"], () => require("./pagespeedCheck"));
+
+export { ProviderArgs } from "./provider";
+export type Provider = import("./provider").Provider;
+export const Provider: typeof import("./provider").Provider = null as any;
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+
+export { SslCheckArgs, SslCheckState } from "./sslCheck";
+export type SslCheck = import("./sslCheck").SslCheck;
+export const SslCheck: typeof import("./sslCheck").SslCheck = null as any;
+utilities.lazyLoad(exports, ["SslCheck"], () => require("./sslCheck"));
+
+export { UptimeCheckArgs, UptimeCheckState } from "./uptimeCheck";
+export type UptimeCheck = import("./uptimeCheck").UptimeCheck;
+export const UptimeCheck: typeof import("./uptimeCheck").UptimeCheck = null as any;
+utilities.lazyLoad(exports, ["UptimeCheck"], () => require("./uptimeCheck"));
+
 
 // Export sub-modules:
 import * as config from "./config";
@@ -24,19 +65,14 @@ export {
     types,
 };
 
-// Import resources to register:
-import { ContactGroup } from "./contactGroup";
-import { MaintenanceWindow } from "./maintenanceWindow";
-import { PagespeedCheck } from "./pagespeedCheck";
-import { SslCheck } from "./sslCheck";
-import { UptimeCheck } from "./uptimeCheck";
-
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
             case "statuscake:index/contactGroup:ContactGroup":
                 return new ContactGroup(name, <any>undefined, { urn })
+            case "statuscake:index/heartbeatCheck:HeartbeatCheck":
+                return new HeartbeatCheck(name, <any>undefined, { urn })
             case "statuscake:index/maintenanceWindow:MaintenanceWindow":
                 return new MaintenanceWindow(name, <any>undefined, { urn })
             case "statuscake:index/pagespeedCheck:PagespeedCheck":
@@ -51,13 +87,11 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("statuscake", "index/contactGroup", _module)
+pulumi.runtime.registerResourceModule("statuscake", "index/heartbeatCheck", _module)
 pulumi.runtime.registerResourceModule("statuscake", "index/maintenanceWindow", _module)
 pulumi.runtime.registerResourceModule("statuscake", "index/pagespeedCheck", _module)
 pulumi.runtime.registerResourceModule("statuscake", "index/sslCheck", _module)
 pulumi.runtime.registerResourceModule("statuscake", "index/uptimeCheck", _module)
-
-import { Provider } from "./provider";
-
 pulumi.runtime.registerResourcePackage("statuscake", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

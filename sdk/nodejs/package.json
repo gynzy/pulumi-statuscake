@@ -1,5 +1,5 @@
 {
-    "name": "@pulumiverse/statuscake",
+    "name": "@gynzy/statuscake",
     "version": "${VERSION}",
     "description": "A Pulumi package for creating and managing Statuscake resources.",
     "keywords": [
@@ -11,8 +11,7 @@
     "repository": "https://github.com/pulumiverse/pulumi-statuscake",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "tsc",
-        "install": "node scripts/install-pulumi-plugin.js resource statuscake ${VERSION}"
+        "build": "tsc"
     },
     "dependencies": {
         "@pulumi/pulumi": "^3.0.0"
@@ -24,6 +23,7 @@
     },
     "pulumi": {
         "resource": true,
-        "server": "github://api.github.com/pulumiverse"
+        "name": "statuscake",
+        "server": "github://api.github.com/gynzy"
     }
 }

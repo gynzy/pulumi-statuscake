@@ -11,13 +11,17 @@ using Pulumi;
 namespace Pulumiverse.Statuscake.Inputs
 {
 
-    public sealed class UptimeCheckIcmpCheckArgs : Pulumi.ResourceArgs
+    public sealed class UptimeCheckIcmpCheckArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Dummy attribute to allow for a nested block. This field should not be changed
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         public UptimeCheckIcmpCheckArgs()
         {
         }
+        public static new UptimeCheckIcmpCheckArgs Empty => new UptimeCheckIcmpCheckArgs();
     }
 }

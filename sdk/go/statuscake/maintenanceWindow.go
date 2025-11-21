@@ -7,8 +7,9 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-statuscake/sdk/go/statuscake/internal"
 )
 
 type MaintenanceWindow struct {
@@ -46,7 +47,7 @@ func NewMaintenanceWindow(ctx *pulumi.Context,
 	if args.Timezone == nil {
 		return nil, errors.New("invalid value for required argument 'Timezone'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MaintenanceWindow
 	err := ctx.RegisterResource("statuscake:index/maintenanceWindow:MaintenanceWindow", name, args, &resource, opts...)
 	if err != nil {
@@ -167,7 +168,7 @@ func (i *MaintenanceWindow) ToMaintenanceWindowOutputWithContext(ctx context.Con
 // MaintenanceWindowArrayInput is an input type that accepts MaintenanceWindowArray and MaintenanceWindowArrayOutput values.
 // You can construct a concrete instance of `MaintenanceWindowArrayInput` via:
 //
-//          MaintenanceWindowArray{ MaintenanceWindowArgs{...} }
+//	MaintenanceWindowArray{ MaintenanceWindowArgs{...} }
 type MaintenanceWindowArrayInput interface {
 	pulumi.Input
 
@@ -192,7 +193,7 @@ func (i MaintenanceWindowArray) ToMaintenanceWindowArrayOutputWithContext(ctx co
 // MaintenanceWindowMapInput is an input type that accepts MaintenanceWindowMap and MaintenanceWindowMapOutput values.
 // You can construct a concrete instance of `MaintenanceWindowMapInput` via:
 //
-//          MaintenanceWindowMap{ "key": MaintenanceWindowArgs{...} }
+//	MaintenanceWindowMap{ "key": MaintenanceWindowArgs{...} }
 type MaintenanceWindowMapInput interface {
 	pulumi.Input
 

@@ -7,7 +7,7 @@ toolchain go1.24.10
 replace github.com/hashicorp/terraform-plugin-go => github.com/hashicorp/terraform-plugin-go v0.24.0
 
 require (
-	github.com/StatusCakeDev/terraform-provider-statuscake/v2 v2.2.3-0.20251020130702-94f68c8a54e7
+	github.com/StatusCakeDev/terraform-provider-statuscake/v2 v2.2.2
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.38.1
 )
 

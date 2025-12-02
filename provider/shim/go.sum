@@ -1,7 +1,7 @@
 github.com/StatusCakeDev/statuscake-go v1.3.0 h1:Ok6LIZUKhoe/ykcUuIzS8zg6MbtCrO3I1ZBVFl3TLMA=
 github.com/StatusCakeDev/statuscake-go v1.3.0/go.mod h1:YefpyhDUs1gLCKXG5F9pPcZAp3rk4JyNkb9dfHbgr1I=
-github.com/StatusCakeDev/terraform-provider-statuscake/v2 v2.2.3-0.20251020130702-94f68c8a54e7 h1:MjfZ8tSMlkaqRYRPJRkHrWgynPbfq0W4bdir5kCagGI=
-github.com/StatusCakeDev/terraform-provider-statuscake/v2 v2.2.3-0.20251020130702-94f68c8a54e7/go.mod h1:OCjKHermV4ijxK+NtWQCjJzoK7aVwdk3YHKglpLEwVs=
+github.com/StatusCakeDev/terraform-provider-statuscake/v2 v2.2.2 h1:30oI6AZgkhNNNOpfhZZ9HVoAwtJQ0fGZ+ypj1r3u5eg=
+github.com/StatusCakeDev/terraform-provider-statuscake/v2 v2.2.2/go.mod h1:5edKJy81dYJQBI7Qjx0CaZP/JGnU80hbunNkXrRIgIs=
 github.com/agext/levenshtein v1.2.3 h1:YB2fHEn0UJagG8T1rrWknE3ZQzWM06O8AMAatNn7lmo=
 github.com/agext/levenshtein v1.2.3/go.mod h1:JEDfjyjHDjOF/1e4FlBE/PkbqA9OfWu2ki2W0IB5558=
 github.com/apparentlymart/go-textseg/v12 v12.0.0/go.mod h1:S/4uRK2UtaQttw1GenVJEynmyUenKwP++x/+DdGV/Ec=

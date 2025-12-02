@@ -7,8 +7,9 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-statuscake/sdk/go/statuscake/internal"
 )
 
 type UptimeCheck struct {
@@ -20,15 +21,15 @@ type UptimeCheck struct {
 	Confirmation pulumi.IntPtrOutput `pulumi:"confirmation"`
 	// List of contact group IDs
 	ContactGroups pulumi.StringArrayOutput `pulumi:"contactGroups"`
-	// DNS check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// DNS check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	DnsCheck UptimeCheckDnsCheckPtrOutput `pulumi:"dnsCheck"`
-	// HTTP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// HTTP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	HttpCheck UptimeCheckHttpCheckPtrOutput `pulumi:"httpCheck"`
-	// ICMP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// ICMP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	IcmpCheck UptimeCheckIcmpCheckPtrOutput `pulumi:"icmpCheck"`
 	// List of assigned monitoring locations on which to run checks
 	Locations UptimeCheckLocationArrayOutput `pulumi:"locations"`
-	// Monitored resource configuration block. The describes server under test
+	// Monitored resource configuration block. This describes the server under test
 	MonitoredResource UptimeCheckMonitoredResourceOutput `pulumi:"monitoredResource"`
 	// Name of the check
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -39,7 +40,7 @@ type UptimeCheck struct {
 	Regions pulumi.StringArrayOutput `pulumi:"regions"`
 	// List of tags
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// TCP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// TCP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	TcpCheck UptimeCheckTcpCheckPtrOutput `pulumi:"tcpCheck"`
 	// The number of minutes to wait before sending an alert
 	TriggerRate pulumi.IntPtrOutput `pulumi:"triggerRate"`
@@ -58,7 +59,7 @@ func NewUptimeCheck(ctx *pulumi.Context,
 	if args.MonitoredResource == nil {
 		return nil, errors.New("invalid value for required argument 'MonitoredResource'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UptimeCheck
 	err := ctx.RegisterResource("statuscake:index/uptimeCheck:UptimeCheck", name, args, &resource, opts...)
 	if err != nil {
@@ -87,15 +88,15 @@ type uptimeCheckState struct {
 	Confirmation *int `pulumi:"confirmation"`
 	// List of contact group IDs
 	ContactGroups []string `pulumi:"contactGroups"`
-	// DNS check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// DNS check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	DnsCheck *UptimeCheckDnsCheck `pulumi:"dnsCheck"`
-	// HTTP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// HTTP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	HttpCheck *UptimeCheckHttpCheck `pulumi:"httpCheck"`
-	// ICMP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// ICMP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	IcmpCheck *UptimeCheckIcmpCheck `pulumi:"icmpCheck"`
 	// List of assigned monitoring locations on which to run checks
 	Locations []UptimeCheckLocation `pulumi:"locations"`
-	// Monitored resource configuration block. The describes server under test
+	// Monitored resource configuration block. This describes the server under test
 	MonitoredResource *UptimeCheckMonitoredResource `pulumi:"monitoredResource"`
 	// Name of the check
 	Name *string `pulumi:"name"`
@@ -106,7 +107,7 @@ type uptimeCheckState struct {
 	Regions []string `pulumi:"regions"`
 	// List of tags
 	Tags []string `pulumi:"tags"`
-	// TCP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// TCP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	TcpCheck *UptimeCheckTcpCheck `pulumi:"tcpCheck"`
 	// The number of minutes to wait before sending an alert
 	TriggerRate *int `pulumi:"triggerRate"`
@@ -119,15 +120,15 @@ type UptimeCheckState struct {
 	Confirmation pulumi.IntPtrInput
 	// List of contact group IDs
 	ContactGroups pulumi.StringArrayInput
-	// DNS check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// DNS check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	DnsCheck UptimeCheckDnsCheckPtrInput
-	// HTTP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// HTTP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	HttpCheck UptimeCheckHttpCheckPtrInput
-	// ICMP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// ICMP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	IcmpCheck UptimeCheckIcmpCheckPtrInput
 	// List of assigned monitoring locations on which to run checks
 	Locations UptimeCheckLocationArrayInput
-	// Monitored resource configuration block. The describes server under test
+	// Monitored resource configuration block. This describes the server under test
 	MonitoredResource UptimeCheckMonitoredResourcePtrInput
 	// Name of the check
 	Name pulumi.StringPtrInput
@@ -138,7 +139,7 @@ type UptimeCheckState struct {
 	Regions pulumi.StringArrayInput
 	// List of tags
 	Tags pulumi.StringArrayInput
-	// TCP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// TCP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	TcpCheck UptimeCheckTcpCheckPtrInput
 	// The number of minutes to wait before sending an alert
 	TriggerRate pulumi.IntPtrInput
@@ -155,13 +156,13 @@ type uptimeCheckArgs struct {
 	Confirmation *int `pulumi:"confirmation"`
 	// List of contact group IDs
 	ContactGroups []string `pulumi:"contactGroups"`
-	// DNS check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// DNS check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	DnsCheck *UptimeCheckDnsCheck `pulumi:"dnsCheck"`
-	// HTTP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// HTTP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	HttpCheck *UptimeCheckHttpCheck `pulumi:"httpCheck"`
-	// ICMP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// ICMP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	IcmpCheck *UptimeCheckIcmpCheck `pulumi:"icmpCheck"`
-	// Monitored resource configuration block. The describes server under test
+	// Monitored resource configuration block. This describes the server under test
 	MonitoredResource UptimeCheckMonitoredResource `pulumi:"monitoredResource"`
 	// Name of the check
 	Name *string `pulumi:"name"`
@@ -172,7 +173,7 @@ type uptimeCheckArgs struct {
 	Regions []string `pulumi:"regions"`
 	// List of tags
 	Tags []string `pulumi:"tags"`
-	// TCP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// TCP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	TcpCheck *UptimeCheckTcpCheck `pulumi:"tcpCheck"`
 	// The number of minutes to wait before sending an alert
 	TriggerRate *int `pulumi:"triggerRate"`
@@ -186,13 +187,13 @@ type UptimeCheckArgs struct {
 	Confirmation pulumi.IntPtrInput
 	// List of contact group IDs
 	ContactGroups pulumi.StringArrayInput
-	// DNS check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// DNS check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	DnsCheck UptimeCheckDnsCheckPtrInput
-	// HTTP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// HTTP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	HttpCheck UptimeCheckHttpCheckPtrInput
-	// ICMP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// ICMP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	IcmpCheck UptimeCheckIcmpCheckPtrInput
-	// Monitored resource configuration block. The describes server under test
+	// Monitored resource configuration block. This describes the server under test
 	MonitoredResource UptimeCheckMonitoredResourceInput
 	// Name of the check
 	Name pulumi.StringPtrInput
@@ -203,7 +204,7 @@ type UptimeCheckArgs struct {
 	Regions pulumi.StringArrayInput
 	// List of tags
 	Tags pulumi.StringArrayInput
-	// TCP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+	// TCP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 	TcpCheck UptimeCheckTcpCheckPtrInput
 	// The number of minutes to wait before sending an alert
 	TriggerRate pulumi.IntPtrInput
@@ -235,7 +236,7 @@ func (i *UptimeCheck) ToUptimeCheckOutputWithContext(ctx context.Context) Uptime
 // UptimeCheckArrayInput is an input type that accepts UptimeCheckArray and UptimeCheckArrayOutput values.
 // You can construct a concrete instance of `UptimeCheckArrayInput` via:
 //
-//          UptimeCheckArray{ UptimeCheckArgs{...} }
+//	UptimeCheckArray{ UptimeCheckArgs{...} }
 type UptimeCheckArrayInput interface {
 	pulumi.Input
 
@@ -260,7 +261,7 @@ func (i UptimeCheckArray) ToUptimeCheckArrayOutputWithContext(ctx context.Contex
 // UptimeCheckMapInput is an input type that accepts UptimeCheckMap and UptimeCheckMapOutput values.
 // You can construct a concrete instance of `UptimeCheckMapInput` via:
 //
-//          UptimeCheckMap{ "key": UptimeCheckArgs{...} }
+//	UptimeCheckMap{ "key": UptimeCheckArgs{...} }
 type UptimeCheckMapInput interface {
 	pulumi.Input
 
@@ -311,17 +312,17 @@ func (o UptimeCheckOutput) ContactGroups() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *UptimeCheck) pulumi.StringArrayOutput { return v.ContactGroups }).(pulumi.StringArrayOutput)
 }
 
-// DNS check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+// DNS check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 func (o UptimeCheckOutput) DnsCheck() UptimeCheckDnsCheckPtrOutput {
 	return o.ApplyT(func(v *UptimeCheck) UptimeCheckDnsCheckPtrOutput { return v.DnsCheck }).(UptimeCheckDnsCheckPtrOutput)
 }
 
-// HTTP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+// HTTP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 func (o UptimeCheckOutput) HttpCheck() UptimeCheckHttpCheckPtrOutput {
 	return o.ApplyT(func(v *UptimeCheck) UptimeCheckHttpCheckPtrOutput { return v.HttpCheck }).(UptimeCheckHttpCheckPtrOutput)
 }
 
-// ICMP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+// ICMP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 func (o UptimeCheckOutput) IcmpCheck() UptimeCheckIcmpCheckPtrOutput {
 	return o.ApplyT(func(v *UptimeCheck) UptimeCheckIcmpCheckPtrOutput { return v.IcmpCheck }).(UptimeCheckIcmpCheckPtrOutput)
 }
@@ -331,7 +332,7 @@ func (o UptimeCheckOutput) Locations() UptimeCheckLocationArrayOutput {
 	return o.ApplyT(func(v *UptimeCheck) UptimeCheckLocationArrayOutput { return v.Locations }).(UptimeCheckLocationArrayOutput)
 }
 
-// Monitored resource configuration block. The describes server under test
+// Monitored resource configuration block. This describes the server under test
 func (o UptimeCheckOutput) MonitoredResource() UptimeCheckMonitoredResourceOutput {
 	return o.ApplyT(func(v *UptimeCheck) UptimeCheckMonitoredResourceOutput { return v.MonitoredResource }).(UptimeCheckMonitoredResourceOutput)
 }
@@ -357,7 +358,7 @@ func (o UptimeCheckOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *UptimeCheck) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// TCP check configuration block. Only one of `dns_check`, `http_check`, `icmp_check`, and `tcp_check` may be specified
+// TCP check configuration block. Only one of `dnsCheck`, `httpCheck`, `icmpCheck`, and `tcpCheck` may be specified
 func (o UptimeCheckOutput) TcpCheck() UptimeCheckTcpCheckPtrOutput {
 	return o.ApplyT(func(v *UptimeCheck) UptimeCheckTcpCheckPtrOutput { return v.TcpCheck }).(UptimeCheckTcpCheckPtrOutput)
 }

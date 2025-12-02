@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Statuscake
 {
     [StatuscakeResourceType("statuscake:index/contactGroup:ContactGroup")]
-    public partial class ContactGroup : Pulumi.CustomResource
+    public partial class ContactGroup : global::Pulumi.CustomResource
     {
         /// <summary>
         /// List of email addresses
@@ -88,7 +88,7 @@ namespace Pulumiverse.Statuscake
         }
     }
 
-    public sealed class ContactGroupArgs : Pulumi.ResourceArgs
+    public sealed class ContactGroupArgs : global::Pulumi.ResourceArgs
     {
         [Input("emailAddresses")]
         private InputList<string>? _emailAddresses;
@@ -141,9 +141,10 @@ namespace Pulumiverse.Statuscake
         public ContactGroupArgs()
         {
         }
+        public static new ContactGroupArgs Empty => new ContactGroupArgs();
     }
 
-    public sealed class ContactGroupState : Pulumi.ResourceArgs
+    public sealed class ContactGroupState : global::Pulumi.ResourceArgs
     {
         [Input("emailAddresses")]
         private InputList<string>? _emailAddresses;
@@ -196,5 +197,6 @@ namespace Pulumiverse.Statuscake
         public ContactGroupState()
         {
         }
+        public static new ContactGroupState Empty => new ContactGroupState();
     }
 }

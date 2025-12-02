@@ -4,26 +4,97 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
+    'HeartbeatCheckMonitoredResourceArgs',
+    'HeartbeatCheckMonitoredResourceArgsDict',
     'PagespeedCheckAlertConfigArgs',
+    'PagespeedCheckAlertConfigArgsDict',
     'PagespeedCheckMonitoredResourceArgs',
+    'PagespeedCheckMonitoredResourceArgsDict',
     'SslCheckAlertConfigArgs',
+    'SslCheckAlertConfigArgsDict',
     'SslCheckMonitoredResourceArgs',
+    'SslCheckMonitoredResourceArgsDict',
     'UptimeCheckDnsCheckArgs',
+    'UptimeCheckDnsCheckArgsDict',
     'UptimeCheckHttpCheckArgs',
+    'UptimeCheckHttpCheckArgsDict',
     'UptimeCheckHttpCheckBasicAuthenticationArgs',
+    'UptimeCheckHttpCheckBasicAuthenticationArgsDict',
     'UptimeCheckHttpCheckContentMatchersArgs',
+    'UptimeCheckHttpCheckContentMatchersArgsDict',
     'UptimeCheckIcmpCheckArgs',
+    'UptimeCheckIcmpCheckArgsDict',
     'UptimeCheckLocationArgs',
+    'UptimeCheckLocationArgsDict',
     'UptimeCheckMonitoredResourceArgs',
+    'UptimeCheckMonitoredResourceArgsDict',
     'UptimeCheckTcpCheckArgs',
+    'UptimeCheckTcpCheckArgsDict',
     'UptimeCheckTcpCheckAuthenticationArgs',
+    'UptimeCheckTcpCheckAuthenticationArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class HeartbeatCheckMonitoredResourceArgsDict(TypedDict):
+        host: NotRequired[pulumi.Input[str]]
+        """
+        Name of the hosting provider
+        """
+elif False:
+    HeartbeatCheckMonitoredResourceArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class HeartbeatCheckMonitoredResourceArgs:
+    def __init__(__self__, *,
+                 host: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] host: Name of the hosting provider
+        """
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+
+    @property
+    @pulumi.getter
+    def host(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the hosting provider
+        """
+        return pulumi.get(self, "host")
+
+    @host.setter
+    def host(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "host", value)
+
+
+if not MYPY:
+    class PagespeedCheckAlertConfigArgsDict(TypedDict):
+        alert_bigger: NotRequired[pulumi.Input[int]]
+        """
+        An alert will be sent if the size of the page is larger than this value (kb).
+        """
+        alert_slower: NotRequired[pulumi.Input[int]]
+        """
+        An alert will be sent if the load time of the page exceeds this value (ms).
+        """
+        alert_smaller: NotRequired[pulumi.Input[int]]
+        """
+        An alert will be sent if the size of the page is smaller than this value (kb).
+        """
+elif False:
+    PagespeedCheckAlertConfigArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class PagespeedCheckAlertConfigArgs:
@@ -31,6 +102,11 @@ class PagespeedCheckAlertConfigArgs:
                  alert_bigger: Optional[pulumi.Input[int]] = None,
                  alert_slower: Optional[pulumi.Input[int]] = None,
                  alert_smaller: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] alert_bigger: An alert will be sent if the size of the page is larger than this value (kb).
+        :param pulumi.Input[int] alert_slower: An alert will be sent if the load time of the page exceeds this value (ms).
+        :param pulumi.Input[int] alert_smaller: An alert will be sent if the size of the page is smaller than this value (kb).
+        """
         if alert_bigger is not None:
             pulumi.set(__self__, "alert_bigger", alert_bigger)
         if alert_slower is not None:
@@ -41,6 +117,9 @@ class PagespeedCheckAlertConfigArgs:
     @property
     @pulumi.getter(name="alertBigger")
     def alert_bigger(self) -> Optional[pulumi.Input[int]]:
+        """
+        An alert will be sent if the size of the page is larger than this value (kb).
+        """
         return pulumi.get(self, "alert_bigger")
 
     @alert_bigger.setter
@@ -50,6 +129,9 @@ class PagespeedCheckAlertConfigArgs:
     @property
     @pulumi.getter(name="alertSlower")
     def alert_slower(self) -> Optional[pulumi.Input[int]]:
+        """
+        An alert will be sent if the load time of the page exceeds this value (ms).
+        """
         return pulumi.get(self, "alert_slower")
 
     @alert_slower.setter
@@ -59,6 +141,9 @@ class PagespeedCheckAlertConfigArgs:
     @property
     @pulumi.getter(name="alertSmaller")
     def alert_smaller(self) -> Optional[pulumi.Input[int]]:
+        """
+        An alert will be sent if the size of the page is smaller than this value (kb).
+        """
         return pulumi.get(self, "alert_smaller")
 
     @alert_smaller.setter
@@ -66,21 +151,61 @@ class PagespeedCheckAlertConfigArgs:
         pulumi.set(self, "alert_smaller", value)
 
 
+if not MYPY:
+    class PagespeedCheckMonitoredResourceArgsDict(TypedDict):
+        address: pulumi.Input[str]
+        """
+        URL or IP address of the website under test
+        """
+elif False:
+    PagespeedCheckMonitoredResourceArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class PagespeedCheckMonitoredResourceArgs:
     def __init__(__self__, *,
                  address: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] address: URL or IP address of the website under test
+        """
         pulumi.set(__self__, "address", address)
 
     @property
     @pulumi.getter
     def address(self) -> pulumi.Input[str]:
+        """
+        URL or IP address of the website under test
+        """
         return pulumi.get(self, "address")
 
     @address.setter
     def address(self, value: pulumi.Input[str]):
         pulumi.set(self, "address", value)
 
+
+if not MYPY:
+    class SslCheckAlertConfigArgsDict(TypedDict):
+        alert_ats: pulumi.Input[Sequence[pulumi.Input[int]]]
+        """
+        List representing when alerts should be sent (days). Must be exactly 3 numerical values
+        """
+        on_broken: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to enable alerts when SSL certificate issues are found
+        """
+        on_expiry: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to enable alerts when the SSL certificate is to expire
+        """
+        on_mixed: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to enable alerts when mixed content is found
+        """
+        on_reminder: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to enable alert reminders
+        """
+elif False:
+    SslCheckAlertConfigArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SslCheckAlertConfigArgs:
@@ -90,6 +215,13 @@ class SslCheckAlertConfigArgs:
                  on_expiry: Optional[pulumi.Input[bool]] = None,
                  on_mixed: Optional[pulumi.Input[bool]] = None,
                  on_reminder: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] alert_ats: List representing when alerts should be sent (days). Must be exactly 3 numerical values
+        :param pulumi.Input[bool] on_broken: Whether to enable alerts when SSL certificate issues are found
+        :param pulumi.Input[bool] on_expiry: Whether to enable alerts when the SSL certificate is to expire
+        :param pulumi.Input[bool] on_mixed: Whether to enable alerts when mixed content is found
+        :param pulumi.Input[bool] on_reminder: Whether to enable alert reminders
+        """
         pulumi.set(__self__, "alert_ats", alert_ats)
         if on_broken is not None:
             pulumi.set(__self__, "on_broken", on_broken)
@@ -103,6 +235,9 @@ class SslCheckAlertConfigArgs:
     @property
     @pulumi.getter(name="alertAts")
     def alert_ats(self) -> pulumi.Input[Sequence[pulumi.Input[int]]]:
+        """
+        List representing when alerts should be sent (days). Must be exactly 3 numerical values
+        """
         return pulumi.get(self, "alert_ats")
 
     @alert_ats.setter
@@ -112,6 +247,9 @@ class SslCheckAlertConfigArgs:
     @property
     @pulumi.getter(name="onBroken")
     def on_broken(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable alerts when SSL certificate issues are found
+        """
         return pulumi.get(self, "on_broken")
 
     @on_broken.setter
@@ -121,6 +259,9 @@ class SslCheckAlertConfigArgs:
     @property
     @pulumi.getter(name="onExpiry")
     def on_expiry(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable alerts when the SSL certificate is to expire
+        """
         return pulumi.get(self, "on_expiry")
 
     @on_expiry.setter
@@ -130,6 +271,9 @@ class SslCheckAlertConfigArgs:
     @property
     @pulumi.getter(name="onMixed")
     def on_mixed(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable alerts when mixed content is found
+        """
         return pulumi.get(self, "on_mixed")
 
     @on_mixed.setter
@@ -139,6 +283,9 @@ class SslCheckAlertConfigArgs:
     @property
     @pulumi.getter(name="onReminder")
     def on_reminder(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable alert reminders
+        """
         return pulumi.get(self, "on_reminder")
 
     @on_reminder.setter
@@ -146,11 +293,28 @@ class SslCheckAlertConfigArgs:
         pulumi.set(self, "on_reminder", value)
 
 
+if not MYPY:
+    class SslCheckMonitoredResourceArgsDict(TypedDict):
+        address: pulumi.Input[str]
+        """
+        URL of the server under test
+        """
+        hostname: NotRequired[pulumi.Input[str]]
+        """
+        Hostname of the server under test
+        """
+elif False:
+    SslCheckMonitoredResourceArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SslCheckMonitoredResourceArgs:
     def __init__(__self__, *,
                  address: pulumi.Input[str],
                  hostname: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: URL of the server under test
+        :param pulumi.Input[str] hostname: Hostname of the server under test
+        """
         pulumi.set(__self__, "address", address)
         if hostname is not None:
             pulumi.set(__self__, "hostname", hostname)
@@ -158,6 +322,9 @@ class SslCheckMonitoredResourceArgs:
     @property
     @pulumi.getter
     def address(self) -> pulumi.Input[str]:
+        """
+        URL of the server under test
+        """
         return pulumi.get(self, "address")
 
     @address.setter
@@ -167,6 +334,9 @@ class SslCheckMonitoredResourceArgs:
     @property
     @pulumi.getter
     def hostname(self) -> Optional[pulumi.Input[str]]:
+        """
+        Hostname of the server under test
+        """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
@@ -174,11 +344,28 @@ class SslCheckMonitoredResourceArgs:
         pulumi.set(self, "hostname", value)
 
 
+if not MYPY:
+    class UptimeCheckDnsCheckArgsDict(TypedDict):
+        dns_ips: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        List of IP addresses to compare against returned DNS records
+        """
+        dns_server: NotRequired[pulumi.Input[str]]
+        """
+        FQDN or IP address of the nameserver to query
+        """
+elif False:
+    UptimeCheckDnsCheckArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class UptimeCheckDnsCheckArgs:
     def __init__(__self__, *,
                  dns_ips: pulumi.Input[Sequence[pulumi.Input[str]]],
                  dns_server: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_ips: List of IP addresses to compare against returned DNS records
+        :param pulumi.Input[str] dns_server: FQDN or IP address of the nameserver to query
+        """
         pulumi.set(__self__, "dns_ips", dns_ips)
         if dns_server is not None:
             pulumi.set(__self__, "dns_server", dns_server)
@@ -186,6 +373,9 @@ class UptimeCheckDnsCheckArgs:
     @property
     @pulumi.getter(name="dnsIps")
     def dns_ips(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        List of IP addresses to compare against returned DNS records
+        """
         return pulumi.get(self, "dns_ips")
 
     @dns_ips.setter
@@ -195,6 +385,9 @@ class UptimeCheckDnsCheckArgs:
     @property
     @pulumi.getter(name="dnsServer")
     def dns_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        FQDN or IP address of the nameserver to query
+        """
         return pulumi.get(self, "dns_server")
 
     @dns_server.setter
@@ -202,10 +395,66 @@ class UptimeCheckDnsCheckArgs:
         pulumi.set(self, "dns_server", value)
 
 
+if not MYPY:
+    class UptimeCheckHttpCheckArgsDict(TypedDict):
+        basic_authentication: NotRequired[pulumi.Input['UptimeCheckHttpCheckBasicAuthenticationArgsDict']]
+        """
+        Basic Authentication (RFC7235) configuration block
+        """
+        content_matchers: NotRequired[pulumi.Input['UptimeCheckHttpCheckContentMatchersArgsDict']]
+        """
+        Content matcher configuration block. This is used to assert values within the response of the request
+        """
+        enable_cookies: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to enable cookie storage
+        """
+        final_endpoint: NotRequired[pulumi.Input[str]]
+        """
+        Specify where the redirect chain should end
+        """
+        follow_redirects: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to follow redirects when testing. Disabled by default
+        """
+        request_headers: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Represents headers to be sent when making requests
+        """
+        request_method: NotRequired[pulumi.Input[str]]
+        """
+        Type of HTTP check. Either HTTP, or HEAD
+        """
+        request_payload: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `request_payload` or `request_payload_raw` may be specified
+        """
+        request_payload_raw: NotRequired[pulumi.Input[str]]
+        """
+        Raw payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `request_payload` or `request_payload_raw` may be specified
+        """
+        status_codes: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of status codes that trigger an alert. If not specified then the default status codes are used. Once set, the default status codes cannot be restored and ommitting this field does not clear the attribute
+        """
+        timeout: NotRequired[pulumi.Input[int]]
+        """
+        The number of seconds to wait to receive the first byte
+        """
+        user_agent: NotRequired[pulumi.Input[str]]
+        """
+        Custom user agent string set when testing
+        """
+        validate_ssl: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to send an alert if the SSL certificate is soon to expire
+        """
+elif False:
+    UptimeCheckHttpCheckArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class UptimeCheckHttpCheckArgs:
     def __init__(__self__, *,
-                 status_codes: pulumi.Input[Sequence[pulumi.Input[str]]],
                  basic_authentication: Optional[pulumi.Input['UptimeCheckHttpCheckBasicAuthenticationArgs']] = None,
                  content_matchers: Optional[pulumi.Input['UptimeCheckHttpCheckContentMatchersArgs']] = None,
                  enable_cookies: Optional[pulumi.Input[bool]] = None,
@@ -215,10 +464,25 @@ class UptimeCheckHttpCheckArgs:
                  request_method: Optional[pulumi.Input[str]] = None,
                  request_payload: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  request_payload_raw: Optional[pulumi.Input[str]] = None,
+                 status_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  user_agent: Optional[pulumi.Input[str]] = None,
                  validate_ssl: Optional[pulumi.Input[bool]] = None):
-        pulumi.set(__self__, "status_codes", status_codes)
+        """
+        :param pulumi.Input['UptimeCheckHttpCheckBasicAuthenticationArgs'] basic_authentication: Basic Authentication (RFC7235) configuration block
+        :param pulumi.Input['UptimeCheckHttpCheckContentMatchersArgs'] content_matchers: Content matcher configuration block. This is used to assert values within the response of the request
+        :param pulumi.Input[bool] enable_cookies: Whether to enable cookie storage
+        :param pulumi.Input[str] final_endpoint: Specify where the redirect chain should end
+        :param pulumi.Input[bool] follow_redirects: Whether to follow redirects when testing. Disabled by default
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] request_headers: Represents headers to be sent when making requests
+        :param pulumi.Input[str] request_method: Type of HTTP check. Either HTTP, or HEAD
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] request_payload: Payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `request_payload` or `request_payload_raw` may be specified
+        :param pulumi.Input[str] request_payload_raw: Raw payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `request_payload` or `request_payload_raw` may be specified
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] status_codes: List of status codes that trigger an alert. If not specified then the default status codes are used. Once set, the default status codes cannot be restored and ommitting this field does not clear the attribute
+        :param pulumi.Input[int] timeout: The number of seconds to wait to receive the first byte
+        :param pulumi.Input[str] user_agent: Custom user agent string set when testing
+        :param pulumi.Input[bool] validate_ssl: Whether to send an alert if the SSL certificate is soon to expire
+        """
         if basic_authentication is not None:
             pulumi.set(__self__, "basic_authentication", basic_authentication)
         if content_matchers is not None:
@@ -237,6 +501,8 @@ class UptimeCheckHttpCheckArgs:
             pulumi.set(__self__, "request_payload", request_payload)
         if request_payload_raw is not None:
             pulumi.set(__self__, "request_payload_raw", request_payload_raw)
+        if status_codes is not None:
+            pulumi.set(__self__, "status_codes", status_codes)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
         if user_agent is not None:
@@ -245,17 +511,11 @@ class UptimeCheckHttpCheckArgs:
             pulumi.set(__self__, "validate_ssl", validate_ssl)
 
     @property
-    @pulumi.getter(name="statusCodes")
-    def status_codes(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        return pulumi.get(self, "status_codes")
-
-    @status_codes.setter
-    def status_codes(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "status_codes", value)
-
-    @property
     @pulumi.getter(name="basicAuthentication")
     def basic_authentication(self) -> Optional[pulumi.Input['UptimeCheckHttpCheckBasicAuthenticationArgs']]:
+        """
+        Basic Authentication (RFC7235) configuration block
+        """
         return pulumi.get(self, "basic_authentication")
 
     @basic_authentication.setter
@@ -265,6 +525,9 @@ class UptimeCheckHttpCheckArgs:
     @property
     @pulumi.getter(name="contentMatchers")
     def content_matchers(self) -> Optional[pulumi.Input['UptimeCheckHttpCheckContentMatchersArgs']]:
+        """
+        Content matcher configuration block. This is used to assert values within the response of the request
+        """
         return pulumi.get(self, "content_matchers")
 
     @content_matchers.setter
@@ -274,6 +537,9 @@ class UptimeCheckHttpCheckArgs:
     @property
     @pulumi.getter(name="enableCookies")
     def enable_cookies(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable cookie storage
+        """
         return pulumi.get(self, "enable_cookies")
 
     @enable_cookies.setter
@@ -283,6 +549,9 @@ class UptimeCheckHttpCheckArgs:
     @property
     @pulumi.getter(name="finalEndpoint")
     def final_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify where the redirect chain should end
+        """
         return pulumi.get(self, "final_endpoint")
 
     @final_endpoint.setter
@@ -292,6 +561,9 @@ class UptimeCheckHttpCheckArgs:
     @property
     @pulumi.getter(name="followRedirects")
     def follow_redirects(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to follow redirects when testing. Disabled by default
+        """
         return pulumi.get(self, "follow_redirects")
 
     @follow_redirects.setter
@@ -301,6 +573,9 @@ class UptimeCheckHttpCheckArgs:
     @property
     @pulumi.getter(name="requestHeaders")
     def request_headers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Represents headers to be sent when making requests
+        """
         return pulumi.get(self, "request_headers")
 
     @request_headers.setter
@@ -310,6 +585,9 @@ class UptimeCheckHttpCheckArgs:
     @property
     @pulumi.getter(name="requestMethod")
     def request_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of HTTP check. Either HTTP, or HEAD
+        """
         return pulumi.get(self, "request_method")
 
     @request_method.setter
@@ -319,6 +597,9 @@ class UptimeCheckHttpCheckArgs:
     @property
     @pulumi.getter(name="requestPayload")
     def request_payload(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `request_payload` or `request_payload_raw` may be specified
+        """
         return pulumi.get(self, "request_payload")
 
     @request_payload.setter
@@ -328,6 +609,9 @@ class UptimeCheckHttpCheckArgs:
     @property
     @pulumi.getter(name="requestPayloadRaw")
     def request_payload_raw(self) -> Optional[pulumi.Input[str]]:
+        """
+        Raw payload submitted with the request. Setting this updates the check to use the HTTP POST verb. Only one of `request_payload` or `request_payload_raw` may be specified
+        """
         return pulumi.get(self, "request_payload_raw")
 
     @request_payload_raw.setter
@@ -335,8 +619,23 @@ class UptimeCheckHttpCheckArgs:
         pulumi.set(self, "request_payload_raw", value)
 
     @property
+    @pulumi.getter(name="statusCodes")
+    def status_codes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of status codes that trigger an alert. If not specified then the default status codes are used. Once set, the default status codes cannot be restored and ommitting this field does not clear the attribute
+        """
+        return pulumi.get(self, "status_codes")
+
+    @status_codes.setter
+    def status_codes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "status_codes", value)
+
+    @property
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of seconds to wait to receive the first byte
+        """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
@@ -346,6 +645,9 @@ class UptimeCheckHttpCheckArgs:
     @property
     @pulumi.getter(name="userAgent")
     def user_agent(self) -> Optional[pulumi.Input[str]]:
+        """
+        Custom user agent string set when testing
+        """
         return pulumi.get(self, "user_agent")
 
     @user_agent.setter
@@ -355,12 +657,22 @@ class UptimeCheckHttpCheckArgs:
     @property
     @pulumi.getter(name="validateSsl")
     def validate_ssl(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to send an alert if the SSL certificate is soon to expire
+        """
         return pulumi.get(self, "validate_ssl")
 
     @validate_ssl.setter
     def validate_ssl(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "validate_ssl", value)
 
+
+if not MYPY:
+    class UptimeCheckHttpCheckBasicAuthenticationArgsDict(TypedDict):
+        password: pulumi.Input[str]
+        username: pulumi.Input[str]
+elif False:
+    UptimeCheckHttpCheckBasicAuthenticationArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class UptimeCheckHttpCheckBasicAuthenticationArgs:
@@ -389,12 +701,34 @@ class UptimeCheckHttpCheckBasicAuthenticationArgs:
         pulumi.set(self, "username", value)
 
 
+if not MYPY:
+    class UptimeCheckHttpCheckContentMatchersArgsDict(TypedDict):
+        content: pulumi.Input[str]
+        """
+        String to look for within the response. Considered down if not found
+        """
+        include_headers: NotRequired[pulumi.Input[bool]]
+        """
+        Include header content in string match search
+        """
+        matcher: NotRequired[pulumi.Input[str]]
+        """
+        Whether to consider the check as down if the content is present within the response
+        """
+elif False:
+    UptimeCheckHttpCheckContentMatchersArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class UptimeCheckHttpCheckContentMatchersArgs:
     def __init__(__self__, *,
                  content: pulumi.Input[str],
                  include_headers: Optional[pulumi.Input[bool]] = None,
                  matcher: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] content: String to look for within the response. Considered down if not found
+        :param pulumi.Input[bool] include_headers: Include header content in string match search
+        :param pulumi.Input[str] matcher: Whether to consider the check as down if the content is present within the response
+        """
         pulumi.set(__self__, "content", content)
         if include_headers is not None:
             pulumi.set(__self__, "include_headers", include_headers)
@@ -404,6 +738,9 @@ class UptimeCheckHttpCheckContentMatchersArgs:
     @property
     @pulumi.getter
     def content(self) -> pulumi.Input[str]:
+        """
+        String to look for within the response. Considered down if not found
+        """
         return pulumi.get(self, "content")
 
     @content.setter
@@ -413,6 +750,9 @@ class UptimeCheckHttpCheckContentMatchersArgs:
     @property
     @pulumi.getter(name="includeHeaders")
     def include_headers(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Include header content in string match search
+        """
         return pulumi.get(self, "include_headers")
 
     @include_headers.setter
@@ -422,6 +762,9 @@ class UptimeCheckHttpCheckContentMatchersArgs:
     @property
     @pulumi.getter
     def matcher(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to consider the check as down if the content is present within the response
+        """
         return pulumi.get(self, "matcher")
 
     @matcher.setter
@@ -429,22 +772,66 @@ class UptimeCheckHttpCheckContentMatchersArgs:
         pulumi.set(self, "matcher", value)
 
 
+if not MYPY:
+    class UptimeCheckIcmpCheckArgsDict(TypedDict):
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        Dummy attribute to allow for a nested block. This field should not be changed
+        """
+elif False:
+    UptimeCheckIcmpCheckArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class UptimeCheckIcmpCheckArgs:
     def __init__(__self__, *,
                  enabled: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] enabled: Dummy attribute to allow for a nested block. This field should not be changed
+        """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Dummy attribute to allow for a nested block. This field should not be changed
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enabled", value)
 
+
+if not MYPY:
+    class UptimeCheckLocationArgsDict(TypedDict):
+        description: NotRequired[pulumi.Input[str]]
+        """
+        Location description
+        """
+        ipv4: NotRequired[pulumi.Input[str]]
+        """
+        Location IPv4 address
+        """
+        ipv6: NotRequired[pulumi.Input[str]]
+        """
+        Location IPv6 address
+        """
+        region: NotRequired[pulumi.Input[str]]
+        """
+        Location region
+        """
+        region_code: NotRequired[pulumi.Input[str]]
+        """
+        Location region code
+        """
+        status: NotRequired[pulumi.Input[str]]
+        """
+        Location status
+        """
+elif False:
+    UptimeCheckLocationArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class UptimeCheckLocationArgs:
@@ -455,6 +842,14 @@ class UptimeCheckLocationArgs:
                  region: Optional[pulumi.Input[str]] = None,
                  region_code: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] description: Location description
+        :param pulumi.Input[str] ipv4: Location IPv4 address
+        :param pulumi.Input[str] ipv6: Location IPv6 address
+        :param pulumi.Input[str] region: Location region
+        :param pulumi.Input[str] region_code: Location region code
+        :param pulumi.Input[str] status: Location status
+        """
         if description is not None:
             pulumi.set(__self__, "description", description)
         if ipv4 is not None:
@@ -471,6 +866,9 @@ class UptimeCheckLocationArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Location description
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -480,6 +878,9 @@ class UptimeCheckLocationArgs:
     @property
     @pulumi.getter
     def ipv4(self) -> Optional[pulumi.Input[str]]:
+        """
+        Location IPv4 address
+        """
         return pulumi.get(self, "ipv4")
 
     @ipv4.setter
@@ -489,6 +890,9 @@ class UptimeCheckLocationArgs:
     @property
     @pulumi.getter
     def ipv6(self) -> Optional[pulumi.Input[str]]:
+        """
+        Location IPv6 address
+        """
         return pulumi.get(self, "ipv6")
 
     @ipv6.setter
@@ -498,6 +902,9 @@ class UptimeCheckLocationArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        Location region
+        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -507,6 +914,9 @@ class UptimeCheckLocationArgs:
     @property
     @pulumi.getter(name="regionCode")
     def region_code(self) -> Optional[pulumi.Input[str]]:
+        """
+        Location region code
+        """
         return pulumi.get(self, "region_code")
 
     @region_code.setter
@@ -516,6 +926,9 @@ class UptimeCheckLocationArgs:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Location status
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -523,11 +936,28 @@ class UptimeCheckLocationArgs:
         pulumi.set(self, "status", value)
 
 
+if not MYPY:
+    class UptimeCheckMonitoredResourceArgsDict(TypedDict):
+        address: pulumi.Input[str]
+        """
+        URL, FQDN, or IP address of the server under test
+        """
+        host: NotRequired[pulumi.Input[str]]
+        """
+        Name of the hosting provider
+        """
+elif False:
+    UptimeCheckMonitoredResourceArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class UptimeCheckMonitoredResourceArgs:
     def __init__(__self__, *,
                  address: pulumi.Input[str],
                  host: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: URL, FQDN, or IP address of the server under test
+        :param pulumi.Input[str] host: Name of the hosting provider
+        """
         pulumi.set(__self__, "address", address)
         if host is not None:
             pulumi.set(__self__, "host", host)
@@ -535,6 +965,9 @@ class UptimeCheckMonitoredResourceArgs:
     @property
     @pulumi.getter
     def address(self) -> pulumi.Input[str]:
+        """
+        URL, FQDN, or IP address of the server under test
+        """
         return pulumi.get(self, "address")
 
     @address.setter
@@ -544,12 +977,36 @@ class UptimeCheckMonitoredResourceArgs:
     @property
     @pulumi.getter
     def host(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the hosting provider
+        """
         return pulumi.get(self, "host")
 
     @host.setter
     def host(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "host", value)
 
+
+if not MYPY:
+    class UptimeCheckTcpCheckArgsDict(TypedDict):
+        port: pulumi.Input[int]
+        """
+        Destination port for TCP checks
+        """
+        authentication: NotRequired[pulumi.Input['UptimeCheckTcpCheckAuthenticationArgsDict']]
+        """
+        Authentication configuration block
+        """
+        protocol: NotRequired[pulumi.Input[str]]
+        """
+        Type of TCP check. Either SMTP, SSH or TCP
+        """
+        timeout: NotRequired[pulumi.Input[int]]
+        """
+        The number of seconds to wait to receive the first byte
+        """
+elif False:
+    UptimeCheckTcpCheckArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class UptimeCheckTcpCheckArgs:
@@ -558,6 +1015,12 @@ class UptimeCheckTcpCheckArgs:
                  authentication: Optional[pulumi.Input['UptimeCheckTcpCheckAuthenticationArgs']] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] port: Destination port for TCP checks
+        :param pulumi.Input['UptimeCheckTcpCheckAuthenticationArgs'] authentication: Authentication configuration block
+        :param pulumi.Input[str] protocol: Type of TCP check. Either SMTP, SSH or TCP
+        :param pulumi.Input[int] timeout: The number of seconds to wait to receive the first byte
+        """
         pulumi.set(__self__, "port", port)
         if authentication is not None:
             pulumi.set(__self__, "authentication", authentication)
@@ -569,6 +1032,9 @@ class UptimeCheckTcpCheckArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        Destination port for TCP checks
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -578,6 +1044,9 @@ class UptimeCheckTcpCheckArgs:
     @property
     @pulumi.getter
     def authentication(self) -> Optional[pulumi.Input['UptimeCheckTcpCheckAuthenticationArgs']]:
+        """
+        Authentication configuration block
+        """
         return pulumi.get(self, "authentication")
 
     @authentication.setter
@@ -587,6 +1056,9 @@ class UptimeCheckTcpCheckArgs:
     @property
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of TCP check. Either SMTP, SSH or TCP
+        """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
@@ -596,12 +1068,22 @@ class UptimeCheckTcpCheckArgs:
     @property
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of seconds to wait to receive the first byte
+        """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
     def timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "timeout", value)
 
+
+if not MYPY:
+    class UptimeCheckTcpCheckAuthenticationArgsDict(TypedDict):
+        password: pulumi.Input[str]
+        username: pulumi.Input[str]
+elif False:
+    UptimeCheckTcpCheckAuthenticationArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class UptimeCheckTcpCheckAuthenticationArgs:

@@ -11,10 +11,10 @@ using Pulumi;
 namespace Pulumiverse.Statuscake
 {
     [StatuscakeResourceType("statuscake:index/pagespeedCheck:PagespeedCheck")]
-    public partial class PagespeedCheck : Pulumi.CustomResource
+    public partial class PagespeedCheck : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Alert configuration block. Omitting this block disabled all alerts
+        /// Alert configuration block. An empty block disables all alerts
         /// </summary>
         [Output("alertConfig")]
         public Output<Outputs.PagespeedCheckAlertConfig> AlertConfig { get; private set; } = null!;
@@ -38,7 +38,7 @@ namespace Pulumiverse.Statuscake
         public Output<string> Location { get; private set; } = null!;
 
         /// <summary>
-        /// Monitored resource configuration block. The describes server under test
+        /// Monitored resource configuration block. This describes the server under test
         /// </summary>
         [Output("monitoredResource")]
         public Output<Outputs.PagespeedCheckMonitoredResource> MonitoredResource { get; private set; } = null!;
@@ -106,10 +106,10 @@ namespace Pulumiverse.Statuscake
         }
     }
 
-    public sealed class PagespeedCheckArgs : Pulumi.ResourceArgs
+    public sealed class PagespeedCheckArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Alert configuration block. Omitting this block disabled all alerts
+        /// Alert configuration block. An empty block disables all alerts
         /// </summary>
         [Input("alertConfig", required: true)]
         public Input<Inputs.PagespeedCheckAlertConfigArgs> AlertConfig { get; set; } = null!;
@@ -133,7 +133,7 @@ namespace Pulumiverse.Statuscake
         }
 
         /// <summary>
-        /// Monitored resource configuration block. The describes server under test
+        /// Monitored resource configuration block. This describes the server under test
         /// </summary>
         [Input("monitoredResource", required: true)]
         public Input<Inputs.PagespeedCheckMonitoredResourceArgs> MonitoredResource { get; set; } = null!;
@@ -159,12 +159,13 @@ namespace Pulumiverse.Statuscake
         public PagespeedCheckArgs()
         {
         }
+        public static new PagespeedCheckArgs Empty => new PagespeedCheckArgs();
     }
 
-    public sealed class PagespeedCheckState : Pulumi.ResourceArgs
+    public sealed class PagespeedCheckState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Alert configuration block. Omitting this block disabled all alerts
+        /// Alert configuration block. An empty block disables all alerts
         /// </summary>
         [Input("alertConfig")]
         public Input<Inputs.PagespeedCheckAlertConfigGetArgs>? AlertConfig { get; set; }
@@ -194,7 +195,7 @@ namespace Pulumiverse.Statuscake
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// Monitored resource configuration block. The describes server under test
+        /// Monitored resource configuration block. This describes the server under test
         /// </summary>
         [Input("monitoredResource")]
         public Input<Inputs.PagespeedCheckMonitoredResourceGetArgs>? MonitoredResource { get; set; }
@@ -220,5 +221,6 @@ namespace Pulumiverse.Statuscake
         public PagespeedCheckState()
         {
         }
+        public static new PagespeedCheckState Empty => new PagespeedCheckState();
     }
 }

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-statuscake/sdk/go/statuscake/internal"
 )
 
 // The provider type for the statuscake package. By default, resources use package-wide configuration
@@ -31,17 +32,19 @@ func NewProvider(ctx *pulumi.Context,
 		args = &ProviderArgs{}
 	}
 
-	if isZero(args.ApiToken) {
-		args.ApiToken = pulumi.StringPtr(getEnvOrDefault("", nil, "STATUSCAKE_API_TOKEN").(string))
+	if args.ApiToken == nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "STATUSCAKE_API_TOKEN"); d != nil {
+			args.ApiToken = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.ApiToken != nil {
-		args.ApiToken = pulumi.ToSecret(args.ApiToken).(pulumi.StringPtrOutput)
+		args.ApiToken = pulumi.ToSecret(args.ApiToken).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"apiToken",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:statuscake", name, args, &resource, opts...)
 	if err != nil {

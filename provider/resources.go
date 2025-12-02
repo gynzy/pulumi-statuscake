@@ -116,6 +116,7 @@ func Provider() tfbridge.ProviderInfo {
 			// 	},
 			// },
 			"statuscake_contact_group":      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "ContactGroup")},
+			"statuscake_heartbeat_check":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "HeartbeatCheck")},
 			"statuscake_maintenance_window": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "MaintenanceWindow")},
 			"statuscake_pagespeed_check":    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "PagespeedCheck")},
 			"statuscake_ssl_check":          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SslCheck")},

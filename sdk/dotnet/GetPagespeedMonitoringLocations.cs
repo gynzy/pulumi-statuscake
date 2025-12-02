@@ -13,14 +13,17 @@ namespace Pulumiverse.Statuscake
     public static class GetPagespeedMonitoringLocations
     {
         public static Task<GetPagespeedMonitoringLocationsResult> InvokeAsync(GetPagespeedMonitoringLocationsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPagespeedMonitoringLocationsResult>("statuscake:index/getPagespeedMonitoringLocations:getPagespeedMonitoringLocations", args ?? new GetPagespeedMonitoringLocationsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetPagespeedMonitoringLocationsResult>("statuscake:index/getPagespeedMonitoringLocations:getPagespeedMonitoringLocations", args ?? new GetPagespeedMonitoringLocationsArgs(), options.WithDefaults());
 
         public static Output<GetPagespeedMonitoringLocationsResult> Invoke(GetPagespeedMonitoringLocationsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetPagespeedMonitoringLocationsResult>("statuscake:index/getPagespeedMonitoringLocations:getPagespeedMonitoringLocations", args ?? new GetPagespeedMonitoringLocationsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetPagespeedMonitoringLocationsResult>("statuscake:index/getPagespeedMonitoringLocations:getPagespeedMonitoringLocations", args ?? new GetPagespeedMonitoringLocationsInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetPagespeedMonitoringLocationsResult> Invoke(GetPagespeedMonitoringLocationsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetPagespeedMonitoringLocationsResult>("statuscake:index/getPagespeedMonitoringLocations:getPagespeedMonitoringLocations", args ?? new GetPagespeedMonitoringLocationsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetPagespeedMonitoringLocationsArgs : Pulumi.InvokeArgs
+    public sealed class GetPagespeedMonitoringLocationsArgs : global::Pulumi.InvokeArgs
     {
         [Input("regionCode")]
         public string? RegionCode { get; set; }
@@ -28,9 +31,10 @@ namespace Pulumiverse.Statuscake
         public GetPagespeedMonitoringLocationsArgs()
         {
         }
+        public static new GetPagespeedMonitoringLocationsArgs Empty => new GetPagespeedMonitoringLocationsArgs();
     }
 
-    public sealed class GetPagespeedMonitoringLocationsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetPagespeedMonitoringLocationsInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("regionCode")]
         public Input<string>? RegionCode { get; set; }
@@ -38,6 +42,7 @@ namespace Pulumiverse.Statuscake
         public GetPagespeedMonitoringLocationsInvokeArgs()
         {
         }
+        public static new GetPagespeedMonitoringLocationsInvokeArgs Empty => new GetPagespeedMonitoringLocationsInvokeArgs();
     }
 
 

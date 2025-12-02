@@ -14,6 +14,9 @@ namespace Pulumiverse.Statuscake.Outputs
     [OutputType]
     public sealed class PagespeedCheckMonitoredResource
     {
+        /// <summary>
+        /// URL or IP address of the website under test
+        /// </summary>
         public readonly string Address;
 
         [OutputConstructor]

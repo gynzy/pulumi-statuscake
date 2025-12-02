@@ -8,6 +8,7 @@ import (
 
 	"github.com/blang/semver"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumiverse/pulumi-statuscake/sdk/go/statuscake/internal"
 )
 
 type module struct {
@@ -22,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "statuscake:index/contactGroup:ContactGroup":
 		r = &ContactGroup{}
+	case "statuscake:index/heartbeatCheck:HeartbeatCheck":
+		r = &HeartbeatCheck{}
 	case "statuscake:index/maintenanceWindow:MaintenanceWindow":
 		r = &MaintenanceWindow{}
 	case "statuscake:index/pagespeedCheck:PagespeedCheck":
@@ -57,10 +60,18 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 }
 
 func init() {
-	version, _ := PkgVersion()
+	version, err := internal.PkgVersion()
+	if err != nil {
+		version = semver.Version{Major: 1}
+	}
 	pulumi.RegisterResourceModule(
 		"statuscake",
 		"index/contactGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"statuscake",
+		"index/heartbeatCheck",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

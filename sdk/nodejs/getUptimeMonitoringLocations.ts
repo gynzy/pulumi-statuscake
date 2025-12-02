@@ -2,16 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export function getUptimeMonitoringLocations(args?: GetUptimeMonitoringLocationsArgs, opts?: pulumi.InvokeOptions): Promise<GetUptimeMonitoringLocationsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
-
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("statuscake:index/getUptimeMonitoringLocations:getUptimeMonitoringLocations", {
         "regionCode": args.regionCode,
     }, opts);
@@ -35,9 +32,12 @@ export interface GetUptimeMonitoringLocationsResult {
     readonly locations: outputs.GetUptimeMonitoringLocationsLocation[];
     readonly regionCode?: string;
 }
-
-export function getUptimeMonitoringLocationsOutput(args?: GetUptimeMonitoringLocationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUptimeMonitoringLocationsResult> {
-    return pulumi.output(args).apply(a => getUptimeMonitoringLocations(a, opts))
+export function getUptimeMonitoringLocationsOutput(args?: GetUptimeMonitoringLocationsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetUptimeMonitoringLocationsResult> {
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("statuscake:index/getUptimeMonitoringLocations:getUptimeMonitoringLocations", {
+        "regionCode": args.regionCode,
+    }, opts);
 }
 
 /**

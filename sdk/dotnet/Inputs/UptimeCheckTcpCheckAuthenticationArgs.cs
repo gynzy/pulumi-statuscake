@@ -11,10 +11,19 @@ using Pulumi;
 namespace Pulumiverse.Statuscake.Inputs
 {
 
-    public sealed class UptimeCheckTcpCheckAuthenticationArgs : Pulumi.ResourceArgs
+    public sealed class UptimeCheckTcpCheckAuthenticationArgs : global::Pulumi.ResourceArgs
     {
         [Input("password", required: true)]
-        public Input<string> Password { get; set; } = null!;
+        private Input<string>? _password;
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
@@ -22,5 +31,6 @@ namespace Pulumiverse.Statuscake.Inputs
         public UptimeCheckTcpCheckAuthenticationArgs()
         {
         }
+        public static new UptimeCheckTcpCheckAuthenticationArgs Empty => new UptimeCheckTcpCheckAuthenticationArgs();
     }
 }

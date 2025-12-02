@@ -14,8 +14,17 @@ namespace Pulumiverse.Statuscake.Outputs
     [OutputType]
     public sealed class UptimeCheckHttpCheckContentMatchers
     {
+        /// <summary>
+        /// String to look for within the response. Considered down if not found
+        /// </summary>
         public readonly string Content;
+        /// <summary>
+        /// Include header content in string match search
+        /// </summary>
         public readonly bool? IncludeHeaders;
+        /// <summary>
+        /// Whether to consider the check as down if the content is present within the response
+        /// </summary>
         public readonly string? Matcher;
 
         [OutputConstructor]

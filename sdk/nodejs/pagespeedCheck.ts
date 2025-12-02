@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class PagespeedCheck extends pulumi.CustomResource {
@@ -34,7 +35,7 @@ export class PagespeedCheck extends pulumi.CustomResource {
     }
 
     /**
-     * Alert configuration block. Omitting this block disabled all alerts
+     * Alert configuration block. An empty block disables all alerts
      */
     public readonly alertConfig!: pulumi.Output<outputs.PagespeedCheckAlertConfig>;
     /**
@@ -50,7 +51,7 @@ export class PagespeedCheck extends pulumi.CustomResource {
      */
     public /*out*/ readonly location!: pulumi.Output<string>;
     /**
-     * Monitored resource configuration block. The describes server under test
+     * Monitored resource configuration block. This describes the server under test
      */
     public readonly monitoredResource!: pulumi.Output<outputs.PagespeedCheckMonitoredResource>;
     /**
@@ -120,7 +121,7 @@ export class PagespeedCheck extends pulumi.CustomResource {
  */
 export interface PagespeedCheckState {
     /**
-     * Alert configuration block. Omitting this block disabled all alerts
+     * Alert configuration block. An empty block disables all alerts
      */
     alertConfig?: pulumi.Input<inputs.PagespeedCheckAlertConfig>;
     /**
@@ -136,7 +137,7 @@ export interface PagespeedCheckState {
      */
     location?: pulumi.Input<string>;
     /**
-     * Monitored resource configuration block. The describes server under test
+     * Monitored resource configuration block. This describes the server under test
      */
     monitoredResource?: pulumi.Input<inputs.PagespeedCheckMonitoredResource>;
     /**
@@ -158,7 +159,7 @@ export interface PagespeedCheckState {
  */
 export interface PagespeedCheckArgs {
     /**
-     * Alert configuration block. Omitting this block disabled all alerts
+     * Alert configuration block. An empty block disables all alerts
      */
     alertConfig: pulumi.Input<inputs.PagespeedCheckAlertConfig>;
     /**
@@ -170,7 +171,7 @@ export interface PagespeedCheckArgs {
      */
     contactGroups?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Monitored resource configuration block. The describes server under test
+     * Monitored resource configuration block. This describes the server under test
      */
     monitoredResource: pulumi.Input<inputs.PagespeedCheckMonitoredResource>;
     /**

@@ -14,11 +14,29 @@ namespace Pulumiverse.Statuscake.Outputs
     [OutputType]
     public sealed class UptimeCheckLocation
     {
+        /// <summary>
+        /// Location description
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// Location IPv4 address
+        /// </summary>
         public readonly string? Ipv4;
+        /// <summary>
+        /// Location IPv6 address
+        /// </summary>
         public readonly string? Ipv6;
+        /// <summary>
+        /// Location region
+        /// </summary>
         public readonly string? Region;
+        /// <summary>
+        /// Location region code
+        /// </summary>
         public readonly string? RegionCode;
+        /// <summary>
+        /// Location status
+        /// </summary>
         public readonly string? Status;
 
         [OutputConstructor]

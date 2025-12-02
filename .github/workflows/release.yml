@@ -54,13 +54,13 @@ jobs:
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
-          args: -p 3 release --rm-dist
+          args: -p 3 release --clean
           version: latest
     strategy:
       fail-fast: true
       matrix:
         goversion:
-          - 1.18.x
+          - 1.24.x
   publish_sdk:
     name: Publish SDKs
     runs-on: ubuntu-latest
@@ -84,7 +84,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{matrix.nodeversion}}
-          registry-url: ${{env.NPM_REGISTRY_URL}}
       - name: Setup DotNet
         uses: actions/setup-dotnet@v1
         with:
@@ -116,6 +115,7 @@ jobs:
         with:
           access: "public"
           token: ${{ env.NPM_TOKEN }}
+          registry: ${{ env.NPM_REGISTRY_URL }}
           package: ${{github.workspace}}/sdk/nodejs/bin/package.json
       - if: ${{ matrix.language == 'dotnet' && env.PUBLISH_NUGET == 'true' }}
         name: publish nuget package
@@ -128,13 +128,13 @@ jobs:
         dotnetversion:
           - 3.1.301
         goversion:
-          - 1.18.x
+          - 1.24.x
         language:
           - nodejs
           - python
           - dotnet
           - go
         nodeversion:
-          - 14.x
+          - 22.x
         pythonversion:
           - "3.9"

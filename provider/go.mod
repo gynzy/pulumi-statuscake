@@ -5,6 +5,7 @@ go 1.24.0
 toolchain go1.24.10
 
 replace (
+	github.com/StatusCakeDev/statuscake-go => github.com/gynzy/statuscake-go v1.3.0-gynzy1
 	github.com/StatusCakeDev/terraform-provider-statuscake/v2 => github.com/gynzy/terraform-provider-statuscake/v2 v2.2.3-gynzy7
 	github.com/StatusCakeDev/terraform-provider-statuscake/v2/shim => ./shim
 	github.com/hashicorp/go-getter v1.5.0 => github.com/hashicorp/go-getter v1.4.0

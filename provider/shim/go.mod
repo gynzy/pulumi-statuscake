@@ -4,10 +4,14 @@ go 1.24.0
 
 toolchain go1.24.10
 
-replace github.com/hashicorp/terraform-plugin-go => github.com/hashicorp/terraform-plugin-go v0.24.0
+replace (
+	github.com/StatusCakeDev/statuscake-go => github.com/gynzy/statuscake-go v1.3.0-gynzy1
+	github.com/StatusCakeDev/terraform-provider-statuscake/v2 => github.com/gynzy/terraform-provider-statuscake/v2 v2.2.3-gynzy7
+	github.com/hashicorp/terraform-plugin-go => github.com/hashicorp/terraform-plugin-go v0.24.0
+)
 
 require (
-	github.com/StatusCakeDev/terraform-provider-statuscake/v2 v2.2.3-0.20251020130702-94f68c8a54e7
+	github.com/StatusCakeDev/terraform-provider-statuscake/v2 v2.2.3-gynzy7
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.38.1
 )
 
@@ -39,12 +43,12 @@ require (
 	github.com/vmihailenco/msgpack/v5 v5.4.1 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/zclconf/go-cty v1.17.0 // indirect
-	golang.org/x/mod v0.27.0 // indirect
-	golang.org/x/sync v0.17.0 // indirect
-	golang.org/x/sys v0.36.0 // indirect
-	golang.org/x/text v0.29.0 // indirect
+	golang.org/x/mod v0.29.0 // indirect
+	golang.org/x/sync v0.18.0 // indirect
+	golang.org/x/sys v0.38.0 // indirect
+	golang.org/x/text v0.31.0 // indirect
 	golang.org/x/time v0.14.0 // indirect
-	golang.org/x/tools v0.36.0 // indirect
+	golang.org/x/tools v0.38.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
 	google.golang.org/protobuf v1.36.9 // indirect
 )

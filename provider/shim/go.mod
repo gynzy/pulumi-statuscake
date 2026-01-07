@@ -5,13 +5,13 @@ go 1.24.0
 toolchain go1.24.10
 
 replace (
-	github.com/StatusCakeDev/statuscake-go => github.com/gynzy/statuscake-go v1.3.0-gynzy1
-	github.com/StatusCakeDev/terraform-provider-statuscake/v2 => github.com/gynzy/terraform-provider-statuscake/v2 v2.2.3-gynzy7
+	github.com/StatusCakeDev/statuscake-go => github.com/gynzy/statuscake-go v1.3.0-gynzy2
+	github.com/StatusCakeDev/terraform-provider-statuscake/v2 => github.com/gynzy/terraform-provider-statuscake/v2 v2.4.0-gynzy1
 	github.com/hashicorp/terraform-plugin-go => github.com/hashicorp/terraform-plugin-go v0.24.0
 )
 
 require (
-	github.com/StatusCakeDev/terraform-provider-statuscake/v2 v2.2.3-gynzy7
+	github.com/StatusCakeDev/terraform-provider-statuscake/v2 v2.4.0-gynzy1
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.38.1
 )
 

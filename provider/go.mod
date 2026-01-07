@@ -5,8 +5,8 @@ go 1.24.0
 toolchain go1.24.10
 
 replace (
-	github.com/StatusCakeDev/statuscake-go => github.com/gynzy/statuscake-go v1.3.0-gynzy1
-	github.com/StatusCakeDev/terraform-provider-statuscake/v2 => github.com/gynzy/terraform-provider-statuscake/v2 v2.2.3-gynzy7
+	github.com/StatusCakeDev/statuscake-go => github.com/gynzy/statuscake-go v1.3.0-gynzy2
+	github.com/StatusCakeDev/terraform-provider-statuscake/v2 => github.com/gynzy/terraform-provider-statuscake/v2 v2.4.0-gynzy1
 	github.com/StatusCakeDev/terraform-provider-statuscake/v2/shim => ./shim
 	github.com/hashicorp/go-getter v1.5.0 => github.com/hashicorp/go-getter v1.4.0
 	github.com/hashicorp/terraform-plugin-go => github.com/hashicorp/terraform-plugin-go v0.24.0
@@ -33,7 +33,7 @@ require (
 	github.com/Microsoft/go-winio v0.6.1 // indirect
 	github.com/ProtonMail/go-crypto v1.1.6 // indirect
 	github.com/StatusCakeDev/statuscake-go v1.3.0 // indirect
-	github.com/StatusCakeDev/terraform-provider-statuscake/v2 v2.2.3-gynzy7 // indirect
+	github.com/StatusCakeDev/terraform-provider-statuscake/v2 v2.4.0-gynzy1 // indirect
 	github.com/aead/chacha20 v0.0.0-20180709150244-8b13a72661da // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/apparentlymart/go-cidr v1.1.0 // indirect

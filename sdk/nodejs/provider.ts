@@ -47,10 +47,10 @@ export class Provider extends pulumi.ProviderResource {
         opts = opts || {};
         {
             resourceInputs["apiToken"] = (args?.apiToken ? pulumi.secret(args.apiToken) : undefined) ?? utilities.getEnv("STATUSCAKE_API_TOKEN");
-            resourceInputs["maxBackoff"] = pulumi.output(args ? args.maxBackoff : undefined).apply(JSON.stringify);
-            resourceInputs["minBackoff"] = pulumi.output(args ? args.minBackoff : undefined).apply(JSON.stringify);
-            resourceInputs["retries"] = pulumi.output(args ? args.retries : undefined).apply(JSON.stringify);
-            resourceInputs["rps"] = pulumi.output(args ? args.rps : undefined).apply(JSON.stringify);
+            resourceInputs["maxBackoff"] = pulumi.output(args ? args.maxBackoff : undefined).apply(pulumi.jsonStringify);
+            resourceInputs["minBackoff"] = pulumi.output(args ? args.minBackoff : undefined).apply(pulumi.jsonStringify);
+            resourceInputs["retries"] = pulumi.output(args ? args.retries : undefined).apply(pulumi.jsonStringify);
+            resourceInputs["rps"] = pulumi.output(args ? args.rps : undefined).apply(pulumi.jsonStringify);
             resourceInputs["statuscakeCustomEndpoint"] = args ? args.statuscakeCustomEndpoint : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

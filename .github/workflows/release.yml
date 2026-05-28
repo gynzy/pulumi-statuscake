@@ -88,7 +88,7 @@ jobs:
         with:
           dotnet-version: ${{matrix.dotnetverson}}
       - name: Setup Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v5
         with:
           python-version: ${{matrix.pythonversion}}
       - name: Build SDK
@@ -136,4 +136,4 @@ jobs:
         nodeversion:
           - 22.x
         pythonversion:
-          - "3.9"
+          - "3.11"
